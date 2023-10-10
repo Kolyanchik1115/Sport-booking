@@ -12,151 +12,92 @@ final theme = ThemeData(
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarIconBrightness: Brightness.light,
       systemNavigationBarIconBrightness: Brightness.light,
-      // systemNavigationBarColor: AppColors.greenBice,
+      systemNavigationBarColor: AppColors.white,
     ),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    // backgroundColor: AppColors.greenBice,
+    backgroundColor: AppColors.purpleDark,
     showSelectedLabels: true,
-    selectedItemColor: AppColors.white,
+    selectedItemColor: AppColors.purpleDark,
     showUnselectedLabels: false,
     selectedLabelStyle: GoogleFonts.roboto(
       fontSize: 14.0,
       fontWeight: FontWeight.w400,
-      color: AppColors.white,
+      color: AppColors.purpleDark,
     ),
     unselectedLabelStyle: GoogleFonts.roboto(
       fontSize: 14.0,
       fontWeight: FontWeight.w400,
-      color: AppColors.white,
+      color: AppColors.purpleDark,
     ),
     selectedIconTheme: const IconThemeData(
-      color: AppColors.white,
+      color: AppColors.purpleDark,
     ),
     unselectedIconTheme: IconThemeData(
-      color: AppColors.white.withOpacity(0.6),
+      color: AppColors.purpleDark.withOpacity(0.6),
     ),
   ),
-  // textSelectionTheme: const TextSelectionThemeData(
-  //   cursorColor: AppColors.greenBice,
-  // ),
-  // inputDecorationTheme: InputDecorationTheme(
-  //   focusColor: AppColors.greenBice,
-  //   hoverColor: AppColors.greenCharleston.withOpacity(0.1),
-  //   hintStyle: GoogleFonts.roboto(
-  //     fontSize: 16,
-  //     fontWeight: FontWeight.w400,
-  //     color: AppColors.silver,
-  //   ),
-  //   errorStyle: GoogleFonts.roboto(
-  //     fontSize: 12,
-  //     fontWeight: FontWeight.w400,
-  //     color: AppColors.red,
-  //   ),
-  //   enabledBorder: UnderlineInputBorder(
-  //     borderSide: BorderSide(
-  //         color: AppColors.greenCharleston.withOpacity(0.1), width: 1.0),
-  //   ),
-  //   focusedBorder: const UnderlineInputBorder(
-  //     borderSide: BorderSide(color: AppColors.greenBice, width: 1.0),
-  //   ),
-  //   errorBorder: const UnderlineInputBorder(
-  //     borderSide: BorderSide(color: AppColors.red, width: 1.0),
-  //   ),
-  //   focusedErrorBorder: const UnderlineInputBorder(
-  //     borderSide: BorderSide(color: AppColors.red, width: 1.0),
-  //   ),
-  // ),
+  textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: AppColors.purpleDark,
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    focusColor: AppColors.purpleDark,
+    hoverColor: AppColors.purpleDark.withOpacity(0.1),
+    hintStyle: GoogleFonts.roboto(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: AppColors.purpleDark,
+    ),
+    errorStyle: GoogleFonts.roboto(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: AppColors.purpleDark,
+    ),
+    enabledBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: AppColors.purpleDark.withOpacity(0.1), width: 1.0),
+    ),
+    disabledBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: AppColors.purpleDark.withOpacity(0.1), width: 1.0),
+    ),
+    focusedBorder: const UnderlineInputBorder(
+      borderSide: BorderSide(color: AppColors.purpleDark, width: 1.0),
+    ),
+    errorBorder: const UnderlineInputBorder(
+      borderSide: BorderSide(color: AppColors.purpleDark, width: 1.0),
+    ),
+    focusedErrorBorder: const UnderlineInputBorder(
+      borderSide: BorderSide(color: AppColors.purpleDark, width: 1.0),
+    ),
+  ),
   textTheme: TextTheme(
     displayLarge: const TextStyle(),
     displayMedium: GoogleFonts.roboto(
       fontSize: 14.0,
       fontWeight: FontWeight.w700,
-      color: AppColors.white,
+      color: AppColors.purpleDark,
     ),
-    displaySmall: GoogleFonts.roboto(
-      fontSize: 12.0,
-      fontWeight: FontWeight.w400,
-      color: AppColors.white,
+    titleSmall: GoogleFonts.roboto(
+      fontSize: 14.0,
+      fontWeight: FontWeight.w700,
+      color: AppColors.purpleDark,
     ),
-    // headlineLarge: GoogleFonts.roboto(
-    //   fontSize: 16.0,
-    //   fontWeight: FontWeight.w700,
-    //   color: AppColors.greenBice,
-    // ),
-    // headlineMedium: GoogleFonts.roboto(
-    //   fontSize: 14.0,
-    //   fontWeight: FontWeight.w700,
-    //   color: AppColors.greenBice,
-    // ),
-    // headlineSmall: GoogleFonts.roboto(
-    //   fontSize: 14.0,
-    //   fontWeight: FontWeight.w700,
-    //   color: AppColors.greenCharleston,
-    // ),
-    // titleLarge: GoogleFonts.roboto(
-    //   fontSize: 20.0,
-    //   fontWeight: FontWeight.w700,
-    //   color: AppColors.greenCharleston,
-    // ),
-    // titleMedium: GoogleFonts.roboto(
-    //   fontSize: 16.0,
-    //   fontWeight: FontWeight.w400,
-    //   color: AppColors.greenCharleston,
-    // ),
-    // titleSmall: GoogleFonts.roboto(
-    //   fontSize: 14.0,
-    //   fontWeight: FontWeight.w400,
-    //   color: AppColors.greenCharleston,
-    // ),
-    // bodyLarge: GoogleFonts.roboto(
-    //   fontSize: 16.0,
-    //   fontWeight: FontWeight.w400,
-    //   color: AppColors.greenCharleston.withOpacity(0.6),
-    // ),
-    // bodyMedium: GoogleFonts.roboto(
-    //   fontSize: 14.0,
-    //   fontWeight: FontWeight.w400,
-    //   color: AppColors.greenCharleston.withOpacity(0.6),
-    // ),
-    // bodySmall: GoogleFonts.roboto(
-    //   fontSize: 12.0,
-    //   fontWeight: FontWeight.w400,
-    //   color: AppColors.greenCharleston.withOpacity(0.6),
-    // ),
-    // labelLarge: GoogleFonts.roboto(
-    //   fontSize: 16.0,
-    //   fontWeight: FontWeight.w700,
-    //   color: AppColors.silver,
-    // ),
-    // labelMedium: GoogleFonts.roboto(
-    //   fontSize: 16.0,
-    //   fontWeight: FontWeight.w700,
-    //   color: AppColors.greenCharleston,
-    // ),
-    // labelSmall: GoogleFonts.roboto(
-    //   fontSize: 16.0,
-    //   fontWeight: FontWeight.w400,
-    //   letterSpacing: 0,
-    //   color: AppColors.silver,
-    // ),
   ),
-  // colorScheme: const ColorScheme(
-  //   onSecondaryContainer: AppColors.silver,
-  //   brightness: Brightness.dark,
-  //   shadow: AppColors.purpleRoyal,
-  //   surfaceTint: AppColors.purpleRoyal,
-  //   outline: AppColors.purpleRoyal,
-  //   // primary: AppColors.greenBice,
-  //   // onPrimary: AppColors.silver,
-  //   // secondary: AppColors.greenCharleston,
-  //   // onSecondary: AppColors.greenBice,
-  //   // error: AppColors.red,
-  //   // onError: AppColors.red,
-  //   // onBackground: AppColors.whiteIce,
-  //   // surface: AppColors.blackEerie,
-  //   onPrimaryContainer: AppColors.purpleRoyal,
-  //   onSurface: AppColors.purpleRoyal,
-  //   background: AppColors.white,
-  // ),
+  colorScheme: const ColorScheme(
+    onSecondaryContainer: AppColors.blueLight,
+    brightness: Brightness.dark,
+    shadow: AppColors.greenLite,
+    surfaceTint: AppColors.greenDark,
+    outline: AppColors.yellowLight,
+    primary: AppColors.blueLight,
+    onPrimary: AppColors.blueLight,
+    secondary: AppColors.blueLight,
+    onSecondary: AppColors.blueLight,
+    error: AppColors.blueLight,
+    onError: AppColors.blueLight,
+    onBackground: AppColors.blueLight,
+    surface: AppColors.blueLight,
+    onPrimaryContainer: AppColors.purpleDark,
+    onSurface: AppColors.blueLight,
+    background: AppColors.white,
+  ),
 );
