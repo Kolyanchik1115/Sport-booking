@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/presentation/pages/home/home_page.dart';
-import 'package:sport_app/presentation/pages/signIn/sign_in_page.dart';
+import 'package:sport_app/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:sport_app/presentation/pages/splash/splash_page.dart';
 import 'package:sport_app/presentation/widgets/scaffold_with_nav_bar.dart';
 
