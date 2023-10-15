@@ -4,7 +4,7 @@ import 'package:sport_app/core/themes/theme.dart';
 import 'package:sport_app/injector.dart' as di;
 import 'package:sport_app/injector.dart';
 
-void main() {
+void main() async {
   di.init();
   runApp(const MyApp());
 }

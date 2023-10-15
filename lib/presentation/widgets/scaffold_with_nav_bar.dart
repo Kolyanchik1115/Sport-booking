@@ -37,6 +37,9 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
                 type: BottomNavigationBarType.fixed,
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 0), label: 'Home'),
+                  BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 1), label: 'Search'),
+                  BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 2), label: 'Home'),
+                  BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 3), label: 'Home'),
                 ],
                 currentIndex: widget.navigationShell.currentIndex,
                 onTap: (int index) => _onTap(context, index),
@@ -48,8 +51,6 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
     );
   }
 
-  /// Navigate to the current location of the branch at the provided index when
-  /// tapping an item in the BottomNavigationBar.
   void _onTap(BuildContext context, int index) {
     _index.value = index;
 

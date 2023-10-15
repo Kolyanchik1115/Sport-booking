@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/presentation/pages/home/home_page.dart';
+import 'package:sport_app/presentation/pages/search/search_page.dart';
 import 'package:sport_app/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:sport_app/presentation/pages/splash/splash_page.dart';
 import 'package:sport_app/presentation/widgets/scaffold_with_nav_bar.dart';
@@ -35,10 +36,6 @@ class AppRouter {
             const SignInPage(),
           ),
         ),
-        // GoRoute(
-        //   path: AppRoutes.mainProfile,
-        //   builder: (BuildContext context, GoRouterState state) => const MainProfilePage(),
-        // ),
 
         StatefulShellRoute.indexedStack(
           builder: (BuildContext context, GoRouterState state, StatefulNavigationShell navigationShell) {
@@ -53,6 +50,15 @@ class AppRouter {
                 ),
               ],
             ),
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  path: AppRoutes.mainProfile,
+                  builder: (BuildContext context, GoRouterState state) => const SearchPage(),
+                ),
+              ],
+            ),
+
           ],
         ),
       ],
@@ -61,6 +67,9 @@ class AppRouter {
 
   GoRouter get config {
     return _config;
+  }
+  void go(String location, {Object? extra}) {
+    _config.go(location, extra: extra);
   }
 
   void goNamed(String location) {

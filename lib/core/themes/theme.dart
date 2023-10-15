@@ -18,7 +18,7 @@ final theme = ThemeData(
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     backgroundColor: AppColors.purpleDark,
     showSelectedLabels: true,
-    selectedItemColor: AppColors.purpleDark,
+    selectedItemColor: AppColors.white,
     showUnselectedLabels: false,
     selectedLabelStyle: GoogleFonts.roboto(
       fontSize: 14.0,
@@ -31,10 +31,10 @@ final theme = ThemeData(
       color: AppColors.purpleDark,
     ),
     selectedIconTheme: const IconThemeData(
-      color: AppColors.purpleDark,
+      color: AppColors.white,
     ),
-    unselectedIconTheme: IconThemeData(
-      color: AppColors.purpleDark.withOpacity(0.6),
+    unselectedIconTheme: const IconThemeData(
+      color: AppColors.white,
     ),
   ),
   textSelectionTheme: const TextSelectionThemeData(
