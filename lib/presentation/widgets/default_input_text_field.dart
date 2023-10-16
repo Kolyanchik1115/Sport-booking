@@ -104,7 +104,7 @@ class _DefaultInputTextFieldState extends State<DefaultInputTextField> {
                 const SizedBox(width: 4.0),
                 if (isError)
                   SvgPicture.asset(
-                    AppSvg.startIcon,
+                    AppSvg.passwordEye,
                     color: Theme.of(context).colorScheme.error,
                   ),
               ],

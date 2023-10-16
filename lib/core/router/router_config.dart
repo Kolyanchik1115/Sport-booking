@@ -1,7 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
-import 'package:sport_app/presentation/pages/home/home_page.dart';
+import 'package:sport_app/presentation/pages/favorite/favorite_page.dart';
+import 'package:sport_app/presentation/pages/profile/profile_page.dart';
+import 'package:sport_app/presentation/pages/reservation/reservation_page.dart';
 import 'package:sport_app/presentation/pages/search/search_page.dart';
 import 'package:sport_app/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:sport_app/presentation/pages/splash/splash_page.dart';
@@ -36,7 +38,6 @@ class AppRouter {
             const SignInPage(),
           ),
         ),
-
         StatefulShellRoute.indexedStack(
           builder: (BuildContext context, GoRouterState state, StatefulNavigationShell navigationShell) {
             return ScaffoldWithNavBar(navigationShell: navigationShell);
@@ -45,8 +46,24 @@ class AppRouter {
             StatefulShellBranch(
               routes: <RouteBase>[
                 GoRoute(
-                  path: AppRoutes.home,
-                  builder: (BuildContext context, GoRouterState state) => const HomePage(),
+                  path: AppRoutes.search,
+                  builder: (BuildContext context, GoRouterState state) => const SearchPage(),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  path: AppRoutes.favorites,
+                  builder: (BuildContext context, GoRouterState state) => const FavoritePage(),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  path: AppRoutes.reservation,
+                  builder: (BuildContext context, GoRouterState state) => const ReservationPage(),
                 ),
               ],
             ),
@@ -54,11 +71,10 @@ class AppRouter {
               routes: <RouteBase>[
                 GoRoute(
                   path: AppRoutes.mainProfile,
-                  builder: (BuildContext context, GoRouterState state) => const SearchPage(),
+                  builder: (BuildContext context, GoRouterState state) => const ProfilePage(),
                 ),
               ],
             ),
-
           ],
         ),
       ],
@@ -68,6 +84,7 @@ class AppRouter {
   GoRouter get config {
     return _config;
   }
+
   void go(String location, {Object? extra}) {
     _config.go(location, extra: extra);
   }
@@ -75,6 +92,7 @@ class AppRouter {
   void goNamed(String location) {
     _config.goNamed(location);
   }
+
   CustomTransitionPage _customTransitionPage(GoRouterState state, Duration duration, Widget child) {
     return CustomTransitionPage<void>(
       key: state.pageKey,
@@ -89,5 +107,4 @@ class AppRouter {
       },
     );
   }
-
 }
