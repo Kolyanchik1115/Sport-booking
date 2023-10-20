@@ -21,6 +21,8 @@ UserResponse _$UserResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserResponse {
   UserData get user => throw _privateConstructorUsedError;
+  String get accessToken => throw _privateConstructorUsedError;
+  String get refreshToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +36,7 @@ abstract class $UserResponseCopyWith<$Res> {
           UserResponse value, $Res Function(UserResponse) then) =
       _$UserResponseCopyWithImpl<$Res, UserResponse>;
   @useResult
-  $Res call({UserData user});
+  $Res call({UserData user, String accessToken, String refreshToken});
 
   $UserDataCopyWith<$Res> get user;
 }
@@ -53,12 +55,22 @@ class _$UserResponseCopyWithImpl<$Res, $Val extends UserResponse>
   @override
   $Res call({
     Object? user = null,
+    Object? accessToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_value.copyWith(
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserData,
+      accessToken: null == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -79,7 +91,7 @@ abstract class _$$UserResponseImplCopyWith<$Res>
       __$$UserResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserData user});
+  $Res call({UserData user, String accessToken, String refreshToken});
 
   @override
   $UserDataCopyWith<$Res> get user;
@@ -97,12 +109,22 @@ class __$$UserResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = null,
+    Object? accessToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_$UserResponseImpl(
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserData,
+      accessToken: null == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -110,17 +132,24 @@ class __$$UserResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserResponseImpl implements _UserResponse {
-  const _$UserResponseImpl({required this.user});
+  const _$UserResponseImpl(
+      {required this.user,
+      required this.accessToken,
+      required this.refreshToken});
 
   factory _$UserResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserResponseImplFromJson(json);
 
   @override
   final UserData user;
+  @override
+  final String accessToken;
+  @override
+  final String refreshToken;
 
   @override
   String toString() {
-    return 'UserResponse(user: $user)';
+    return 'UserResponse(user: $user, accessToken: $accessToken, refreshToken: $refreshToken)';
   }
 
   @override
@@ -128,12 +157,16 @@ class _$UserResponseImpl implements _UserResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserResponseImpl &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, user, accessToken, refreshToken);
 
   @JsonKey(ignore: true)
   @override
@@ -150,14 +183,20 @@ class _$UserResponseImpl implements _UserResponse {
 }
 
 abstract class _UserResponse implements UserResponse {
-  const factory _UserResponse({required final UserData user}) =
-      _$UserResponseImpl;
+  const factory _UserResponse(
+      {required final UserData user,
+      required final String accessToken,
+      required final String refreshToken}) = _$UserResponseImpl;
 
   factory _UserResponse.fromJson(Map<String, dynamic> json) =
       _$UserResponseImpl.fromJson;
 
   @override
   UserData get user;
+  @override
+  String get accessToken;
+  @override
+  String get refreshToken;
   @override
   @JsonKey(ignore: true)
   _$$UserResponseImplCopyWith<_$UserResponseImpl> get copyWith =>

@@ -98,8 +98,10 @@ class _SignInPageState extends State<SignInPage> {
                                           ),
                                           onPressed: () {
                                             context.read<SignInCubit>().signIn(
-                                                  _emailEditingController.text.trim(),
-                                                  _passwordEditingController.text.trim(),
+                                                  "nick@gmail.com",
+                                                  "password123",
+                                                  // _emailEditingController.text.trim(),
+                                                  // _passwordEditingController.text.trim(),
                                                 );
                                           },
                                         ),

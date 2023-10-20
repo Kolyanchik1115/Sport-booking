@@ -6,7 +6,9 @@ class AppRoutes {
   static const String singIn = '/sign_in';
   static const String singUp = '/sign_up';
 
-  static const String home = '/home';
+  static const String search = '/search';
+  static const String favorites = '/favorites';
+  static const String reservation = '/reservation';
   static const String mainProfile = '/main_profile';
 
 }

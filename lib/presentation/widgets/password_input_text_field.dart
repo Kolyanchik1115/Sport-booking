@@ -101,9 +101,9 @@ class _PasswordInputTextFieldState extends State<PasswordInputTextField> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SvgPicture.asset(
-                  AppSvg.startIcon,
+                  AppSvg.passwordEye,
                   colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.secondary.withOpacity(0.6),
+                    Theme.of(context).colorScheme.onPrimaryContainer,
                     BlendMode.srcIn,
                   ),
                 ),

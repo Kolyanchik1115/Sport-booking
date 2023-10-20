@@ -36,10 +36,10 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
               return BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
                 items: <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 0), label: 'Home'),
-                  BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 1), label: 'Search'),
-                  BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 2), label: 'Home'),
-                  BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 3), label: 'Home'),
+                  BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 0), label: 'Search'),
+                  BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 1), label: 'Favorite'),
+                  BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 2), label: 'Reservation'),
+                  BottomNavigationBarItem(icon: _icon(AppSvg.startIcon, currentIndex == 3), label: 'Me'),
                 ],
                 currentIndex: widget.navigationShell.currentIndex,
                 onTap: (int index) => _onTap(context, index),
