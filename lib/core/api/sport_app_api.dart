@@ -35,7 +35,6 @@ class SportAppApi {
   String? get refreshToken => _refreshToken;
 
 
-
   set token(String? value) {
     _token = value;
     if (_token != null) injector<TokenStorage>().saveToken(_token!);

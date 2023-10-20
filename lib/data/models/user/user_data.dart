@@ -7,10 +7,10 @@ part 'user_data.g.dart';
 @freezed
 class UserData with _$UserData {
   const factory UserData({
-    required int id,
-    required String email,
-    required String fullname,
-    required bool isActivated,
+    required int? id,
+    required String? email,
+    required String? fullname,
+    required bool? isActivated,
     DateTime? dateOfBirth,
   }) = _UserData;
 

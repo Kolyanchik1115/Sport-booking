@@ -21,6 +21,7 @@ UserResponseModel _$UserResponseModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserResponseModel {
   UserResponse get login => throw _privateConstructorUsedError;
+  UserData? get getProfile => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +35,10 @@ abstract class $UserResponseModelCopyWith<$Res> {
           UserResponseModel value, $Res Function(UserResponseModel) then) =
       _$UserResponseModelCopyWithImpl<$Res, UserResponseModel>;
   @useResult
-  $Res call({UserResponse login});
+  $Res call({UserResponse login, UserData? getProfile});
 
   $UserResponseCopyWith<$Res> get login;
+  $UserDataCopyWith<$Res>? get getProfile;
 }
 
 /// @nodoc
@@ -53,12 +55,17 @@ class _$UserResponseModelCopyWithImpl<$Res, $Val extends UserResponseModel>
   @override
   $Res call({
     Object? login = null,
+    Object? getProfile = freezed,
   }) {
     return _then(_value.copyWith(
       login: null == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
               as UserResponse,
+      getProfile: freezed == getProfile
+          ? _value.getProfile
+          : getProfile // ignore: cast_nullable_to_non_nullable
+              as UserData?,
     ) as $Val);
   }
 
@@ -67,6 +74,18 @@ class _$UserResponseModelCopyWithImpl<$Res, $Val extends UserResponseModel>
   $UserResponseCopyWith<$Res> get login {
     return $UserResponseCopyWith<$Res>(_value.login, (value) {
       return _then(_value.copyWith(login: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDataCopyWith<$Res>? get getProfile {
+    if (_value.getProfile == null) {
+      return null;
+    }
+
+    return $UserDataCopyWith<$Res>(_value.getProfile!, (value) {
+      return _then(_value.copyWith(getProfile: value) as $Val);
     });
   }
 }
@@ -79,10 +98,12 @@ abstract class _$$UserResponseModelImplCopyWith<$Res>
       __$$UserResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserResponse login});
+  $Res call({UserResponse login, UserData? getProfile});
 
   @override
   $UserResponseCopyWith<$Res> get login;
+  @override
+  $UserDataCopyWith<$Res>? get getProfile;
 }
 
 /// @nodoc
@@ -97,12 +118,17 @@ class __$$UserResponseModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? login = null,
+    Object? getProfile = freezed,
   }) {
     return _then(_$UserResponseModelImpl(
       login: null == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
               as UserResponse,
+      getProfile: freezed == getProfile
+          ? _value.getProfile
+          : getProfile // ignore: cast_nullable_to_non_nullable
+              as UserData?,
     ));
   }
 }
@@ -110,17 +136,19 @@ class __$$UserResponseModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserResponseModelImpl implements _UserResponseModel {
-  const _$UserResponseModelImpl({required this.login});
+  const _$UserResponseModelImpl({required this.login, this.getProfile});
 
   factory _$UserResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserResponseModelImplFromJson(json);
 
   @override
   final UserResponse login;
+  @override
+  final UserData? getProfile;
 
   @override
   String toString() {
-    return 'UserResponseModel(login: $login)';
+    return 'UserResponseModel(login: $login, getProfile: $getProfile)';
   }
 
   @override
@@ -128,12 +156,14 @@ class _$UserResponseModelImpl implements _UserResponseModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserResponseModelImpl &&
-            (identical(other.login, login) || other.login == login));
+            (identical(other.login, login) || other.login == login) &&
+            (identical(other.getProfile, getProfile) ||
+                other.getProfile == getProfile));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, login);
+  int get hashCode => Object.hash(runtimeType, login, getProfile);
 
   @JsonKey(ignore: true)
   @override
@@ -151,14 +181,17 @@ class _$UserResponseModelImpl implements _UserResponseModel {
 }
 
 abstract class _UserResponseModel implements UserResponseModel {
-  const factory _UserResponseModel({required final UserResponse login}) =
-      _$UserResponseModelImpl;
+  const factory _UserResponseModel(
+      {required final UserResponse login,
+      final UserData? getProfile}) = _$UserResponseModelImpl;
 
   factory _UserResponseModel.fromJson(Map<String, dynamic> json) =
       _$UserResponseModelImpl.fromJson;
 
   @override
   UserResponse get login;
+  @override
+  UserData? get getProfile;
   @override
   @JsonKey(ignore: true)
   _$$UserResponseModelImplCopyWith<_$UserResponseModelImpl> get copyWith =>

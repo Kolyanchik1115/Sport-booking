@@ -31,6 +31,6 @@ class GraphClient {
 
   Future<UserData> getProfile() async {
     final queryResult = await graphqlApi.graphqlClient.query(queryOption(getProfileQuery));
-    return UserData.fromJson(queryResult.data!);
+    return UserData.fromJson(queryResult.data?['getProfile']);
   }
 }

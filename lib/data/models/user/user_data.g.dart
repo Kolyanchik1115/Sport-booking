@@ -8,10 +8,10 @@ part of 'user_data.dart';
 
 _$UserDataImpl _$$UserDataImplFromJson(Map<String, dynamic> json) =>
     _$UserDataImpl(
-      id: json['id'] as int,
-      email: json['email'] as String,
-      fullname: json['fullname'] as String,
-      isActivated: json['isActivated'] as bool,
+      id: json['id'] as int?,
+      email: json['email'] as String?,
+      fullname: json['fullname'] as String?,
+      isActivated: json['isActivated'] as bool?,
       dateOfBirth: json['dateOfBirth'] == null
           ? null
           : DateTime.parse(json['dateOfBirth'] as String),

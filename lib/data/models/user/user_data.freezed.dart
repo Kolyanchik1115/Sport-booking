@@ -20,10 +20,10 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserData {
-  int get id => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get fullname => throw _privateConstructorUsedError;
-  bool get isActivated => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get fullname => throw _privateConstructorUsedError;
+  bool? get isActivated => throw _privateConstructorUsedError;
   DateTime? get dateOfBirth => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,10 +38,10 @@ abstract class $UserDataCopyWith<$Res> {
       _$UserDataCopyWithImpl<$Res, UserData>;
   @useResult
   $Res call(
-      {int id,
-      String email,
-      String fullname,
-      bool isActivated,
+      {int? id,
+      String? email,
+      String? fullname,
+      bool? isActivated,
       DateTime? dateOfBirth});
 }
 
@@ -58,29 +58,29 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? email = null,
-    Object? fullname = null,
-    Object? isActivated = null,
+    Object? id = freezed,
+    Object? email = freezed,
+    Object? fullname = freezed,
+    Object? isActivated = freezed,
     Object? dateOfBirth = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      email: null == email
+              as int?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullname: null == fullname
+              as String?,
+      fullname: freezed == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
-              as String,
-      isActivated: null == isActivated
+              as String?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       dateOfBirth: freezed == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
@@ -98,10 +98,10 @@ abstract class _$$UserDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String email,
-      String fullname,
-      bool isActivated,
+      {int? id,
+      String? email,
+      String? fullname,
+      bool? isActivated,
       DateTime? dateOfBirth});
 }
 
@@ -116,29 +116,29 @@ class __$$UserDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? email = null,
-    Object? fullname = null,
-    Object? isActivated = null,
+    Object? id = freezed,
+    Object? email = freezed,
+    Object? fullname = freezed,
+    Object? isActivated = freezed,
     Object? dateOfBirth = freezed,
   }) {
     return _then(_$UserDataImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      email: null == email
+              as int?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullname: null == fullname
+              as String?,
+      fullname: freezed == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
-              as String,
-      isActivated: null == isActivated
+              as String?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       dateOfBirth: freezed == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
@@ -161,13 +161,13 @@ class _$UserDataImpl implements _UserData {
       _$$UserDataImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String email;
+  final String? email;
   @override
-  final String fullname;
+  final String? fullname;
   @override
-  final bool isActivated;
+  final bool? isActivated;
   @override
   final DateTime? dateOfBirth;
 
@@ -212,23 +212,23 @@ class _$UserDataImpl implements _UserData {
 
 abstract class _UserData implements UserData {
   const factory _UserData(
-      {required final int id,
-      required final String email,
-      required final String fullname,
-      required final bool isActivated,
+      {required final int? id,
+      required final String? email,
+      required final String? fullname,
+      required final bool? isActivated,
       final DateTime? dateOfBirth}) = _$UserDataImpl;
 
   factory _UserData.fromJson(Map<String, dynamic> json) =
       _$UserDataImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get email;
+  String? get email;
   @override
-  String get fullname;
+  String? get fullname;
   @override
-  bool get isActivated;
+  bool? get isActivated;
   @override
   DateTime? get dateOfBirth;
   @override

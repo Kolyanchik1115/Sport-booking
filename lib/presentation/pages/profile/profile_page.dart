@@ -29,7 +29,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        'FIO: ${state.user?.email}',
+                        'FIO: ${state.user?.fullname}',
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
