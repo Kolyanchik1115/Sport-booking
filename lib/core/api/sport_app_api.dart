@@ -2,6 +2,8 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:sport_app/core/storage/token_storage.dart';
 import 'package:sport_app/injector.dart';
 
+import 'gql/mutations.dart';
+
 class SportAppApi {
   static const String baseUrl = "http://192.168.0.101:3000/graphql";
   late final GraphQLClient _graphqlClient;
@@ -34,14 +36,23 @@ class SportAppApi {
 
   String? get refreshToken => _refreshToken;
 
-
   set token(String? value) {
     _token = value;
-    if (_token != null) injector<TokenStorage>().saveToken(_token!);
+    injector<TokenStorage>().saveToken(_token!);
   }
 
   set refreshToken(String? value) {
     _refreshToken = value;
     if (_refreshToken != null) injector<TokenStorage>().saveRefreshToken(_refreshToken!);
+  }
+
+  Future<void> updateToken(String token) async {
+    final renewTokenResult = await _graphqlClient.mutate(MutationOptions(
+      document: gql(refreshTokenMutation),
+      variables: {"refresh": token},
+    ));
+    final newToken = renewTokenResult.data?['accessToken'];
+    _token = newToken;
+    injector<TokenStorage>().updateToken(newToken!);
   }
 }

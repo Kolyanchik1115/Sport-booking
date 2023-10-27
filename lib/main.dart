@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/core/router/router_config.dart';
 import 'package:sport_app/core/storage/token_storage.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
-        title: 'Flutter Demo',
+        title: 'Sport-booking',
         debugShowCheckedModeBanner: false,
         theme: theme,
         routerConfig: injector<AppRouter>().config,
@@ -47,8 +48,13 @@ Future<void> initApi() async {
     return;
   }
 
+
   injector<SportAppApi>().token = token;
   injector<SportAppApi>().refreshToken = refreshToken;
 
   await injector<UserCubit>().update();
+
+  if(Jwt.isExpired(token)){
+    await injector<SportAppApi>().updateToken(refreshToken);
+  }
 }
