@@ -34,7 +34,7 @@ class TokenStorage {
   Future<void> updateToken(String token) async{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(StorageKey.token);
-    await prefs.setString(StorageKey.refreshToken,token);
+    await prefs.setString(StorageKey.token,token);
   }
 
   Future<void> removeTokens() async {

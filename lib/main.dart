@@ -54,7 +54,7 @@ Future<void> initApi() async {
 
   await injector<UserCubit>().update();
 
-  if(Jwt.isExpired(token)){
+  if (Jwt.isExpired(token)) {
     await injector<SportAppApi>().updateToken(refreshToken);
   }
 }
