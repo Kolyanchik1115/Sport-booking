@@ -9,14 +9,6 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-        onPressed: () async {
-          await injector<TokenStorage>().removeTokens();
-           injector<AppRouter>().go(AppRoutes.splashPage);
-        },
-        child: const Text("Logout"),
-      ),
-    );
+    return const Placeholder(color: Colors.black);
   }
 }

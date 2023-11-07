@@ -1,6 +1,6 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:sport_app/core/router/router_config.dart';
-import 'package:sport_app/core/router/routes.dart';
+import 'package:jwt_decode/jwt_decode.dart';
+
 import 'package:sport_app/core/storage/token_storage.dart';
 import 'package:sport_app/injector.dart';
 
@@ -9,23 +9,28 @@ import 'gql/mutations.dart';
 class SportAppApi {
   static const String baseUrl = "http://192.168.0.103:3000/graphql";
   late final GraphQLClient _graphqlClient;
+  late final GraphQLClient _graphqlWithoutAuthLinkClient;
   String? _token;
   String? _refreshToken;
 
   SportAppApi() {
-    _configureGraphQLClient();
     _token = token;
+    _configureGraphQLClient();
   }
 
   void _configureGraphQLClient() {
     final HttpLink httpLink = HttpLink(baseUrl);
-    final AuthLink authLink = AuthLink(getToken: () async => 'Bearer $token');
+    final AuthLink authLink = AuthLink(getToken: () async {
+      if (_token == null || _token!.isEmpty) return "";
+      if (Jwt.isExpired(_token!)) await updateToken();
+      return 'Bearer $token';
+    });
     final Link link = authLink.concat(httpLink);
-
     _graphqlClient = GraphQLClient(
       link: link,
       cache: GraphQLCache(store: InMemoryStore()),
     );
+    _graphqlWithoutAuthLinkClient = GraphQLClient(link: httpLink, cache: GraphQLCache());
   }
 
   GraphQLClient get graphqlClient => _graphqlClient;
@@ -45,19 +50,18 @@ class SportAppApi {
       injector<TokenStorage>().saveRefreshToken(_refreshToken!);
     }
   }
-//TODO need to change some auth rules
-  Future<void> updateToken(String token) async {
-    try {
-      final renewTokenResult = await graphqlClient.mutate(MutationOptions(
-        document: gql(refreshTokenMutation),
-        variables: {"refresh": token},
-      ));
-      final newToken = renewTokenResult.data?['accessToken'];
-      _token = newToken;
-      injector<TokenStorage>().updateToken(newToken!);
-    } catch (error) {
-      injector<TokenStorage>().removeTokens();
-      injector<AppRouter>().go(AppRoutes.singIn);
-    }
+  Future<void> updateToken() async {
+    final renewTokenResult = await _graphqlWithoutAuthLinkClient.mutate(MutationOptions(
+      document: gql(refreshTokenMutation),
+      variables: {"refresh": _refreshToken},
+    ));
+    final newToken = renewTokenResult.data?['accessToken'];
+    token = newToken;
+  }
+  Future<T> execute<T>({required String query, Map<String, dynamic>? data, bool isMutation = false}) async {
+    final queryResult = isMutation
+        ? await graphqlClient.mutate(MutationOptions(document: gql(query), variables: data ?? {}))
+        : await graphqlClient.query(QueryOptions(document: gql(query)));
+    return queryResult.data! as T;
   }
 }

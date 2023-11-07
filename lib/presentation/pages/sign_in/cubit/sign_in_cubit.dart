@@ -6,7 +6,7 @@ import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/storage/token_storage.dart';
 import 'package:sport_app/domain/usecases/auth/sign_in_use_case.dart';
 import 'package:sport_app/injector.dart';
-import 'package:sport_app/presentation/pages/aditions_pages/user/user_cubit.dart';
+import 'package:sport_app/presentation/pages/additions_pages/user/user_cubit.dart';
 
 part 'sign_in_cubit.freezed.dart';
 

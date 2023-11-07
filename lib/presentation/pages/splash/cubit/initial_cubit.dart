@@ -1,9 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/core/storage/token_storage.dart';
 import 'package:sport_app/injector.dart';
 
 part 'initial_state.dart';
+
 part 'initial_cubit.freezed.dart';
 
 class InitialCubit extends Cubit<InitialState> {
@@ -12,7 +14,6 @@ class InitialCubit extends Cubit<InitialState> {
   Future<void> init() async {
     final storage = injector<TokenStorage>();
 
-
     final String token = await storage.getToken();
     final String refreshToken = await storage.getRefreshToken();
 
@@ -20,8 +21,9 @@ class InitialCubit extends Cubit<InitialState> {
       emit(state.copyWith(isAuth: false));
       return;
     }
+    injector<SportAppApi>().token = token;
+    injector<SportAppApi>().refreshToken = refreshToken;
 
     emit(state.copyWith(isAuth: true));
   }
 }
-
