@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/injector.dart';
-import 'package:sport_app/presentation/pages/aditions_pages/user/user_cubit.dart';
+import 'package:sport_app/presentation/pages/additions_pages/user/user_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/widget/user_card_widget.dart';
 import 'package:sport_app/presentation/widgets/button_tile_widget.dart';
@@ -29,6 +29,9 @@ class ProfilePage extends StatelessWidget {
                       avatar:
                           'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
                       email: state.user?.email,
+                      onTap: (){
+
+                      },
                     ),
                     ButtonTile(
                       icon: AppSvg.fingerprint,

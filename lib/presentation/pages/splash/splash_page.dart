@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/storage/token_storage.dart';
 import 'package:sport_app/injector.dart';
-import 'package:sport_app/presentation/pages/aditions_pages/user/user_cubit.dart';
+import 'package:sport_app/presentation/pages/additions_pages/user/user_cubit.dart';
 import 'package:sport_app/presentation/pages/splash/cubit/initial_cubit.dart';
 import 'package:sport_app/presentation/widgets/empty_layout.dart';
 

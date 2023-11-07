@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sport_app/core/themes/app_assets.dart';
+import 'package:sport_app/presentation/widgets/svg_button.dart';
 import 'package:sport_app/presentation/widgets/user_avatar_widget.dart';
 
 class UserCardWidget extends StatelessWidget {
@@ -47,6 +49,14 @@ class UserCardWidget extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: SvgButton(
+                  width: 23,
+                  asset: AppSvg.message,
+                  onTap: () => onTap,
+                ),
               ),
             ],
           ),

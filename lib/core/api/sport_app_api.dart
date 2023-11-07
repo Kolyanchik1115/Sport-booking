@@ -7,7 +7,7 @@ import 'package:sport_app/injector.dart';
 import 'gql/mutations.dart';
 
 class SportAppApi {
-  static const String baseUrl = "http://192.168.0.103:3000/graphql";
+  static const String baseUrl = "http://192.168.0.102:3000/graphql";
   late final GraphQLClient _graphqlClient;
   String? _token;
   String? _refreshToken;
@@ -45,19 +45,50 @@ class SportAppApi {
       injector<TokenStorage>().saveRefreshToken(_refreshToken!);
     }
   }
-//TODO need to change some auth rules
-  Future<void> updateToken(String token) async {
-    try {
-      final renewTokenResult = await graphqlClient.mutate(MutationOptions(
-        document: gql(refreshTokenMutation),
-        variables: {"refresh": token},
-      ));
-      final newToken = renewTokenResult.data?['accessToken'];
-      _token = newToken;
-      injector<TokenStorage>().updateToken(newToken!);
-    } catch (error) {
-      injector<TokenStorage>().removeTokens();
-      injector<AppRouter>().go(AppRoutes.singIn);
+
+  Future<T> mutate<T>({required String query, required Map<String, dynamic> data}) async {
+    final queryResult = await graphqlClient.mutate(MutationOptions(
+      document: gql(query),
+      variables: data,
+    ));
+    if (queryResult.hasException) {
+      final message = queryResult.exception!.graphqlErrors.first.message;
+      // final serverMessage = queryResult.exception!.linkException;
+      if (message == "Unauthorized") {
+        final storage = injector<TokenStorage>();
+
+        final String token = await storage.getToken();
+        final renewTokenResult = await graphqlClient.mutate(MutationOptions(
+          document: gql(refreshTokenMutation),
+          variables: {"refresh": token},
+        ));
+        final newToken = renewTokenResult.data?['accessToken'];
+        _token = newToken;
+        injector<TokenStorage>().saveToken(newToken!);
+      }
     }
+    return queryResult.data! as T;
+  }
+
+  Future<T> query<T>({required String query}) async {
+    final queryResult = await graphqlClient.query(QueryOptions(
+      document: gql(query),
+    ));
+    if (queryResult.hasException) {
+      final message = queryResult.exception!.graphqlErrors.first.message;
+      if (message == "Unauthorized") {
+        final storage = injector<TokenStorage>();
+        final String token = await storage.getRefreshToken();
+        const Duration(seconds: 2);
+        final renewTokenResult = await graphqlClient.mutate(MutationOptions(
+          document: gql(refreshTokenMutation),
+          variables: {"refresh": token},
+        ));
+        final newToken = renewTokenResult.data?['accessToken'];
+        _token = newToken;
+        injector<TokenStorage>().saveToken(newToken!);
+      }
+    }
+    return queryResult.data! as T;
   }
 }
