@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
+import 'package:sport_app/data/models/user/user_data.dart';
 import 'package:sport_app/presentation/widgets/svg_button.dart';
 import 'package:sport_app/presentation/widgets/user_avatar_widget.dart';
 
 class UserCardWidget extends StatelessWidget {
   final VoidCallback? onTap;
-  final String? userName;
-  final String? email;
-  final String avatar;
+  final UserData user;
 
   const UserCardWidget({
     super.key,
     this.onTap,
-    required this.userName,
-    required this.avatar,
-    required this.email,
+    required this.user,
   });
 
   @override
@@ -34,18 +31,18 @@ class UserCardWidget extends StatelessWidget {
             children: [
               UserCircleAvatar(
                 avatarRadius: 70.0,
-                avatarPath: avatar,
+                avatarPath: user.avatar ?? 'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    userName ?? 'Anonymous',
+                    user.fullname ?? '',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   Text(
-                    email ?? 'Unknown',
+                    user.email ?? '',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],

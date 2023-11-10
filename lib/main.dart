@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_app/core/router/router_config.dart';
 import 'package:sport_app/core/themes/theme.dart';
@@ -9,6 +10,9 @@ import 'presentation/pages/additions_pages/user/user_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   di.init();
   runApp(const MyApp());
 }

@@ -7,6 +7,7 @@ const String loginMutation = r'''
       fullname
       isActivated
       dateOfBirth
+      avatar
     }
     accessToken
     refreshToken

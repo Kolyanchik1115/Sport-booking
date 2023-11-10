@@ -4,6 +4,7 @@ const String getProfileQuery = r'''
       id
       fullname
       email
+      avatar
       dateOfBirth
       isActivated
     }

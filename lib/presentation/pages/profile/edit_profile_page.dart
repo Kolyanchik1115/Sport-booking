@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
-import 'package:sport_app/injector.dart';
-import 'package:sport_app/presentation/pages/additions_pages/user/user_cubit.dart';
+import 'package:sport_app/data/models/user/user_data.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/widget/user_card_widget.dart';
 import 'package:sport_app/presentation/widgets/button_tile_widget.dart';
+import 'package:sport_app/presentation/widgets/custom_error_widget.dart';
 import 'package:sport_app/presentation/widgets/empty_layout.dart';
 import 'package:sport_app/presentation/widgets/switch_widget.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProfileCubit()..setUser(injector<UserCubit>().state.user!),
+      create: (context) => ProfileCubit()..getProfile(),
       child: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
+          if (state.isLoading) {
+            return const CircularProgressIndicator();
+          } else if (state.errorMessage != null) {
+            return CustomErrorWidget(errorMessage: state.errorMessage!);
+          }
           return EmptyLayout(
             background: Theme.of(context).colorScheme.onSurface,
             child: ListView(
@@ -25,11 +30,8 @@ class ProfilePage extends StatelessWidget {
                 Column(
                   children: [
                     UserCardWidget(
-                      userName: state.user?.fullname,
-                      avatar:
-                          'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
-                      email: state.user?.email,
                       onTap: () {},
+                      user: state.user!,
                     ),
                     ButtonTile(
                       icon: AppSvg.fingerprint,
