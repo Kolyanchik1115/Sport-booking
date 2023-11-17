@@ -31,7 +31,7 @@ class UserCardWidget extends StatelessWidget {
             children: [
               UserCircleAvatar(
                 avatarRadius: 70.0,
-                avatarPath: user.avatar ?? 'https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg',
+                avatarPath: user.avatar,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

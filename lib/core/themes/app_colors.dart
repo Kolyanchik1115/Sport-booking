@@ -10,13 +10,14 @@ class AppColors {
 
   static const black = Color(0xFF151515);
 
-  static const blueLight = Color(0xFF00FFFF);
-
   static const orange = Color(0xFFF9B521);
 
   static const whiteIce = Color(0xFFECECEC);
 
   static const silver = Color(0xFF7B7B7B);
+
+  static const lightSilver = Color(0xFFE3E3E3);
+
 
 
 

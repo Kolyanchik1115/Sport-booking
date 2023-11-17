@@ -11,6 +11,10 @@ import 'gql/mutations.dart';
 
 class SportAppApi {
   static const String baseUrl = "http://192.168.0.103:3000/graphql";
+  static const String imageUrl = "http://192.168.0.103:3000";
+
+  static String imageFromDB(String path) => '$imageUrl/$path';
+
   late final GraphQLClient _graphqlClient;
   late final GraphQLClient _graphqlWithoutAuthLinkClient;
   String? _token;
@@ -25,7 +29,7 @@ class SportAppApi {
     final HttpLink httpLink = HttpLink(baseUrl);
     final AuthLink authLink = AuthLink(getToken: () async {
       if (_token == null || _token!.isEmpty) return "";
-      if (Jwt.isExpired(_token!)) await updateToken();
+      if (Jwt.isExpired(_token!)) await _updateToken();
       return 'Bearer $_token';
     });
     final Link link = authLink.concat(httpLink);
@@ -56,21 +60,22 @@ class SportAppApi {
     log('Refresh token: $_refreshToken');
   }
 
-  Future<void> updateToken() async {
+  Future<void> _updateToken() async {
     log('Updating token...');
-    final renewTokenResult = await _graphqlWithoutAuthLinkClient.mutate(MutationOptions(
-      document: gql(refreshTokenMutation),
-      variables: {"refresh": _refreshToken},
-    ));
-    final graphqlErrors = renewTokenResult.exception!.graphqlErrors;
-    if (graphqlErrors.isNotEmpty) {
+    try {
+      final renewTokenResult = await _graphqlWithoutAuthLinkClient.mutate(MutationOptions(
+        document: gql(refreshTokenMutation),
+        variables: {"refresh": _refreshToken},
+      ));
+      final newToken = renewTokenResult.data?['accessToken'];
+      token = newToken;
+      log('Token updated successfully.');
+    } catch (_) {
       injector<TokenStorage>().removeTokens();
       injector<AppRouter>().go(AppRoutes.singIn);
       log('Token update failed. Navigating to sign-in.');
+      throw "Something went wrong";
     }
-    final newToken = renewTokenResult.data?['accessToken'];
-    token = newToken;
-    log('Token updated successfully.');
   }
 
   Future<T> execute<T>({required String query, Map<String, dynamic>? data, bool isMutation = false}) async {
@@ -78,16 +83,17 @@ class SportAppApi {
 
     final queryResult = isMutation
         ? await graphqlClient.mutate(MutationOptions(document: gql(query), variables: data ?? {}))
-        // update: (GraphQLDataProxy cache, QueryResult result) {
-        // return cache;
-        // },
+                // update: (GraphQLDataProxy cache, QueryResult result) {
+                // return cache;
+                // },
         : await graphqlClient.query(QueryOptions(document: gql(query)));
-    // pollInterval: const Duration(seconds: 10),
+                // pollInterval: const Duration(seconds: 10),
 
     if (queryResult.hasException) {
       log('Query/mutation execution failed.');
-      final graphqlErrors = queryResult.exception!.graphqlErrors;
-      if (graphqlErrors.isNotEmpty) {
+      if (queryResult.exception?.linkException != null) await _updateToken();
+      final graphqlErrors = queryResult.exception?.graphqlErrors;
+      if (graphqlErrors != null) {
         for (final error in graphqlErrors) {
           log('GraphQL Error: ${error.message}');
           throw error.message;

@@ -13,7 +13,7 @@ class ButtonTile extends StatelessWidget {
   final Function()? onPressed;
 
   const ButtonTile({
-    super.key,
+    Key? key,
     required this.icon,
     required this.title,
     this.subtitle,
@@ -22,7 +22,7 @@ class ButtonTile extends StatelessWidget {
     this.containsSwitch = false,
     this.toggle,
     this.padding = const EdgeInsets.all(10.0),
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

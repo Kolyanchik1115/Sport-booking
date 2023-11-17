@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sport_app/core/api/sport_app_api.dart';
+import 'package:sport_app/core/themes/app_assets.dart';
 
 class UserCircleAvatar extends StatelessWidget {
   const UserCircleAvatar({
@@ -14,7 +16,7 @@ class UserCircleAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: CircleAvatar(
-        foregroundImage: NetworkImage(avatarPath ?? 'https://www.w3schools.com/howto/img_avatar.png'),
+        foregroundImage: NetworkImage(SportAppApi.imageFromDB(avatarPath ?? AppPng.emptyAvatar)),
         radius: avatarRadius,
       ),
     );

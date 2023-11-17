@@ -14,3 +14,10 @@ abstract class AppSvg {
   static const String change = 'assets/svg/icons/change.svg';
 
 }
+
+abstract class AppPng {
+  static const String emptyAvatar = 'assets/image/mock_avatar.png';
+  static const String day = 'assets/image/day.png';
+  static const String night = 'assets/image/night.png';
+}
+
