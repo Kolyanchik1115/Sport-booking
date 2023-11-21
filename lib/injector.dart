@@ -10,7 +10,7 @@ import 'package:sport_app/domain/repositories/user_repository.dart';
 import 'package:sport_app/domain/usecases/auth/sign_in_use_case.dart';
 import 'package:sport_app/domain/usecases/user/get_current_user_use_case.dart';
 
-import 'presentation/pages/aditions_pages/user/user_cubit.dart';
+import 'presentation/pages/additions_pages/user/user_cubit.dart';
 
 final injector = GetIt.instance;
 

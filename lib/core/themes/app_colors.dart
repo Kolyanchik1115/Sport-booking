@@ -4,15 +4,21 @@ class AppColors {
 
   static const white = Color(0xFFFFFFFF);
 
-  static const purpleDark = Color(0xFF6C39AC);
+  static const purple = Color(0xFF8900A2);
 
-  static const greenLite = Color(0xFF57E09B);
+  static const red = Color(0xFFEE2927);
 
-  static const greenDark = Color(0xFF1DEC34);
+  static const black = Color(0xFF151515);
 
-  static const blueLight = Color(0xFF00FFFF);
+  static const orange = Color(0xFFF9B521);
 
-  static const yellowLight = Color(0xFFD2FF00);
+  static const whiteIce = Color(0xFFECECEC);
+
+  static const silver = Color(0xFF7B7B7B);
+
+  static const lightSilver = Color(0xFFE3E3E3);
+
+
 
 
 }

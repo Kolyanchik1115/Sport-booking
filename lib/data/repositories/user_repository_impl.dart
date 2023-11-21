@@ -15,8 +15,8 @@ class UserRepositoryImpl implements UserRepository {
     try {
       final UserData user = await remoteClient.getProfile();
       return Right(user);
-    } catch (_) {
-      return Left(ServerFailure());
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }

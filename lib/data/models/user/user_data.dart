@@ -11,6 +11,7 @@ class UserData with _$UserData {
     required String? email,
     required String? fullname,
     required bool? isActivated,
+    String? avatar,
     DateTime? dateOfBirth,
   }) = _UserData;
 

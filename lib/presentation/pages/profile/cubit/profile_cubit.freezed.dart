@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ProfileState {
   UserData? get user => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -29,7 +31,7 @@ abstract class $ProfileStateCopyWith<$Res> {
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
-  $Res call({UserData? user});
+  $Res call({UserData? user, bool isLoading, String? errorMessage});
 
   $UserDataCopyWith<$Res>? get user;
 }
@@ -48,12 +50,22 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   @override
   $Res call({
     Object? user = freezed,
+    Object? isLoading = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -78,7 +90,7 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
       __$$ProfileStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserData? user});
+  $Res call({UserData? user, bool isLoading, String? errorMessage});
 
   @override
   $UserDataCopyWith<$Res>? get user;
@@ -96,12 +108,22 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = freezed,
+    Object? isLoading = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$ProfileStateImpl(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -109,14 +131,20 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProfileStateImpl implements _ProfileState {
-  const _$ProfileStateImpl({this.user});
+  const _$ProfileStateImpl(
+      {this.user, this.isLoading = false, this.errorMessage});
 
   @override
   final UserData? user;
+  @override
+  @JsonKey()
+  final bool isLoading;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'ProfileState(user: $user)';
+    return 'ProfileState(user: $user, isLoading: $isLoading, errorMessage: $errorMessage)';
   }
 
   @override
@@ -124,11 +152,15 @@ class _$ProfileStateImpl implements _ProfileState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfileStateImpl &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, user, isLoading, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -138,10 +170,17 @@ class _$ProfileStateImpl implements _ProfileState {
 }
 
 abstract class _ProfileState implements ProfileState {
-  const factory _ProfileState({final UserData? user}) = _$ProfileStateImpl;
+  const factory _ProfileState(
+      {final UserData? user,
+      final bool isLoading,
+      final String? errorMessage}) = _$ProfileStateImpl;
 
   @override
   UserData? get user;
+  @override
+  bool get isLoading;
+  @override
+  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$ProfileStateImplCopyWith<_$ProfileStateImpl> get copyWith =>

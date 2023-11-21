@@ -2,9 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:sport_app/core/error/failures.dart';
 
-abstract class AdUseCase<Type, Params> {
-  Type call(Params params);
-}
 abstract class UseCase<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);
 }
