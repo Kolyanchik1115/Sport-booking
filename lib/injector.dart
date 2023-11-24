@@ -9,6 +9,7 @@ import 'package:sport_app/domain/repositories/auth_repository.dart';
 import 'package:sport_app/domain/repositories/user_repository.dart';
 import 'package:sport_app/domain/usecases/auth/sign_in_use_case.dart';
 import 'package:sport_app/domain/usecases/user/get_current_user_use_case.dart';
+import 'package:sport_app/domain/usecases/user/update_user_use_case.dart';
 
 import 'presentation/pages/additions_pages/user/user_cubit.dart';
 
@@ -19,6 +20,8 @@ void init() {
 
   injector.registerLazySingleton(() => SignInUserUseCase(injector()));
   injector.registerLazySingleton(() => GetCurrentUserUseCase(injector()));
+  injector.registerLazySingleton(() => UpdateUserUseCase(injector()));
+
 
 
   // Repositories

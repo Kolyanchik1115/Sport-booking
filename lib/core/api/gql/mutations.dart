@@ -5,8 +5,8 @@ const String loginMutation = r'''
       id
       email
       fullname
-      isActivated
       dateOfBirth
+      isActivated
       avatar
     }
     accessToken
@@ -22,12 +22,5 @@ mutation RefreshToken($refresh: String) {
 ''';
 
 const String updateProfileMutation = r'''
-mutation UpdateProfile($profileInput: UpdateUserDto, $avatar: Upload) {
-updateProfile(profileInput: $profileInput, avatar: $avatar) {
-fullname
-dateOfBirth
-email
-}
-}
-''';
-
+mutation UpdateProfile($profileInput: UpdateUserDto, $avatar: Upload) { updateProfile(profileInput: $profileInput, avatar: $avatar)
+ { fullname dateOfBirth avatar } }''';

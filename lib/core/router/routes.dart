@@ -11,4 +11,7 @@ class AppRoutes {
   static const String reservation = '/reservation';
   static const String mainProfile = '/main_profile';
 
+  static const String editProfile = '/edit_profile';
+
+
 }
