@@ -17,14 +17,14 @@ part 'profile_cubit.freezed.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(const ProfileState());
-  Future<void> getProfile() async {
 
+  Future<void> getProfile() async {
     emit(state.copyWith(isLoading: true));
 
     final data = await injector<GetCurrentUserUseCase>()(NoParams());
 
     data.fold(
-      (error) => emit(state.copyWith(errorMessage: error.runtimeType.toString())),
+      (error) => emit(state.copyWith(errorMessage: error.runtimeType.toString(), isLoading: false)),
       (otherUser) => emit(state.copyWith(user: otherUser)),
     );
     emit(state.copyWith(isLoading: false));

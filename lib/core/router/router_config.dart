@@ -1,8 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
+import 'package:sport_app/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:sport_app/presentation/pages/favorite/favorite_page.dart';
-import 'package:sport_app/presentation/pages/profile/edit_profile_page.dart';
+import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
+import 'package:sport_app/presentation/pages/profile/profile_page.dart';
 import 'package:sport_app/presentation/pages/reservation/reservation_page.dart';
 import 'package:sport_app/presentation/pages/search/search_page.dart';
 import 'package:sport_app/presentation/pages/sign_in/sign_in_page.dart';
@@ -36,6 +38,12 @@ class AppRouter {
             state,
             Duration.zero,
             const SignInPage(),
+          ),
+        ),
+        GoRoute(
+          path: AppRoutes.editProfile,
+          builder: (BuildContext context, GoRouterState state) => EditingProfilePage(
+            profileCubit: state.extra as ProfileCubit,
           ),
         ),
         StatefulShellRoute.indexedStack(

@@ -16,65 +16,72 @@ final theme = ThemeData(
     ),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: AppColors.purple,
+    backgroundColor: AppColors.crayola,
     showSelectedLabels: true,
     selectedItemColor: AppColors.white,
     showUnselectedLabels: false,
     selectedLabelStyle: GoogleFonts.roboto(
       fontSize: 14.0,
       fontWeight: FontWeight.w400,
-      color: AppColors.purple,
+      color: AppColors.crayola,
     ),
     unselectedLabelStyle: GoogleFonts.roboto(
       fontSize: 14.0,
       fontWeight: FontWeight.w400,
-      color: AppColors.purple,
+      color: AppColors.crayola,
     ),
     selectedIconTheme: const IconThemeData(
       color: AppColors.white,
     ),
     unselectedIconTheme: const IconThemeData(
-      color: AppColors.white,
+      color: AppColors.whiteIce,
     ),
   ),
   textSelectionTheme: const TextSelectionThemeData(
-    cursorColor: AppColors.purple,
+    cursorColor: AppColors.crayola,
   ),
   inputDecorationTheme: InputDecorationTheme(
-    focusColor: AppColors.purple,
-    hoverColor: AppColors.purple.withOpacity(0.1),
+    focusColor: AppColors.crayola,
+    hoverColor: AppColors.crayola.withOpacity(0.1),
     hintStyle: GoogleFonts.roboto(
       fontSize: 16,
       fontWeight: FontWeight.w400,
-      color: AppColors.purple,
+      color: AppColors.crayola,
     ),
     errorStyle: GoogleFonts.roboto(
       fontSize: 12,
       fontWeight: FontWeight.w400,
-      color: AppColors.purple,
+      color: AppColors.crayola,
     ),
     enabledBorder: UnderlineInputBorder(
-      borderSide: BorderSide(color: AppColors.purple.withOpacity(0.1), width: 1.0),
+      borderSide: BorderSide(color: AppColors.crayola.withOpacity(0.1), width: 1.0),
     ),
     disabledBorder: UnderlineInputBorder(
-      borderSide: BorderSide(color: AppColors.purple.withOpacity(0.1), width: 1.0),
+      borderSide: BorderSide(color: AppColors.crayola.withOpacity(0.1), width: 1.0),
     ),
     focusedBorder: const UnderlineInputBorder(
-      borderSide: BorderSide(color: AppColors.purple, width: 1.0),
+      borderSide: BorderSide(color: AppColors.crayola, width: 1.0),
     ),
     errorBorder: const UnderlineInputBorder(
-      borderSide: BorderSide(color: AppColors.purple, width: 1.0),
+      borderSide: BorderSide(color: AppColors.crayola, width: 1.0),
     ),
     focusedErrorBorder: const UnderlineInputBorder(
-      borderSide: BorderSide(color: AppColors.purple, width: 1.0),
+      borderSide: BorderSide(color: AppColors.crayola, width: 1.0),
     ),
   ),
   textTheme: TextTheme(
     displayLarge: const TextStyle(),
+
+    bodyLarge: GoogleFonts.roboto(
+      fontSize: 12.0,
+      fontWeight: FontWeight.w500,
+      color: AppColors.crayola,
+    ),
+
     displaySmall: GoogleFonts.roboto(
       fontSize: 30.0,
       fontWeight: FontWeight.w700,
-      color: AppColors.purple,
+      color: AppColors.crayola,
     ),
     bodyMedium: GoogleFonts.roboto(
       fontSize: 20.0,
@@ -89,17 +96,17 @@ final theme = ThemeData(
     displayMedium: GoogleFonts.roboto(
       fontSize: 14.0,
       fontWeight: FontWeight.w700,
-      color: AppColors.purple,
+      color: AppColors.crayola,
     ),
     titleSmall: GoogleFonts.roboto(
       fontSize: 14.0,
       fontWeight: FontWeight.w700,
-      color: AppColors.purple,
+      color: AppColors.crayola,
     ),
     titleLarge: GoogleFonts.roboto(
       fontSize: 20.0,
       fontWeight: FontWeight.w700,
-      color: AppColors.purple,
+      color: AppColors.crayola,
     ),
     titleMedium: GoogleFonts.roboto(
       fontSize: 25.0,
@@ -108,20 +115,20 @@ final theme = ThemeData(
     ),
   ),
   colorScheme: const ColorScheme(
-    onSecondaryContainer: AppColors.orange,
+    onSecondaryContainer: AppColors.lightSilver,
     brightness: Brightness.dark,
-    shadow: AppColors.red,
+    shadow: AppColors.cerulian,
     surfaceTint: AppColors.black,
-    outline: AppColors.lightSilver,
+    outline: AppColors.crayola,
     primary: AppColors.lightSilver,
     onPrimary: AppColors.lightSilver,
     secondary: AppColors.silver,
-    onSecondary: AppColors.lightSilver,
+    onSecondary: AppColors.salmon,
     error: AppColors.lightSilver,
     onError: AppColors.lightSilver,
     onBackground: AppColors.lightSilver,
     surface: AppColors.lightSilver,
-    onPrimaryContainer: AppColors.purple,
+    onPrimaryContainer: AppColors.crayola,
     onSurface: AppColors.whiteIce,
     background: AppColors.white,
   ),

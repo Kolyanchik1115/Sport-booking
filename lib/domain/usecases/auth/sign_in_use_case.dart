@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:fpdart/src/either.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:sport_app/core/error/failures.dart';
 import 'package:sport_app/core/usecases/usecases.dart';
 import 'package:sport_app/data/models/user/user_response_model.dart';

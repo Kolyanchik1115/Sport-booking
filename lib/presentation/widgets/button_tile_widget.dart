@@ -3,8 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 
 class ButtonTile extends StatelessWidget {
-  final String title;
+  final String? title;
   final String? subtitle;
+  final String? customText;
   final String icon;
   final Color color;
   final EdgeInsetsGeometry padding;
@@ -15,7 +16,8 @@ class ButtonTile extends StatelessWidget {
   const ButtonTile({
     Key? key,
     required this.icon,
-    required this.title,
+    this.title,
+    this.customText,
     this.subtitle,
     this.onPressed,
     required this.color,
@@ -50,11 +52,17 @@ class ButtonTile extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 12.0),
+              customText != null
+                  ? Text(customText!, style: Theme.of(context).textTheme.bodyMedium):
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(title, style: Theme.of(context).textTheme.bodyMedium),
+                  Column(
+                    children: [
+                      Text(title ?? '', style: Theme.of(context).textTheme.bodyMedium),
+                    ],
+                  ),
                   Text(subtitle ?? '', style: Theme.of(context).textTheme.bodySmall),
                 ],
               ),

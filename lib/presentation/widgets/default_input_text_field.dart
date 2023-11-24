@@ -9,7 +9,6 @@ class DefaultInputTextField extends StatefulWidget {
   final String hintText;
   final String? placeText;
   final String? error;
-  final bool isRequired;
   final InputBorder? border;
   final InputBorder? errorBorder;
 
@@ -31,7 +30,6 @@ class DefaultInputTextField extends StatefulWidget {
     this.error,
     this.keyboardType,
     this.onChanged,
-    this.isRequired = false,
     this.onEditingComplete,
     super.key,
     this.placeText,
@@ -69,7 +67,6 @@ class _DefaultInputTextFieldState extends State<DefaultInputTextField> {
 
   @override
   Widget build(BuildContext context) {
-    bool hasError = isError;
     return Padding(
       padding: widget.padding,
       child: Stack(
@@ -88,25 +85,13 @@ class _DefaultInputTextFieldState extends State<DefaultInputTextField> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: widget.isRequired ? '${widget.hintText} ' : widget.hintText,
+                            text: widget.hintText,
                             style: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(fontSize: _fontSize),
                           ),
-                          if (widget.isRequired && !hasError)
-                            TextSpan(
-                              text: '*',
-                              style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                                    color: Theme.of(context).colorScheme.error,
-                                  ),
-                            ),
                         ],
                       ),
                     )),
                 const SizedBox(width: 4.0),
-                if (isError)
-                  SvgPicture.asset(
-                    AppSvg.passwordEye,
-                    color: Theme.of(context).colorScheme.error,
-                  ),
               ],
             ),
           ),

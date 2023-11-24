@@ -12,10 +12,10 @@ _$UserDataImpl _$$UserDataImplFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       fullname: json['fullname'] as String?,
       isActivated: json['isActivated'] as bool?,
-      avatar: json['avatar'] as String?,
       dateOfBirth: json['dateOfBirth'] == null
           ? null
           : DateTime.parse(json['dateOfBirth'] as String),
+      avatar: json['avatar'] as String?,
     );
 
 Map<String, dynamic> _$$UserDataImplToJson(_$UserDataImpl instance) =>
@@ -24,6 +24,6 @@ Map<String, dynamic> _$$UserDataImplToJson(_$UserDataImpl instance) =>
       'email': instance.email,
       'fullname': instance.fullname,
       'isActivated': instance.isActivated,
-      'avatar': instance.avatar,
       'dateOfBirth': instance.dateOfBirth?.toIso8601String(),
+      'avatar': instance.avatar,
     };
