@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:sport_app/core/api/grapgql_client.dart';
 import 'package:sport_app/core/error/failures.dart';
@@ -9,4 +11,10 @@ abstract interface class UserRepository {
   UserRepository(this.remoteClient);
 
   Future<Either<Failure, UserData>> getUser();
+
+  Future<Either<Failure, UserData>> updateUserProfile({
+    required String? fullname,
+    required DateTime? dateOfBirth,
+    required File? avatar,
+  });
 }

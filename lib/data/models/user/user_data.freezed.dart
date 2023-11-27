@@ -24,8 +24,8 @@ mixin _$UserData {
   String? get email => throw _privateConstructorUsedError;
   String? get fullname => throw _privateConstructorUsedError;
   bool? get isActivated => throw _privateConstructorUsedError;
-  String? get avatar => throw _privateConstructorUsedError;
   DateTime? get dateOfBirth => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,8 +43,8 @@ abstract class $UserDataCopyWith<$Res> {
       String? email,
       String? fullname,
       bool? isActivated,
-      String? avatar,
-      DateTime? dateOfBirth});
+      DateTime? dateOfBirth,
+      String? avatar});
 }
 
 /// @nodoc
@@ -64,8 +64,8 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
     Object? email = freezed,
     Object? fullname = freezed,
     Object? isActivated = freezed,
-    Object? avatar = freezed,
     Object? dateOfBirth = freezed,
+    Object? avatar = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -84,14 +84,14 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
               as bool?,
-      avatar: freezed == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
       dateOfBirth: freezed == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -109,8 +109,8 @@ abstract class _$$UserDataImplCopyWith<$Res>
       String? email,
       String? fullname,
       bool? isActivated,
-      String? avatar,
-      DateTime? dateOfBirth});
+      DateTime? dateOfBirth,
+      String? avatar});
 }
 
 /// @nodoc
@@ -128,8 +128,8 @@ class __$$UserDataImplCopyWithImpl<$Res>
     Object? email = freezed,
     Object? fullname = freezed,
     Object? isActivated = freezed,
-    Object? avatar = freezed,
     Object? dateOfBirth = freezed,
+    Object? avatar = freezed,
   }) {
     return _then(_$UserDataImpl(
       id: freezed == id
@@ -148,14 +148,14 @@ class __$$UserDataImplCopyWithImpl<$Res>
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
               as bool?,
-      avatar: freezed == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
       dateOfBirth: freezed == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -168,8 +168,8 @@ class _$UserDataImpl implements _UserData {
       required this.email,
       required this.fullname,
       required this.isActivated,
-      this.avatar,
-      this.dateOfBirth});
+      this.dateOfBirth,
+      this.avatar});
 
   factory _$UserDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserDataImplFromJson(json);
@@ -183,13 +183,13 @@ class _$UserDataImpl implements _UserData {
   @override
   final bool? isActivated;
   @override
-  final String? avatar;
-  @override
   final DateTime? dateOfBirth;
+  @override
+  final String? avatar;
 
   @override
   String toString() {
-    return 'UserData(id: $id, email: $email, fullname: $fullname, isActivated: $isActivated, avatar: $avatar, dateOfBirth: $dateOfBirth)';
+    return 'UserData(id: $id, email: $email, fullname: $fullname, isActivated: $isActivated, dateOfBirth: $dateOfBirth, avatar: $avatar)';
   }
 
   @override
@@ -203,15 +203,15 @@ class _$UserDataImpl implements _UserData {
                 other.fullname == fullname) &&
             (identical(other.isActivated, isActivated) ||
                 other.isActivated == isActivated) &&
-            (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
-                other.dateOfBirth == dateOfBirth));
+                other.dateOfBirth == dateOfBirth) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, email, fullname, isActivated, avatar, dateOfBirth);
+      runtimeType, id, email, fullname, isActivated, dateOfBirth, avatar);
 
   @JsonKey(ignore: true)
   @override
@@ -233,8 +233,8 @@ abstract class _UserData implements UserData {
       required final String? email,
       required final String? fullname,
       required final bool? isActivated,
-      final String? avatar,
-      final DateTime? dateOfBirth}) = _$UserDataImpl;
+      final DateTime? dateOfBirth,
+      final String? avatar}) = _$UserDataImpl;
 
   factory _UserData.fromJson(Map<String, dynamic> json) =
       _$UserDataImpl.fromJson;
@@ -248,9 +248,9 @@ abstract class _UserData implements UserData {
   @override
   bool? get isActivated;
   @override
-  String? get avatar;
-  @override
   DateTime? get dateOfBirth;
+  @override
+  String? get avatar;
   @override
   @JsonKey(ignore: true)
   _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith =>

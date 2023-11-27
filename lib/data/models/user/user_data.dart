@@ -1,3 +1,4 @@
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_data.freezed.dart';
@@ -11,8 +12,8 @@ class UserData with _$UserData {
     required String? email,
     required String? fullname,
     required bool? isActivated,
-    String? avatar,
     DateTime? dateOfBirth,
+    String? avatar,
   }) = _UserData;
 
   factory UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);

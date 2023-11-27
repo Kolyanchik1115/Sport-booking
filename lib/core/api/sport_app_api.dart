@@ -10,8 +10,8 @@ import 'package:sport_app/injector.dart';
 import 'gql/mutations.dart';
 
 class SportAppApi {
-  static const String baseUrl = "http://192.168.0.103:3000/graphql";
-  static const String imageUrl = "http://192.168.0.103:3000";
+  static const String baseUrl = "http://192.168.0.108:3000/graphql";
+  static const String imageUrl = "http://192.168.0.108:3000";
 
   static String imageFromDB(String path) => '$imageUrl/$path';
 
@@ -26,16 +26,21 @@ class SportAppApi {
   }
 
   void _configureGraphQLClient() {
-    final HttpLink httpLink = HttpLink(baseUrl);
-    final AuthLink authLink = AuthLink(getToken: () async {
-      if (_token == null || _token!.isEmpty) return "";
-      if (Jwt.isExpired(_token!)) await _updateToken();
-      return 'Bearer $_token';
-    });
+    final HttpLink httpLink = HttpLink(baseUrl,
+        defaultHeaders: {'Content-Type': 'application/json; charset=utf-8', 'X-Apollo-Operation-Name': 'post'});
+    final AuthLink authLink = AuthLink(
+      getToken: () async {
+        if (_token == null || _token!.isEmpty) return "";
+        if (Jwt.isExpired(_token!)) await _updateToken();
+
+        return 'Bearer $_token';
+      },
+    );
+
     final Link link = authLink.concat(httpLink);
     _graphqlClient = GraphQLClient(
       link: link,
-      cache: GraphQLCache(store: InMemoryStore()),
+      cache: GraphQLCache(),
     );
     _graphqlWithoutAuthLinkClient = GraphQLClient(link: httpLink, cache: GraphQLCache());
   }
@@ -82,12 +87,21 @@ class SportAppApi {
     log('Executing query/mutation: $query');
 
     final queryResult = isMutation
-        ? await graphqlClient.mutate(MutationOptions(document: gql(query), variables: data ?? {}))
-                // update: (GraphQLDataProxy cache, QueryResult result) {
-                // return cache;
-                // },
-        : await graphqlClient.query(QueryOptions(document: gql(query)));
-                // pollInterval: const Duration(seconds: 10),
+        ? await graphqlClient.mutate(MutationOptions(
+            document: gql(query),
+            variables: data ?? {},
+            cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
+            fetchPolicy: FetchPolicy.noCache,
+          ))
+        // update: (GraphQLDataProxy cache, QueryResult result) {
+        // return cache;
+        // },
+        : await graphqlClient.query(QueryOptions(
+            document: gql(query),
+            cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
+            fetchPolicy: FetchPolicy.noCache,
+          ));
+    // pollInterval: const Duration(seconds: 10),
 
     if (queryResult.hasException) {
       log('Query/mutation execution failed.');

@@ -59,7 +59,6 @@ class ScaffoldWithAppBar extends StatelessWidget {
                       if (beforePop != null) {
                         beforePop!();
                       }
-
                       context.canPop() ? context.pop(isNeedUpdateAfterPop) : context.go(AppRoutes.search);
                     },
                   ),
