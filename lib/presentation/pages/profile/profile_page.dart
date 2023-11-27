@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/widget/user_card_widget.dart';

@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/data/models/user/user_data.dart';
