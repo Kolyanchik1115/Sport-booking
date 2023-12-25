@@ -1,4 +1,5 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:sport_app/core/api/grapgql_client.dart';
 import 'package:sport_app/core/error/failures.dart';
 import 'package:sport_app/data/models/user/user_response_model.dart';
@@ -18,7 +19,8 @@ class AuthorizationRepositoryImpl implements AuthorizationRepository {
       });
       return Right(token);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure(
+          message: (e as GraphQLError).message == 'No element' ? 'Internet error' : e.message));
     }
   }
 }

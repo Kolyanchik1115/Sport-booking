@@ -10,10 +10,10 @@ import 'package:sport_app/injector.dart';
 import 'gql/mutations.dart';
 
 class SportAppApi {
-  static const String baseUrl = "http://192.168.0.108:3000/graphql";
-  static const String imageUrl = "http://192.168.0.108:3000";
+  static const String baseUrl = "http://192.168.0.101:3000/graphql";
+  static const String imageUrl = "http://192.168.0.101:3000";
 
-  static String imageFromDB(String path) => '$imageUrl/$path';
+  String imageFromDB(String path) => '$imageUrl/$path';
 
   late final GraphQLClient _graphqlClient;
   late final GraphQLClient _graphqlWithoutAuthLinkClient;
@@ -26,8 +26,10 @@ class SportAppApi {
   }
 
   void _configureGraphQLClient() {
-    final HttpLink httpLink = HttpLink(baseUrl,
-        defaultHeaders: {'Content-Type': 'application/json; charset=utf-8', 'X-Apollo-Operation-Name': 'post'});
+    final HttpLink httpLink = HttpLink(baseUrl, defaultHeaders: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'X-Apollo-Operation-Name': 'post',
+    });
     final AuthLink authLink = AuthLink(
       getToken: () async {
         if (_token == null || _token!.isEmpty) return "";
@@ -92,7 +94,7 @@ class SportAppApi {
             variables: data ?? {},
             cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
             fetchPolicy: FetchPolicy.noCache,
-          ))
+            onError: (err) => throw GraphQLError(message: err!.graphqlErrors.first.message)))
         // update: (GraphQLDataProxy cache, QueryResult result) {
         // return cache;
         // },
@@ -100,21 +102,12 @@ class SportAppApi {
             document: gql(query),
             cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
             fetchPolicy: FetchPolicy.noCache,
-          ));
+            onError: (err) => throw GraphQLError(message: err!.graphqlErrors.first.message)));
     // pollInterval: const Duration(seconds: 10),
 
     if (queryResult.hasException) {
       log('Query/mutation execution failed.');
       if (queryResult.exception?.linkException != null) await _updateToken();
-      final graphqlErrors = queryResult.exception?.graphqlErrors;
-      if (graphqlErrors != null) {
-        for (final error in graphqlErrors) {
-          log('GraphQL Error: ${error.message}');
-          throw error.message;
-        }
-      }
-    } else {
-      log('Success.');
     }
     return queryResult.data! as T;
   }

@@ -8,6 +8,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/data/models/user/user_data.dart';
+import 'package:sport_app/injector.dart';
 
 class AvatarPicker extends StatefulWidget {
   final String? avatarImage;
@@ -42,7 +43,9 @@ class AvatarPickerState extends State<AvatarPicker> {
     if (_selectedImage != null) {
       return FileImage(_selectedImage!);
     } else if (widget.avatarImage != null) {
-      return NetworkImage(SportAppApi.imageFromDB(widget.avatarImage!));
+      return NetworkImage(injector<SportAppApi>().imageFromDB(
+        widget.avatarImage ?? AppPng.emptyAvatar,
+      ));
     } else {
       return const NetworkImage(AppPng.emptyAvatar);
     }

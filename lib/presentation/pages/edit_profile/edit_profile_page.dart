@@ -117,6 +117,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20.0, left: 5.0, right: 5.0),
                     child: ActionButton(
+                      padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                       isLoading: state.isLoading,
                       title: 'Save',
                       onPressed: () async {

@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart';
-import 'package:http_parser/http_parser.dart';
 import 'package:sport_app/core/api/grapgql_client.dart';
 import 'package:sport_app/core/error/failures.dart';
 import 'package:sport_app/data/models/user/user_data.dart';
@@ -42,7 +40,6 @@ class UserRepositoryImpl implements UserRepository {
                 'photo',
                 byteData!,
                 filename: '${DateTime.now().millisecondsSinceEpoch}.jpg',
-                contentType: MediaType("image", "jpg"),
               )
             : null,
       };

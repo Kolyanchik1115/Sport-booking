@@ -27,7 +27,7 @@ class SignInCubit extends Cubit<SignInState> {
     token.fold(
       (onError) => emit(state.copyWith(
         passwordError: (onError as ServerFailure).message ?? 'Invalid credentials',
-        emailError: onError.message ?? 'Invalid credentials',
+        emailError: '',
       )),
       (token) {
         injector<SportAppApi>().token = token.login.accessToken;
