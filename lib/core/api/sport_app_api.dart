@@ -10,8 +10,8 @@ import 'package:sport_app/injector.dart';
 import 'gql/mutations.dart';
 
 class SportAppApi {
-  static const String baseUrl = "http://192.168.0.101:3000/graphql";
-  static const String imageUrl = "http://192.168.0.101:3000";
+  static const String baseUrl = "http://192.168.0.104:3000/graphql";
+  static const String imageUrl = "http://192.168.0.104:3000";
 
   String imageFromDB(String path) => '$imageUrl/$path';
 
@@ -94,7 +94,10 @@ class SportAppApi {
             variables: data ?? {},
             cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
             fetchPolicy: FetchPolicy.noCache,
-            onError: (err) => throw GraphQLError(message: err!.graphqlErrors.first.message)))
+            onError: (err) => throw GraphQLError(
+                  message: err!.graphqlErrors.first.message,
+                )))
+
         // update: (GraphQLDataProxy cache, QueryResult result) {
         // return cache;
         // },

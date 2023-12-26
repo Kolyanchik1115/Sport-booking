@@ -9,7 +9,8 @@ class DefaultInputTextField extends StatefulWidget {
   final String? error;
   final InputBorder? border;
   final InputBorder? errorBorder;
-
+  final bool? filled;
+  final TextStyle? hintStyle;
   final Widget? prefixIcon, suffixIcon;
   final double? prefixIconSize;
   final double? suffixIconSize;
@@ -38,6 +39,8 @@ class DefaultInputTextField extends StatefulWidget {
     this.suffixIconSize,
     this.maxLines,
     this.errorBorder,
+    this.filled = false,
+    this.hintStyle,
   });
 
   @override
@@ -109,7 +112,9 @@ class _DefaultInputTextFieldState extends State<DefaultInputTextField> {
               enabledBorder: widget.border,
               focusedBorder: widget.border,
               errorText: errorText,
+              filled: widget.filled,
               hintText: widget.placeText,
+              hintStyle: widget.hintStyle,
               prefixIcon: widget.prefixIcon,
               suffixIcon: widget.suffixIcon,
             ),

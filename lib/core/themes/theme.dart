@@ -104,7 +104,7 @@ final theme = ThemeData(
       color: AppColors.crayola,
     ),
     titleLarge: GoogleFonts.roboto(
-      fontSize: 20.0,
+      fontSize: 16.0,
       fontWeight: FontWeight.w700,
       color: AppColors.crayola,
     ),
