@@ -7,6 +7,7 @@ class EmptyLayout extends StatelessWidget {
   final Color? bottomBarColor;
   final Color? systemNavigationBarColor;
   final Color? statusBarColor;
+  final Color? appbarColor;
   final Brightness? statusBarIconBrightness;
   final Brightness? systemNavigationBarIconBrightness;
 
@@ -19,23 +20,25 @@ class EmptyLayout extends StatelessWidget {
     this.statusBarColor,
     this.statusBarIconBrightness,
     this.systemNavigationBarIconBrightness,
+    this.appbarColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: Theme.of(context).appBarTheme.systemOverlayStyle!.copyWith(
-        statusBarColor: statusBarColor,
-        statusBarIconBrightness: statusBarIconBrightness,
-        systemNavigationBarColor: systemNavigationBarColor,
-        systemNavigationBarIconBrightness: systemNavigationBarIconBrightness,
-      ),
+            statusBarColor: statusBarColor,
+            statusBarIconBrightness: statusBarIconBrightness,
+            systemNavigationBarColor: systemNavigationBarColor,
+            systemNavigationBarIconBrightness: systemNavigationBarIconBrightness,
+          ),
       child: Scaffold(
         backgroundColor: background,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(MediaQuery.paddingOf(context).top),
-          child: SizedBox(
+          child: Container(
             height: MediaQuery.paddingOf(context).top,
+            color: appbarColor,
           ),
         ),
         bottomNavigationBar: ColoredBox(

@@ -17,6 +17,8 @@ abstract class AppSvg {
   static const String reservation = 'assets/svg/icons/reservation.svg';
   static const String profile = 'assets/svg/icons/profile.svg';
   static const String pencil = 'assets/svg/icons/pencil.svg';
+  static const String location = 'assets/svg/icons/location.svg';
+  static const String heart = 'assets/svg/icons/heart.svg';
 
   static const String calendar = 'assets/svg/icons/calendar.svg';
 }

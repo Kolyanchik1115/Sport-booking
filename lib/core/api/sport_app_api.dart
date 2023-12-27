@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:sport_app/core/router/router_config.dart';
@@ -10,8 +9,9 @@ import 'package:sport_app/injector.dart';
 import 'gql/mutations.dart';
 
 class SportAppApi {
-  static const String baseUrl = "http://192.168.0.104:3000/graphql";
-  static const String imageUrl = "http://192.168.0.104:3000";
+
+  static const String baseUrl = "http://192.168.0.101:3000/graphql";
+  static const String imageUrl = "http://192.168.0.101:3000";
 
   String imageFromDB(String path) => '$imageUrl/$path';
 
@@ -21,6 +21,7 @@ class SportAppApi {
   String? _refreshToken;
 
   SportAppApi() {
+
     _token = token;
     _configureGraphQLClient();
   }
