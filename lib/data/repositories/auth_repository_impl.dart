@@ -18,9 +18,12 @@ class AuthorizationRepositoryImpl implements AuthorizationRepository {
         "loginInput": {"email": email, "password": password}
       });
       return Right(token);
+    } on StateError {
+      return Left(ServerFailure(message: "Internet Error"));
+    } on GraphQLError catch (e) {
+      return Left(ServerFailure(message: e.message));
     } catch (e) {
-      return Left(ServerFailure(
-          message: (e as GraphQLError).message == 'No element' ? 'Internet error' : e.message));
+      return Left(ServerFailure(message: "An unexpected error occurred"));
     }
   }
 }

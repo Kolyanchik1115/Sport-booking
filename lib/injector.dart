@@ -4,10 +4,13 @@ import 'package:sport_app/core/api/grapgql_client.dart';
 import 'package:sport_app/core/router/router_config.dart';
 import 'package:sport_app/core/storage/token_storage.dart';
 import 'package:sport_app/data/repositories/auth_repository_impl.dart';
+import 'package:sport_app/data/repositories/facility_repository_impl.dart';
 import 'package:sport_app/data/repositories/user_repository_impl.dart';
 import 'package:sport_app/domain/repositories/auth_repository.dart';
+import 'package:sport_app/domain/repositories/facility_repository.dart';
 import 'package:sport_app/domain/repositories/user_repository.dart';
 import 'package:sport_app/domain/usecases/auth/sign_in_use_case.dart';
+import 'package:sport_app/domain/usecases/facility/get_all_facility.dart';
 import 'package:sport_app/domain/usecases/user/get_current_user_use_case.dart';
 import 'package:sport_app/domain/usecases/user/update_user_use_case.dart';
 
@@ -21,12 +24,16 @@ void init() {
   injector.registerLazySingleton(() => SignInUserUseCase(injector()));
   injector.registerLazySingleton(() => GetCurrentUserUseCase(injector()));
   injector.registerLazySingleton(() => UpdateUserUseCase(injector()));
+  injector.registerLazySingleton(() => GetAllFacilityUseCase(injector()));
+
 
 
 
   // Repositories
   injector.registerLazySingleton<AuthorizationRepository>(() => AuthorizationRepositoryImpl(injector()));
   injector.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(injector()));
+  injector.registerLazySingleton<FacilityRepository>(() => FacilityRepositoryImpl(injector()));
+
 
 
   // API

@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:sport_app/core/router/router_config.dart';
@@ -9,9 +10,13 @@ import 'package:sport_app/injector.dart';
 import 'gql/mutations.dart';
 
 class SportAppApi {
+  static String get baseUrl {
+    return Platform.isIOS ? "http://127.0.0.1:3000/graphql" : "http://10.0.2.2:3000/graphql";
+  }
 
-  static const String baseUrl = "http://192.168.0.101:3000/graphql";
-  static const String imageUrl = "http://192.168.0.101:3000";
+  static String get imageUrl {
+    return Platform.isIOS ? "http://127.0.0.1:3000" : "http://10.0.2.2:3000";
+  }
 
   String imageFromDB(String path) => '$imageUrl/$path';
 
@@ -21,7 +26,6 @@ class SportAppApi {
   String? _refreshToken;
 
   SportAppApi() {
-
     _token = token;
     _configureGraphQLClient();
   }
@@ -88,27 +92,23 @@ class SportAppApi {
 
   Future<T> execute<T>({required String query, Map<String, dynamic>? data, bool isMutation = false}) async {
     log('Executing query/mutation: $query');
-
     final queryResult = isMutation
         ? await graphqlClient.mutate(MutationOptions(
             document: gql(query),
             variables: data ?? {},
             cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
             fetchPolicy: FetchPolicy.noCache,
-            onError: (err) => throw GraphQLError(
-                  message: err!.graphqlErrors.first.message,
-                )))
-
+            onError: (err) => throw GraphQLError(message: err!.graphqlErrors.first.message)))
         // update: (GraphQLDataProxy cache, QueryResult result) {
         // return cache;
         // },
         : await graphqlClient.query(QueryOptions(
             document: gql(query),
+            variables: data ?? {},
             cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
             fetchPolicy: FetchPolicy.noCache,
             onError: (err) => throw GraphQLError(message: err!.graphqlErrors.first.message)));
     // pollInterval: const Duration(seconds: 10),
-
     if (queryResult.hasException) {
       log('Query/mutation execution failed.');
       if (queryResult.exception?.linkException != null) await _updateToken();
