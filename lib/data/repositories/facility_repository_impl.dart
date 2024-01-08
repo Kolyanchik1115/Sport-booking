@@ -15,13 +15,18 @@ class FacilityRepositoryImpl implements FacilityRepository {
   late final GraphClient remoteClient;
 
   @override
-  Future<Either<Failure, FacilityResponseModel>> getAllFacility({required int page}) async {
+  Future<Either<Failure, FacilityResponseModel>> getAllFacility({
+    required int page,
+    String? sportType,
+    String? coveringType,
+  }) async {
     try {
       final data = {
-        "paginationArgs": {
-          "limit": 3,
-          "page": page
-        }
+        "facilitiesFilterInput": {
+          "sportType": sportType,
+          "coveringType": coveringType,
+        },
+        "paginationArgs": {"limit": 3, "page": page}
       };
       final result = await remoteClient.getAllFacility(data: data);
       return Right(result);

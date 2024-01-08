@@ -12,15 +12,23 @@ class GetAllFacilityUseCase implements UseCase<FacilityResponseModel, GetAllFaci
 
   @override
   Future<Either<Failure, FacilityResponseModel>> call(GetAllFacilityParams params) async {
-    return await repository.getAllFacility(page: params.page);
+    return await repository.getAllFacility(
+      page: params.page,
+      sportType: params.sportType,
+      coveringType: params.coveringType,
+    );
   }
 }
 
 class GetAllFacilityParams extends Equatable {
   final int page;
+  final String? sportType;
+  final String? coveringType;
 
   const GetAllFacilityParams({
     required this.page,
+    this.sportType,
+    this.coveringType,
   });
 
   @override

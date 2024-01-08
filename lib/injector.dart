@@ -29,6 +29,7 @@ void init() {
 
 
 
+
   // Repositories
   injector.registerLazySingleton<AuthorizationRepository>(() => AuthorizationRepositoryImpl(injector()));
   injector.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(injector()));

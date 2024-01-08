@@ -6,8 +6,9 @@ import 'package:sport_app/presentation/widgets/svg_button.dart';
 
 class FacilityContainer extends StatelessWidget {
   final FacilityData? facility;
+  final Function() onTap;
 
-  const FacilityContainer({super.key, required this.facility});
+  const FacilityContainer({super.key, required this.facility, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,17 @@ class FacilityContainer extends StatelessWidget {
               Positioned(
                 top: 20.0,
                 right: 20.0,
-                child: SvgButton(asset: AppSvg.heart, onTap: () {}),
+                child: SvgButton(asset: AppSvg.heart, onTap: onTap),
+              ),
+              Positioned(
+                bottom: 15.0,
+                left: 20.0,
+                child: Text(
+                  '${facility?.sportType}',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.background,
+                      ),
+                ),
               ),
             ],
           ),
@@ -49,22 +60,18 @@ class FacilityContainer extends StatelessWidget {
               children: [
                 SvgPicture.asset(AppSvg.location, height: 15.0),
                 const SizedBox(width: 13.0),
-                Text(facility?.name ?? ''),
+                Text(facility?.address ?? ''),
               ],
             ),
           ),
           const SizedBox(height: 5.0),
-          const Padding(
-            padding: EdgeInsets.only(left: 10.0),
-            child: Row(children: [Text('open · close')]),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Row(children: [Text('${facility?.facilityType} · ${facility?.coveringType}')]),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 10.0),
-            child: Row(children: [Text('type1 · type2')]),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 10.0),
-            child: Text('Some another dummy data'),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Text(facility?.description ?? ''),
           ),
         ],
       ),

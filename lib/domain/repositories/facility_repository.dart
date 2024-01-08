@@ -9,5 +9,9 @@ abstract interface class FacilityRepository {
 
   FacilityRepository(this.remoteClient);
 
-  Future<Either<Failure, FacilityResponseModel>> getAllFacility({required int page});
+  Future<Either<Failure, FacilityResponseModel>> getAllFacility({
+    required int page,
+    String? sportType,
+    String? coveringType,
+  });
 }

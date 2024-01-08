@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 class EmptyLayout extends StatelessWidget {
   final Widget child;
+  final Widget? floatingActionButton;
   final Color? background;
   final Color? bottomBarColor;
   final Color? systemNavigationBarColor;
@@ -15,6 +16,7 @@ class EmptyLayout extends StatelessWidget {
     super.key,
     required this.child,
     this.background,
+    this.floatingActionButton,
     this.bottomBarColor,
     this.systemNavigationBarColor,
     this.statusBarColor,
@@ -47,6 +49,7 @@ class EmptyLayout extends StatelessWidget {
         ),
         resizeToAvoidBottomInset: true,
         body: child,
+        floatingActionButton: floatingActionButton,
       ),
     );
   }

@@ -19,6 +19,7 @@ abstract class AppSvg {
   static const String pencil = 'assets/svg/icons/pencil.svg';
   static const String location = 'assets/svg/icons/location.svg';
   static const String heart = 'assets/svg/icons/heart.svg';
+  static const String filter = 'assets/svg/icons/filter.svg';
 
   static const String calendar = 'assets/svg/icons/calendar.svg';
 }
