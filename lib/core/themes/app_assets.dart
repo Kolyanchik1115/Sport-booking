@@ -1,7 +1,9 @@
 abstract class AppSvg {
   static const String startIcon = 'assets/svg/icons/info.svg';
   static const String passwordEye = 'assets/svg/icons/eye.svg';
-  static const String arrow = 'assets/svg/icons/arrow.svg';
+  static const String arrowRight = 'assets/svg/icons/arrow_right.svg';
+  static const String arrowLeft = 'assets/svg/icons/arrow_left.svg';
+
 
   static const String fingerprint = 'assets/svg/icons/fingerprint.svg';
   static const String message = 'assets/svg/icons/message.svg';
