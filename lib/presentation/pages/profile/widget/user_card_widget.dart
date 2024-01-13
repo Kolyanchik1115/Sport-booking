@@ -41,7 +41,7 @@ class UserCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    user.fullname ?? '',
+                    user.fullname ?? 'Anonymous',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   Text(

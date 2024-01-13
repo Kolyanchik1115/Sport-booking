@@ -3,8 +3,8 @@ class AppRoutes {
 
   static const String splashPage = '/';
 
-  static const String singIn = '/sign_in';
-  static const String singUp = '/sign_up';
+  static const String signIn = '/sign_in';
+  static const String signUp = '/sign_up';
 
   static const String search = '/search';
   static const String favorites = '/favorites';

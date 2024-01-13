@@ -31,6 +31,6 @@ class ProfileCubit extends Cubit<ProfileState> {
     injector<TokenStorage>().removeTokens();
     injector<SportAppApi>().token = '';
     injector<SportAppApi>().refreshToken = '';
-    injector<AppRouter>().go(AppRoutes.singIn);
+    injector<AppRouter>().go(AppRoutes.signIn);
   }
 }

@@ -16,6 +16,10 @@ class GraphClient {
     final queryResult = await sportAppApi.execute(query: loginMutation, data: data, isMutation: true);
     return UserResponseModel.fromJson(queryResult);
   }
+  Future<UserResponseModel> signUp({required Map<String, dynamic> data}) async {
+    final queryResult = await sportAppApi.execute(query: registrationMutation, data: data, isMutation: true);
+    return UserResponseModel.fromJson(queryResult);
+  }
 
   Future<UserData> getProfile() async {
     final queryResult = await sportAppApi.execute(query: getProfileQuery);

@@ -9,5 +9,7 @@ abstract interface class AuthorizationRepository {
   AuthorizationRepository(this.remoteClient);
 
   Future<Either<Failure, UserResponseModel>> singIn({required String email, required String password});
+  Future<Either<Failure, UserResponseModel>> signUp({required String email, required String password});
+
 
 }

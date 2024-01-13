@@ -84,7 +84,7 @@ class SportAppApi {
       log('Token updated successfully.');
     } catch (_) {
       injector<TokenStorage>().removeTokens();
-      injector<AppRouter>().go(AppRoutes.singIn);
+      injector<AppRouter>().go(AppRoutes.signIn);
       log('Token update failed. Navigating to sign-in.');
       throw "Something went wrong";
     }
@@ -111,7 +111,7 @@ class SportAppApi {
     // pollInterval: const Duration(seconds: 10),
     if (queryResult.hasException) {
       log('Query/mutation execution failed.');
-      if (queryResult.exception?.linkException != null) await _updateToken();
+      await _updateToken();
     }
     return queryResult.data! as T;
   }

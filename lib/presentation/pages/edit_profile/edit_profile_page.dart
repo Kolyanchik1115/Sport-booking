@@ -82,6 +82,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 10.0),
                   Center(
                     child: AvatarPicker(
                       avatarImage: state.user?.avatar,
@@ -114,8 +115,9 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
                           }),
                     ),
                   ),
+
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 20.0, left: 5.0, right: 5.0),
+                    padding: const EdgeInsets.only( left: 5.0, right: 5.0,top: 30.0),
                     child: ActionButton(
                       padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                       isLoading: state.isLoading,

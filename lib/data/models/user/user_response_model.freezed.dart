@@ -20,7 +20,8 @@ UserResponseModel _$UserResponseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserResponseModel {
-  UserResponse get login => throw _privateConstructorUsedError;
+  UserResponse? get login => throw _privateConstructorUsedError;
+  UserResponse? get register => throw _privateConstructorUsedError;
   UserData? get getProfile => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,9 +36,11 @@ abstract class $UserResponseModelCopyWith<$Res> {
           UserResponseModel value, $Res Function(UserResponseModel) then) =
       _$UserResponseModelCopyWithImpl<$Res, UserResponseModel>;
   @useResult
-  $Res call({UserResponse login, UserData? getProfile});
+  $Res call(
+      {UserResponse? login, UserResponse? register, UserData? getProfile});
 
-  $UserResponseCopyWith<$Res> get login;
+  $UserResponseCopyWith<$Res>? get login;
+  $UserResponseCopyWith<$Res>? get register;
   $UserDataCopyWith<$Res>? get getProfile;
 }
 
@@ -54,14 +57,19 @@ class _$UserResponseModelCopyWithImpl<$Res, $Val extends UserResponseModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? login = null,
+    Object? login = freezed,
+    Object? register = freezed,
     Object? getProfile = freezed,
   }) {
     return _then(_value.copyWith(
-      login: null == login
+      login: freezed == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
-              as UserResponse,
+              as UserResponse?,
+      register: freezed == register
+          ? _value.register
+          : register // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
       getProfile: freezed == getProfile
           ? _value.getProfile
           : getProfile // ignore: cast_nullable_to_non_nullable
@@ -71,9 +79,25 @@ class _$UserResponseModelCopyWithImpl<$Res, $Val extends UserResponseModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $UserResponseCopyWith<$Res> get login {
-    return $UserResponseCopyWith<$Res>(_value.login, (value) {
+  $UserResponseCopyWith<$Res>? get login {
+    if (_value.login == null) {
+      return null;
+    }
+
+    return $UserResponseCopyWith<$Res>(_value.login!, (value) {
       return _then(_value.copyWith(login: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserResponseCopyWith<$Res>? get register {
+    if (_value.register == null) {
+      return null;
+    }
+
+    return $UserResponseCopyWith<$Res>(_value.register!, (value) {
+      return _then(_value.copyWith(register: value) as $Val);
     });
   }
 
@@ -98,10 +122,13 @@ abstract class _$$UserResponseModelImplCopyWith<$Res>
       __$$UserResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserResponse login, UserData? getProfile});
+  $Res call(
+      {UserResponse? login, UserResponse? register, UserData? getProfile});
 
   @override
-  $UserResponseCopyWith<$Res> get login;
+  $UserResponseCopyWith<$Res>? get login;
+  @override
+  $UserResponseCopyWith<$Res>? get register;
   @override
   $UserDataCopyWith<$Res>? get getProfile;
 }
@@ -117,14 +144,19 @@ class __$$UserResponseModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? login = null,
+    Object? login = freezed,
+    Object? register = freezed,
     Object? getProfile = freezed,
   }) {
     return _then(_$UserResponseModelImpl(
-      login: null == login
+      login: freezed == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
-              as UserResponse,
+              as UserResponse?,
+      register: freezed == register
+          ? _value.register
+          : register // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
       getProfile: freezed == getProfile
           ? _value.getProfile
           : getProfile // ignore: cast_nullable_to_non_nullable
@@ -136,19 +168,21 @@ class __$$UserResponseModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserResponseModelImpl implements _UserResponseModel {
-  const _$UserResponseModelImpl({required this.login, this.getProfile});
+  const _$UserResponseModelImpl({this.login, this.register, this.getProfile});
 
   factory _$UserResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserResponseModelImplFromJson(json);
 
   @override
-  final UserResponse login;
+  final UserResponse? login;
+  @override
+  final UserResponse? register;
   @override
   final UserData? getProfile;
 
   @override
   String toString() {
-    return 'UserResponseModel(login: $login, getProfile: $getProfile)';
+    return 'UserResponseModel(login: $login, register: $register, getProfile: $getProfile)';
   }
 
   @override
@@ -157,13 +191,15 @@ class _$UserResponseModelImpl implements _UserResponseModel {
         (other.runtimeType == runtimeType &&
             other is _$UserResponseModelImpl &&
             (identical(other.login, login) || other.login == login) &&
+            (identical(other.register, register) ||
+                other.register == register) &&
             (identical(other.getProfile, getProfile) ||
                 other.getProfile == getProfile));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, login, getProfile);
+  int get hashCode => Object.hash(runtimeType, login, register, getProfile);
 
   @JsonKey(ignore: true)
   @override
@@ -182,14 +218,17 @@ class _$UserResponseModelImpl implements _UserResponseModel {
 
 abstract class _UserResponseModel implements UserResponseModel {
   const factory _UserResponseModel(
-      {required final UserResponse login,
+      {final UserResponse? login,
+      final UserResponse? register,
       final UserData? getProfile}) = _$UserResponseModelImpl;
 
   factory _UserResponseModel.fromJson(Map<String, dynamic> json) =
       _$UserResponseModelImpl.fromJson;
 
   @override
-  UserResponse get login;
+  UserResponse? get login;
+  @override
+  UserResponse? get register;
   @override
   UserData? get getProfile;
   @override

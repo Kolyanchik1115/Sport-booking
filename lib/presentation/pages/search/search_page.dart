@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
+import 'package:sport_app/core/utils/dummy_data.dart';
 import 'package:sport_app/presentation/pages/search/cubit/facility/facility_cubit.dart';
+import 'package:sport_app/presentation/pages/search/cubit/filter/filter_cubit.dart';
 import 'package:sport_app/presentation/pages/search/widget/facility_filter.dart';
 import 'package:sport_app/presentation/widgets/empty_layout.dart';
 
@@ -18,23 +20,34 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   late final FacilityCubit facilityCubit;
+  late final FilterCubit filterCubit;
 
   @override
   void initState() {
     facilityCubit = FacilityCubit();
+    filterCubit = FilterCubit(
+      sportTypeList: DummyData.sportType,
+      coveringTypeList: DummyData.coveringType,
+    );
     super.initState();
   }
 
   @override
   void dispose() {
     facilityCubit.close();
+    filterCubit.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: facilityCubit..loadFirstPage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(
+          value: facilityCubit..loadFirstPage(),
+        ),
+        BlocProvider.value(value: filterCubit),
+      ],
       child: EmptyLayout(
         floatingActionButton: FloatingActionButton(
           onPressed: () => showModalBottomSheet(
@@ -49,14 +62,14 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             builder: (context) {
-              return const SingleChildScrollView(
-                child: FacilityFilter(),
+              return SingleChildScrollView(
+                child: FacilityFilter(filterCubit: filterCubit),
               );
             },
-          ).then((value) {
-            if (value != null && value.length >= 2) {
-              facilityCubit.sportType = value[0];
-              facilityCubit.coveringType = value[1];
+          ).then((filterState) {
+            if (filterState != null && filterState is FilterState) {
+              facilityCubit.sportType = filterState.selectedSportType;
+              facilityCubit.coveringType = filterState.selectedCoveringType;
               return facilityCubit.loadFirstPage();
             }
           }),
@@ -81,10 +94,9 @@ class _SearchPageState extends State<SearchPage> {
                   onPressedRightButton: () {},
                 ),
                 Expanded(
-                  child: NotificationListener<ScrollNotification>(
-                    onNotification: (ScrollNotification scrollInfo) {
-                      if (scrollInfo is ScrollEndNotification &&
-                          scrollInfo.metrics.pixels >= (scrollInfo.metrics.maxScrollExtent - 100) &&
+                  child: NotificationListener<ScrollEndNotification>(
+                    onNotification: (ScrollEndNotification scrollInfo) {
+                      if (scrollInfo.metrics.pixels >= (scrollInfo.metrics.maxScrollExtent - 50) &&
                           !state.isLoading &&
                           !state.hasReachedEnd) {
                         context.read<FacilityCubit>().loadNextPage();

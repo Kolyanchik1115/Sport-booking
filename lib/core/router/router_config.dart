@@ -8,6 +8,7 @@ import 'package:sport_app/presentation/pages/profile/profile_page.dart';
 import 'package:sport_app/presentation/pages/reservation/reservation_page.dart';
 import 'package:sport_app/presentation/pages/search/search_page.dart';
 import 'package:sport_app/presentation/pages/sign_in/sign_in_page.dart';
+import 'package:sport_app/presentation/pages/sign_up/sign_up_page.dart';
 import 'package:sport_app/presentation/pages/splash/splash_page.dart';
 import 'package:sport_app/presentation/widgets/scaffold_with_nav_bar.dart';
 
@@ -33,7 +34,15 @@ class AppRouter {
           builder: (BuildContext context, GoRouterState state) => const SplashPage(),
         ),
         GoRoute(
-          path: AppRoutes.singIn,
+          path: AppRoutes.signUp,
+          pageBuilder: (BuildContext context, GoRouterState state) => _customTransitionPage(
+            state,
+            Duration.zero,
+            const SignUpPage(),
+          ),
+        ),
+        GoRoute(
+          path: AppRoutes.signIn,
           pageBuilder: (BuildContext context, GoRouterState state) => _customTransitionPage(
             state,
             Duration.zero,
