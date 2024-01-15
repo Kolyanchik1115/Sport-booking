@@ -17,9 +17,11 @@ class UserCircleAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: CircleAvatar(
-        foregroundImage: NetworkImage(injector<SportAppApi>().imageFromDB(
-          avatarPath ?? AppPng.emptyAvatar,
-        )),
+        foregroundImage: avatarPath != null
+            ? NetworkImage(injector<SportAppApi>().imageFromDB(
+                avatarPath!,
+              ))
+            : const NetworkImage('https://www.w3schools.com/howto/img_avatar.png'),
         radius: avatarRadius,
       ),
     );

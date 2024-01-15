@@ -69,7 +69,7 @@ class ButtonTile extends StatelessWidget {
               const Spacer(),
               containsSwitch
                   ? toggle ?? const SizedBox()
-                  : SvgPicture.asset(AppSvg.arrow, height: 35.0, color: Theme.of(context).colorScheme.secondary),
+                  : SvgPicture.asset(AppSvg.arrowRight, height: 35.0, color: Theme.of(context).colorScheme.secondary),
               const SizedBox(width: 12.0)
             ],
           ),

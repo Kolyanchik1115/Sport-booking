@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
         listener: (context, state) async {
           if (state.isAuth == false || state.isAuth == null) {
             injector<TokenStorage>().removeTokens();
-            context.go(AppRoutes.singIn);
+            context.go(AppRoutes.signIn);
           } else {
             injector<UserCubit>().update();
             context.go(AppRoutes.search);

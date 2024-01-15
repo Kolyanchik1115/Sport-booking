@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'dart:io';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:sport_app/core/router/router_config.dart';
@@ -10,8 +10,13 @@ import 'package:sport_app/injector.dart';
 import 'gql/mutations.dart';
 
 class SportAppApi {
-  static const String baseUrl = "http://192.168.0.101:3000/graphql";
-  static const String imageUrl = "http://192.168.0.101:3000";
+  static String get baseUrl {
+    return Platform.isIOS ? "http://127.0.0.1:3000/graphql" : "http://10.0.2.2:3000/graphql";
+  }
+
+  static String get imageUrl {
+    return Platform.isIOS ? "http://127.0.0.1:3000" : "http://10.0.2.2:3000";
+  }
 
   String imageFromDB(String path) => '$imageUrl/$path';
 
@@ -79,7 +84,7 @@ class SportAppApi {
       log('Token updated successfully.');
     } catch (_) {
       injector<TokenStorage>().removeTokens();
-      injector<AppRouter>().go(AppRoutes.singIn);
+      injector<AppRouter>().go(AppRoutes.signIn);
       log('Token update failed. Navigating to sign-in.');
       throw "Something went wrong";
     }
@@ -87,7 +92,6 @@ class SportAppApi {
 
   Future<T> execute<T>({required String query, Map<String, dynamic>? data, bool isMutation = false}) async {
     log('Executing query/mutation: $query');
-
     final queryResult = isMutation
         ? await graphqlClient.mutate(MutationOptions(
             document: gql(query),
@@ -100,14 +104,14 @@ class SportAppApi {
         // },
         : await graphqlClient.query(QueryOptions(
             document: gql(query),
+            variables: data ?? {},
             cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
             fetchPolicy: FetchPolicy.noCache,
             onError: (err) => throw GraphQLError(message: err!.graphqlErrors.first.message)));
     // pollInterval: const Duration(seconds: 10),
-
     if (queryResult.hasException) {
       log('Query/mutation execution failed.');
-      if (queryResult.exception?.linkException != null) await _updateToken();
+      await _updateToken();
     }
     return queryResult.data! as T;
   }

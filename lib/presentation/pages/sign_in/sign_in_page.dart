@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/presentation/pages/sign_in/cubit/sign_in_cubit.dart';
+import 'package:sport_app/presentation/widgets/arrow_button.dart';
 import 'package:sport_app/presentation/widgets/default_input_text_field.dart';
 import 'package:sport_app/presentation/widgets/empty_layout.dart';
 import 'package:sport_app/presentation/widgets/password_input_text_field.dart';
@@ -76,31 +77,42 @@ class _SignInPageState extends State<SignInPage> {
                                         onEditingComplete: () {
                                           FocusScope.of(context).requestFocus(_passwordFocusNode);
                                         },
-                                        onChanged: (value) {},
+                                        onChanged: (value) {
+                                          if (state.passwordError != null || state.emailError != null) {
+                                            context.read<SignInCubit>().validate(
+                                                  _emailEditingController.text,
+                                                  _passwordEditingController.text,
+                                                );
+                                          }
+                                        },
                                         hintText: 'Email',
                                       ),
                                       PasswordInputTextField(
                                         error: state.passwordError,
                                         textEditingController: _passwordEditingController,
                                         focusNode: _passwordFocusNode,
-                                        onChanged: (value) {},
+                                        onChanged: (value) {
+                                          if (state.passwordError != null || state.emailError != null) {
+                                            context.read<SignInCubit>().validate(
+                                                  _emailEditingController.text,
+                                                  _passwordEditingController.text,
+                                                );
+                                          }
+                                        },
                                         hintText: 'Password',
                                       ),
                                       const SizedBox(height: 38.0),
                                       Align(
                                         alignment: Alignment.centerRight,
-                                        child: TextButton(
-                                          child: Text(
-                                            'Sign In',
-                                            style: TextStyle(
-                                              color: Theme.of(context).colorScheme.onPrimaryContainer,
-                                            ),
-                                          ),
-                                          onPressed: () {
+                                        child: ArrowButton(
+                                          title: 'Sign In',
+                                          isLoading: state.isLoading,
+                                          padding: const EdgeInsets.only(right: 20.0),
+                                          onTap: () {
                                             context.read<SignInCubit>().signIn(
-                                                  _emailEditingController.text.trim(),
-                                                  _passwordEditingController.text.trim(),
-                                                );
+                                              _emailEditingController.text.trim(),
+                                              _passwordEditingController.text.trim(),
+                                            );
                                           },
                                         ),
                                       ),
@@ -115,7 +127,7 @@ class _SignInPageState extends State<SignInPage> {
                                               style: Theme.of(context).textTheme.displayMedium,
                                               recognizer: TapGestureRecognizer()
                                                 ..onTap = () {
-                                                  context.pushReplacement(AppRoutes.singUp);
+                                                  context.pushReplacement(AppRoutes.signUp);
                                                 },
                                             ),
                                           ],

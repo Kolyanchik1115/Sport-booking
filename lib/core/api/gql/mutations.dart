@@ -14,6 +14,21 @@ const String loginMutation = r'''
   }
 }
 ''';
+const String registrationMutation = r'''
+mutation register($registerInput: RegisterDto!) {
+  register(registerInput: $registerInput) {
+    user {
+      id
+      email
+      fullname
+      avatar
+      dateOfBirth
+    }
+    accessToken
+    refreshToken
+  }
+}
+''';
 
 const String refreshTokenMutation = r'''
 mutation RefreshToken($refresh: String) {
@@ -24,3 +39,5 @@ mutation RefreshToken($refresh: String) {
 const String updateProfileMutation = r'''
 mutation UpdateProfile($profileInput: UpdateUserDto, $avatar: Upload) { updateProfile(profileInput: $profileInput, avatar: $avatar)
  { fullname dateOfBirth avatar } }''';
+
+

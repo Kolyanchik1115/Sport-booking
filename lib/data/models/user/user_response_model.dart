@@ -9,7 +9,8 @@ part 'user_response_model.g.dart';
 @freezed
 class UserResponseModel with _$UserResponseModel {
   const factory UserResponseModel({
-    required UserResponse login,
+    UserResponse? login,
+    UserResponse? register,
     UserData? getProfile,
   }) = _UserResponseModel;
 

@@ -53,7 +53,7 @@ class ScaffoldWithAppBar extends StatelessWidget {
               ? Center(
                   child: SvgButton(
                     height: 24.0,
-                    asset: leadingAsset ?? AppSvg.startIcon,
+                    asset: leadingAsset ?? AppSvg.arrowLeft,
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                     onTap: () {
                       if (beforePop != null) {
@@ -69,7 +69,7 @@ class ScaffoldWithAppBar extends StatelessWidget {
             appBarTitle,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.outline),
           ),
           centerTitle: false,
         ),

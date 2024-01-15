@@ -44,10 +44,10 @@ class AvatarPickerState extends State<AvatarPicker> {
       return FileImage(_selectedImage!);
     } else if (widget.avatarImage != null) {
       return NetworkImage(injector<SportAppApi>().imageFromDB(
-        widget.avatarImage ?? AppPng.emptyAvatar,
+        widget.avatarImage ?? '',
       ));
     } else {
-      return const NetworkImage(AppPng.emptyAvatar);
+      return const NetworkImage('https://www.w3schools.com/howto/img_avatar.png');
     }
   }
 

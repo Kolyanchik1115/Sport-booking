@@ -10,3 +10,18 @@ const String getProfileQuery = r'''
     }
   }
 ''';
+const String getAllFacilityQuery =
+r''' query FindAllFacilities($facilitiesFilterInput: FacilitiesFilterInput, $paginationArgs: PaginationArgs) {
+  findAll(facilitiesFilterInput: $facilitiesFilterInput, paginationArgs: $paginationArgs) {
+      facilities {
+        id
+        name
+        address
+        sportType
+        coveringType
+        facilityType
+        description
+      }
+  }
+}
+''';

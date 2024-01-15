@@ -5,6 +5,7 @@ import 'package:sport_app/core/error/failures.dart';
 import 'package:sport_app/core/router/router_config.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/storage/token_storage.dart';
+import 'package:sport_app/core/utils/validation.dart';
 import 'package:sport_app/domain/usecases/auth/sign_in_use_case.dart';
 import 'package:sport_app/injector.dart';
 import 'package:sport_app/presentation/pages/additions_pages/user/user_cubit.dart';
@@ -16,10 +17,44 @@ part 'sign_in_state.dart';
 class SignInCubit extends Cubit<SignInState> {
   SignInCubit() : super(const SignInState());
 
+  void validate(String? email, String? password) {
+    final Validation validation = Validation();
+
+    bool isEmailValid = validation.email(email);
+    bool isPasswordValid = validation.password(password);
+
+    emit(
+      state.copyWith(
+        emailError: isEmailValid ? null : 'Incorrect e-mail',
+        passwordError: isPasswordValid
+            ? null
+            : 'Password must be more than 6 characters including at least one number and one character.',
+      ),
+    );
+  }
+
+
+
   Future<void> signIn(String? email, String? password) async {
     await injector<TokenStorage>().removeTokens();
     injector<SportAppApi>().token = '';
+    final Validation validation = Validation();
 
+    bool isEmailValid = validation.email(email);
+    bool isPasswordValid = validation.password(password);
+
+    if (!isEmailValid || !isPasswordValid) {
+      emit(
+        state.copyWith(
+          emailError: isEmailValid ? null : 'Incorrect e-mail',
+          passwordError: isPasswordValid
+              ? null
+              : 'Password must be more than 6 characters including at least one number and one character.',
+        ),
+      );
+
+      return;
+    }
     emit(state.copyWith(isLoading: true));
 
     final token = await injector<SignInUserUseCase>()(SignInParams(email: email!, password: password!));
@@ -30,9 +65,9 @@ class SignInCubit extends Cubit<SignInState> {
         emailError: '',
       )),
       (token) {
-        injector<SportAppApi>().token = token.login.accessToken;
-        injector<SportAppApi>().refreshToken = token.login.refreshToken;
-        injector<UserCubit>().setUser(token.login.user);
+        injector<SportAppApi>().token = token.login!.accessToken;
+        injector<SportAppApi>().refreshToken = token.login!.refreshToken;
+        injector<UserCubit>().setUser(token.login!.user);
         injector<AppRouter>().go(AppRoutes.search);
       },
     );
