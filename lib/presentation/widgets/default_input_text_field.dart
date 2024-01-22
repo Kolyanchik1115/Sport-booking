@@ -100,7 +100,7 @@ class _DefaultInputTextFieldState extends State<DefaultInputTextField> {
             controller: widget.textEditingController,
             focusNode: widget.focusNode,
             keyboardType: widget.keyboardType,
-            style: Theme.of(context).textTheme.titleSmall,
+            style: Theme.of(context).textTheme.displayMedium,
             onChanged: widget.onChanged,
             onEditingComplete: widget.onEditingComplete,
             onTapOutside: (_) => FocusScope.of(context).unfocus(),

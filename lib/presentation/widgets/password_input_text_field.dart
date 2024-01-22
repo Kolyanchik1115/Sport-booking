@@ -75,7 +75,7 @@ class _PasswordInputTextFieldState extends State<PasswordInputTextField> {
             focusNode: widget.focusNode,
             keyboardType: widget.keyboardType,
             obscureText: _obscureText,
-            style: Theme.of(context).textTheme.titleSmall,
+            style: Theme.of(context).textTheme.displayMedium,
             onChanged: widget.onChanged,
             onEditingComplete: widget.onEditingComplete,
             onTapOutside: (_) => FocusScope.of(context).unfocus(),
@@ -103,7 +103,7 @@ class _PasswordInputTextFieldState extends State<PasswordInputTextField> {
                 child: SvgPicture.asset(
                   AppSvg.passwordEye,
                   colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.onPrimaryContainer,
+                    Theme.of(context).colorScheme.primary,
                     BlendMode.srcIn,
                   ),
                 ),

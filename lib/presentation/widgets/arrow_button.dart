@@ -33,7 +33,7 @@ class ArrowButton extends StatelessWidget {
               margin: const EdgeInsets.only(left: 12.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4.0),
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
+                color: Theme.of(context).colorScheme.primary,
               ),
               child: isLoading
                   ? Center(

@@ -25,8 +25,8 @@ class GridFacilityBuilder extends StatelessWidget {
           children: [
             Text(
               label,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.surfaceTint,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground,
                   ),
             ),
           ],
@@ -45,7 +45,7 @@ class GridFacilityBuilder extends StatelessWidget {
           itemBuilder: (context, index) {
             return FilterContainer(
               text: filterData[index],
-              color: Theme.of(context).colorScheme.outline,
+              color: Theme.of(context).colorScheme.primary,
               isSelected: selectedType == filterData[index],
               onSelectionChanged: () => onSelectionChanged(filterData[index]),
             );

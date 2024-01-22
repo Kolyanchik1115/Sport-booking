@@ -1,10 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/presentation/pages/search/cubit/filter/filter_cubit.dart';
 import 'package:sport_app/presentation/pages/search/widget/grid_facility_builder.dart';
+import 'package:sport_app/presentation/widgets/app_text_button.dart';
 
 class FacilityFilter extends StatelessWidget {
   final FilterCubit filterCubit;
@@ -26,7 +25,7 @@ class FacilityFilter extends StatelessWidget {
                   child: Text(
                     'Filters',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.surfaceTint,
+                          color: Theme.of(context).colorScheme.onBackground,
                         ),
                   ),
                 ),
@@ -47,24 +46,8 @@ class FacilityFilter extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    TextButton(
-                      onPressed: context.read<FilterCubit>().resetFilters,
-                      child: Text(
-                        'Reset',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              color: Theme.of(context).colorScheme.outline,
-                            ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () => context.pop(context.read<FilterCubit>().onSubmit),
-                      child: Text(
-                        'Submit',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              color: Theme.of(context).colorScheme.outline,
-                            ),
-                      ),
-                    ),
+                    AppTextButton(onPressed: context.read<FilterCubit>().resetFilters, text: 'Reset'),
+                    AppTextButton(onPressed: () => context.pop(context.read<FilterCubit>().onSubmit), text: 'Submit'),
                   ],
                 ),
               ],

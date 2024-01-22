@@ -73,7 +73,7 @@ class _SearchPageState extends State<SearchPage> {
               return facilityCubit.loadFirstPage();
             }
           }),
-          backgroundColor: Theme.of(context).colorScheme.outline,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           child: SvgPicture.asset(AppSvg.filter, height: 16.0),
         ),
         appbarColor: Theme.of(context).colorScheme.background,
@@ -82,7 +82,7 @@ class _SearchPageState extends State<SearchPage> {
           builder: (context, state) {
             if (state.isLoading && state.currentPage == 1) {
               return Center(
-                child: CircularProgressIndicator(color: Theme.of(context).colorScheme.outline),
+                child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
               );
             }
             return Column(
@@ -107,7 +107,7 @@ class _SearchPageState extends State<SearchPage> {
                       itemCount: state.data.length + (state.isLoading ? 1 : 0),
                       itemBuilder: (context, index) {
                         if (index == state.data.length && state.isLoading) {
-                          return CircularProgressIndicator(color: Theme.of(context).colorScheme.outline);
+                          return CircularProgressIndicator(color: Theme.of(context).colorScheme.primary);
                         } else {
                           return FacilityContainer(
                             facility: state.data[index],

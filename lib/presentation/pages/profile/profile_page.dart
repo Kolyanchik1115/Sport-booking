@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/widget/user_card_widget.dart';
 import 'package:sport_app/presentation/widgets/button_tile_widget.dart';
 import 'package:sport_app/presentation/widgets/custom_error_widget.dart';
 import 'package:sport_app/presentation/widgets/empty_layout.dart';
-import 'package:sport_app/presentation/widgets/switch_widget.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -37,22 +34,22 @@ class ProfilePage extends StatelessWidget {
                       icon: AppSvg.fingerprint,
                       title: 'Privacy',
                       onPressed: () {},
-                      color: Theme.of(context).colorScheme.onSecondary,
+                      color:  Theme.of(context).colorScheme.surface,
                       subtitle: 'Read the privacy policy',
                     ),
-                    ButtonTile(
-                      icon: AppSvg.moon,
-                      title: 'Dark mode',
-                      color: Theme.of(context).colorScheme.shadow,
-                      toggle: AppSwitch(isChecked: false, onChanged: (value) {}),
-                      containsSwitch: true,
-                      subtitle: 'Automatic',
-                    ),
+                    // ButtonTile(
+                    //   icon: AppSvg.moon,
+                    //   title: 'Dark mode',
+                    //   color: Theme.of(context).colorScheme.surface,
+                    //   toggle: AppSwitch(isChecked: false, onChanged: (value) {}),
+                    //   containsSwitch: true,
+                    //   subtitle: 'Automatic',
+                    // ),
                     ButtonTile(
                       icon: AppSvg.about,
                       title: 'About',
                       onPressed: () {},
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      color: Theme.of(context).colorScheme.primary,
                       subtitle: 'Learn more about Sport App',
                     ),
                     ButtonTile(

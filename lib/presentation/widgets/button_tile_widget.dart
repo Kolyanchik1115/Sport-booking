@@ -63,7 +63,8 @@ class ButtonTile extends StatelessWidget {
                       Text(title ?? '', style: Theme.of(context).textTheme.bodyMedium),
                     ],
                   ),
-                  Text(subtitle ?? '', style: Theme.of(context).textTheme.bodySmall),
+                  Text(subtitle ?? '', style: Theme.of(context).textTheme.titleLarge?.
+                  copyWith(color: Theme.of(context).colorScheme.secondary)),
                 ],
               ),
               const Spacer(),

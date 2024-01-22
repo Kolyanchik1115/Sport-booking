@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/data/models/user/user_data.dart';
@@ -25,7 +24,7 @@ class UserCardWidget extends StatelessWidget {
         height: 170.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.0),
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
+          color: Theme.of(context).colorScheme.primary,
         ),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
