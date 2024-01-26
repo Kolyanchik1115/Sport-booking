@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sport_app/presentation/widgets/app_elevated_button.dart';
 import 'package:sport_app/presentation/widgets/empty_layout.dart';
 
-class CustomWidget extends StatefulWidget {
-  const CustomWidget({super.key});
+class FacilityBookingPage extends StatefulWidget {
+  const FacilityBookingPage({super.key});
 
   @override
-  CustomWidgetState createState() => CustomWidgetState();
+  FacilityBookingPageState createState() => FacilityBookingPageState();
 }
 
-class CustomWidgetState extends State<CustomWidget> {
+class FacilityBookingPageState extends State<FacilityBookingPage> {
   final double itemExtend = 45.0;
   List<String> daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
   String selectedDay = 'MON';
@@ -31,7 +33,7 @@ class CustomWidgetState extends State<CustomWidget> {
   void updateActiveDays() {
     isActiveDay = List.generate(
       daysOfWeek.length,
-      (index) => scheduleData.any((data) => data['dayOfWeek'] == index + 1),
+          (index) => scheduleData.any((data) => data['dayOfWeek'] == index + 1),
     );
   }
 
@@ -64,8 +66,8 @@ class CustomWidgetState extends State<CustomWidget> {
                       decoration: BoxDecoration(
                         color: isActiveDay[index]
                             ? selectedDay == daysOfWeek[index]
-                                ? Theme.of(context).colorScheme.primary
-                                : Theme.of(context).colorScheme.primary.withOpacity(0.5)
+                            ? Theme.of(context).colorScheme.primary
+                            : Theme.of(context).colorScheme.primary.withOpacity(0.5)
                             : Theme.of(context).colorScheme.background,
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -117,9 +119,9 @@ class CustomWidgetState extends State<CustomWidget> {
                       child: Center(
                         child: price != null
                             ? Text(
-                                '$price₴',
-                                style: const TextStyle(color: Colors.black),
-                              )
+                          '$price₴',
+                          style: const TextStyle(color: Colors.black),
+                        )
                             : const SizedBox.shrink(),
                       ),
                     ),
@@ -140,7 +142,10 @@ class CustomWidgetState extends State<CustomWidget> {
                       padding: const EdgeInsets.only(left: 25.0),
                       child: Text(
                         'Total:  ',
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Theme.of(context).colorScheme.secondary),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(color: Theme.of(context).colorScheme.secondary),
                       ),
                     ),
                     Padding(
@@ -155,19 +160,16 @@ class CustomWidgetState extends State<CustomWidget> {
                 Padding(
                   padding: const EdgeInsets.only(right: 50.0),
                   child: SizedBox(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.primary),
-                      onPressed: () {},
-                      child: Text(
-                        'Submit',
-                        style: currentPrice != null
-                            ? Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: Theme.of(context).colorScheme.background,
-                        )
-                            : Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        ),
+                    child: AppElevatedButton(
+                      text: 'Submit',
+                      textStyle: currentPrice != null
+                          ? Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.background,
+                      )
+                          : Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onPrimary,
                       ),
+                      onPressed: () => context.pop(),
                     ),
                   ),
                 ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/core/utils/dummy_data.dart';
 import 'package:sport_app/presentation/pages/search/cubit/facility/facility_cubit.dart';
@@ -111,7 +113,8 @@ class _SearchPageState extends State<SearchPage> {
                         } else {
                           return FacilityContainer(
                             facility: state.data[index],
-                            onTap: () {},
+                            onTap: () => context.push(AppRoutes.facilityDetails,extra: state.data[index]),
+                            onPressed: (){},
                           );
                         }
                       },

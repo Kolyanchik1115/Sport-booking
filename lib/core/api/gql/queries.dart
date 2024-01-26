@@ -18,9 +18,14 @@ r''' query FindAllFacilities($facilitiesFilterInput: FacilitiesFilterInput, $pag
         name
         address
         sportType
+        district
         coveringType
         facilityType
         description
+        minBookingTime
+        images {
+            image
+        } 
       }
   }
 }

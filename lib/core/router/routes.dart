@@ -12,6 +12,7 @@ class AppRoutes {
   static const String mainProfile = '/main_profile';
 
   static const String editProfile = '/edit_profile';
-
+  static const String facilityDetails = '/facility_details';
+  static const String facilityBooking = '/facility_booking';
 
 }

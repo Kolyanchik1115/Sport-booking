@@ -26,7 +26,7 @@ class FacilityRepositoryImpl implements FacilityRepository {
           "sportType": sportType,
           "coveringType": coveringType,
         },
-        "paginationArgs": {"limit": 3, "page": page}
+        "paginationArgs": {"limit": 10, "page": page}
       };
       final result = await remoteClient.getAllFacility(data: data);
       return Right(result);
