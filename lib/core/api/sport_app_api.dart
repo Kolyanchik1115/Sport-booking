@@ -111,7 +111,7 @@ class SportAppApi {
     // pollInterval: const Duration(seconds: 10),
     if (queryResult.hasException) {
       log('Query/mutation execution failed.');
-      await _updateToken();
+      // await _updateToken();
     }
     return queryResult.data! as T;
   }

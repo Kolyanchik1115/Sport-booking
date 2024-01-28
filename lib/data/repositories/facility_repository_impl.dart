@@ -19,10 +19,12 @@ class FacilityRepositoryImpl implements FacilityRepository {
     required int page,
     String? sportType,
     String? coveringType,
+    String? search,
   }) async {
     try {
       final data = {
         "facilitiesFilterInput": {
+          "search": search,
           "sportType": sportType,
           "coveringType": coveringType,
         },

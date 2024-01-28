@@ -17,7 +17,6 @@ class FacilityCubit extends Cubit<FacilityState> {
   int _currentPage = 1;
   String? _sportType;
   String? _coveringType;
-  bool isSearch = false;
 
   set coveringType(String? value) {
     _coveringType = value;
@@ -27,25 +26,19 @@ class FacilityCubit extends Cubit<FacilityState> {
     _sportType = value;
   }
 
-  Future<void> loadNextPage() async {
+  Future<void> loadNextPage({String? search}) async {
     if (state.isLoading) return;
     if (_currentPage == 1) emit(state.copyWith(isLoading: true));
     List<FacilityData> facilities = List.of(state.data);
     late final Either<Failure, FacilityResponseModel> result;
 
-    if (isSearch) {
-      result = await injector<GetAllFacilityUseCase>()(GetAllFacilityParams(
-        page: _currentPage,
-        sportType: _sportType,
-        coveringType: _coveringType,
-      ));
-    } else {
-      result = await injector<GetAllFacilityUseCase>()(GetAllFacilityParams(
-        page: _currentPage,
-        sportType: _sportType,
-        coveringType: _coveringType,
-      ));
-    }
+    result = await injector<GetAllFacilityUseCase>()(GetAllFacilityParams(
+      search: search,
+      page: _currentPage,
+      sportType: _sportType,
+      coveringType: _coveringType,
+    ));
+
     result.fold(
       (error) {
         emit(state.copyWith(isLoading: false));
@@ -67,8 +60,12 @@ class FacilityCubit extends Cubit<FacilityState> {
     );
   }
 
-  Future<void> loadFirstPage() async {
+  void onSearch(String searchTerm) {
+    loadFirstPage(search: searchTerm);
+  }
+
+  Future<void> loadFirstPage({String? search}) async {
     _currentPage = 1;
-    loadNextPage();
+    loadNextPage(search: search);
   }
 }

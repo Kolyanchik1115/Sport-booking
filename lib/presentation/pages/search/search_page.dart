@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,7 +11,6 @@ import 'package:sport_app/presentation/pages/search/cubit/facility/facility_cubi
 import 'package:sport_app/presentation/pages/search/cubit/filter/filter_cubit.dart';
 import 'package:sport_app/presentation/pages/search/widget/facility_filter.dart';
 import 'package:sport_app/presentation/widgets/empty_layout.dart';
-
 import 'widget/facility_container.dart';
 import 'widget/search_field.dart';
 
@@ -23,6 +24,8 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   late final FacilityCubit facilityCubit;
   late final FilterCubit filterCubit;
+  final SearchController searchController = SearchController();
+  final FocusNode searchFocus = FocusNode();
 
   @override
   void initState() {
@@ -36,6 +39,8 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   void dispose() {
+    searchController.dispose();
+    searchFocus.dispose();
     facilityCubit.close();
     filterCubit.close();
     super.dispose();
@@ -72,7 +77,7 @@ class _SearchPageState extends State<SearchPage> {
             if (filterState != null && filterState is FilterState) {
               facilityCubit.sportType = filterState.selectedSportType;
               facilityCubit.coveringType = filterState.selectedCoveringType;
-              return facilityCubit.loadFirstPage();
+              return facilityCubit.loadFirstPage(search: searchController.text.trim());
             }
           }),
           backgroundColor: Theme.of(context).colorScheme.primary,
@@ -80,22 +85,23 @@ class _SearchPageState extends State<SearchPage> {
         ),
         appbarColor: Theme.of(context).colorScheme.background,
         background: Theme.of(context).colorScheme.onSurface,
-        child: BlocBuilder<FacilityCubit, FacilityState>(
-          builder: (context, state) {
-            if (state.isLoading && state.currentPage == 1) {
-              return Center(
-                child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
-              );
-            }
-            return Column(
-              children: [
-                SearchField(
-                  textEditingController: TextEditingController(),
-                  focusNode: FocusNode(),
-                  onChanged: (data) {},
-                  onPressedRightButton: () {},
-                ),
-                Expanded(
+        child: Column(
+          children: [
+            SearchField(
+              textEditingController: searchController,
+              focusNode: searchFocus,
+              onChanged: (query) {
+                facilityCubit.onSearch(query.trim());
+              },
+            ),
+            BlocBuilder<FacilityCubit, FacilityState>(
+              builder: (context, state) {
+                if (state.isLoading && state.currentPage == 1) {
+                  return Center(
+                    child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
+                  );
+                }
+                return Expanded(
                   child: NotificationListener<ScrollEndNotification>(
                     onNotification: (ScrollEndNotification scrollInfo) {
                       if (scrollInfo.metrics.pixels >= (scrollInfo.metrics.maxScrollExtent - 50) &&
@@ -113,17 +119,17 @@ class _SearchPageState extends State<SearchPage> {
                         } else {
                           return FacilityContainer(
                             facility: state.data[index],
-                            onTap: () => context.push(AppRoutes.facilityDetails,extra: state.data[index]),
-                            onPressed: (){},
+                            onTap: () => context.push(AppRoutes.facilityDetails, extra: state.data[index]),
+                            onPressed: () {},
                           );
                         }
                       },
                     ),
                   ),
-                ),
-              ],
-            );
-          },
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

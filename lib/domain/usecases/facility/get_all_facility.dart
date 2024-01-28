@@ -16,6 +16,7 @@ class GetAllFacilityUseCase implements UseCase<FacilityResponseModel, GetAllFaci
       page: params.page,
       sportType: params.sportType,
       coveringType: params.coveringType,
+      search: params.search,
     );
   }
 }
@@ -24,13 +25,15 @@ class GetAllFacilityParams extends Equatable {
   final int page;
   final String? sportType;
   final String? coveringType;
+  final String? search;
 
   const GetAllFacilityParams({
     required this.page,
     this.sportType,
+    this.search,
     this.coveringType,
   });
 
   @override
-  List<Object?> get props => [page];
+  List<Object?> get props => [page,sportType,coveringType,search];
 }
