@@ -33,6 +33,7 @@ class _SearchPageState extends State<SearchPage> {
     filterCubit = FilterCubit(
       sportTypeList: DummyData.sportType,
       coveringTypeList: DummyData.coveringType,
+      facilityTypeList: DummyData.facilityType,
     );
     super.initState();
   }
@@ -69,7 +70,8 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             builder: (context) {
-              return SingleChildScrollView(
+              return SizedBox(
+                height: MediaQuery.sizeOf(context).height / 1.2,
                 child: FacilityFilter(filterCubit: filterCubit),
               );
             },
@@ -77,6 +79,7 @@ class _SearchPageState extends State<SearchPage> {
             if (filterState != null && filterState is FilterState) {
               facilityCubit.sportType = filterState.selectedSportType;
               facilityCubit.coveringType = filterState.selectedCoveringType;
+              facilityCubit.facilityType = filterState.selectedFacilityType;
               return facilityCubit.loadFirstPage(search: searchController.text.trim());
             }
           }),

@@ -39,7 +39,7 @@ class _SearchFieldState extends State<SearchField> {
         padding: const EdgeInsets.only(bottom: 5.0, left: 20.0, right: 20.0),
         onChanged: (value) {
           searchDelayTimer?.cancel();
-          searchDelayTimer = Timer(const Duration(milliseconds: 300), () {
+          searchDelayTimer = Timer(const Duration(milliseconds: 700), () {
             widget.onChanged(value);
             searchDelayTimer?.cancel();
           });

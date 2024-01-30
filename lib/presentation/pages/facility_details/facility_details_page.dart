@@ -36,11 +36,13 @@ class FacilityDetailsPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          facilityData.name,
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                color: Theme.of(context).colorScheme.onBackground,
-                              ),
+                        Expanded(
+                          child: Text(
+                            facilityData.name,
+                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  color: Theme.of(context).colorScheme.onBackground,
+                                ),
+                          ),
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,

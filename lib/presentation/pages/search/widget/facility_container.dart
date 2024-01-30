@@ -49,14 +49,18 @@ class FacilityContainer extends StatelessWidget {
                 Positioned(
                   top: 20.0,
                   right: 20.0,
-                  child: SvgButton(asset: AppSvg.heart, onTap: onPressed),
+                  child: SvgButton(
+                    asset: AppSvg.heart,
+                    onTap: onPressed,
+                  ),
                 ),
                 Positioned(
                   bottom: 15.0,
                   left: 20.0,
                   child: Text(
-                    '${facility?.sportType}',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    '${facility?.name}',
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: Theme.of(context).colorScheme.background,
                         ),
                   ),
@@ -76,12 +80,13 @@ class FacilityContainer extends StatelessWidget {
             const SizedBox(height: 5.0),
             Padding(
               padding: const EdgeInsets.only(left: 10.0),
-              child: Row(children: [Text('${facility?.facilityType} · ${facility?.coveringType}')]),
+              child: Text(facility?.sportType ?? ''),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10.0),
-              child: Text(facility?.district ?? ''),
+              child: Row(children: [Text('${facility?.facilityType} · ${facility?.coveringType}')]),
             ),
+
           ],
         ),
       ),

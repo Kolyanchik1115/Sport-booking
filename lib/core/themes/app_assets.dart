@@ -5,8 +5,6 @@ abstract class AppSvg {
   static const String arrowLeft = 'assets/svg/icons/arrow_left.svg';
   static const String arrow = 'assets/svg/icons/arrow.svg';
 
-
-
   static const String fingerprint = 'assets/svg/icons/fingerprint.svg';
   static const String message = 'assets/svg/icons/message.svg';
   static const String moon = 'assets/svg/icons/moon.svg';
@@ -24,8 +22,21 @@ abstract class AppSvg {
   static const String location = 'assets/svg/icons/location.svg';
   static const String heart = 'assets/svg/icons/heart.svg';
   static const String filter = 'assets/svg/icons/filter.svg';
-
   static const String calendar = 'assets/svg/icons/calendar.svg';
+
+  static const String basketball = 'assets/svg/icons/basketball.svg';
+  static const String volleyball = 'assets/svg/icons/volleyball.svg';
+  static const String tennis = 'assets/svg/icons/tennis.svg';
+  static const String soccer = 'assets/svg/icons/soccer.svg';
+
+  static const String closed = 'assets/svg/icons/closed.svg';
+  static const String opened = 'assets/svg/icons/opened.svg';
+
+  static const String rubber = 'assets/svg/icons/rubber.svg';
+  static const String sand = 'assets/svg/icons/sand.svg';
+  static const String artificialLawn = 'assets/svg/icons/artificial_lawn.svg';
+  static const String naturalLawn = 'assets/svg/icons/natural_lawn.svg';
+  static const String parquet = 'assets/svg/icons/parquet.svg';
 }
 
 abstract class AppPng {

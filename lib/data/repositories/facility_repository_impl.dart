@@ -20,6 +20,7 @@ class FacilityRepositoryImpl implements FacilityRepository {
     String? sportType,
     String? coveringType,
     String? search,
+    String? facilityType,
   }) async {
     try {
       final data = {
@@ -27,6 +28,7 @@ class FacilityRepositoryImpl implements FacilityRepository {
           "search": search,
           "sportType": sportType,
           "coveringType": coveringType,
+          "facilityType": facilityType,
         },
         "paginationArgs": {"limit": 10, "page": page}
       };

@@ -14,5 +14,6 @@ abstract interface class FacilityRepository {
     String? sportType,
     String? coveringType,
     String? search,
+    String? facilityType,
   });
 }

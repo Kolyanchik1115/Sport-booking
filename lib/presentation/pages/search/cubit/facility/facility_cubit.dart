@@ -17,6 +17,11 @@ class FacilityCubit extends Cubit<FacilityState> {
   int _currentPage = 1;
   String? _sportType;
   String? _coveringType;
+  String? _facilityType;
+
+  set facilityType(String? value) {
+    _facilityType = value;
+  }
 
   set coveringType(String? value) {
     _coveringType = value;
@@ -37,6 +42,7 @@ class FacilityCubit extends Cubit<FacilityState> {
       page: _currentPage,
       sportType: _sportType,
       coveringType: _coveringType,
+      facilityType: _facilityType,
     ));
 
     result.fold(

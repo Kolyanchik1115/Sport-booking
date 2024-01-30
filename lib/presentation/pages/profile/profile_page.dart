@@ -57,7 +57,7 @@ class ProfilePage extends StatelessWidget {
                       title: 'Send Feedback',
                       onPressed: () {},
                       color: Theme.of(context).colorScheme.onSecondary,
-                      subtitle: 'Let us know about your problem',
+                      subtitle: 'Tell us about your problem',
                     ),
                     const SizedBox(height: 20.0),
                     Padding(

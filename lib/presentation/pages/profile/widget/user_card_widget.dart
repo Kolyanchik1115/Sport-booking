@@ -21,7 +21,6 @@ class UserCardWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 170.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.0),
           color: Theme.of(context).colorScheme.primary,
@@ -29,32 +28,34 @@ class UserCardWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               UserCircleAvatar(
-                avatarRadius: 70.0,
+                avatarRadius: 50.0,
                 avatarPath: user.avatar,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    user.fullname ?? 'Anonymous',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Text(
-                    user.email ?? '',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ],
+              const SizedBox(width: 20.0),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      user.fullname ?? 'Anonymous',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    Text(
+                      user.email ?? '',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 23.0),
+                    ),
+                  ],
+                ),
               ),
-              Align(
-                alignment: Alignment.topRight,
+              Transform.translate(
+                offset: const Offset(0, -40),
                 child: SvgButton(
                   width: 23,
                   asset: AppSvg.pencil,
-                  onTap: () => context.push(AppRoutes.editProfile,extra: context.read<ProfileCubit>()),
+                  onTap: () => context.push(AppRoutes.editProfile, extra: context.read<ProfileCubit>()),
                 ),
               ),
             ],
