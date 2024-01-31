@@ -29,14 +29,19 @@ class DescriptionTextWidgetState extends State<DescriptionTextWidget> {
   @override
   Widget build(BuildContext context) {
     return secondHalf.isEmpty
-        ? Text(firstHalf)
+        ? Text(
+            firstHalf,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+          )
         : Column(
             children: [
               Text(
                 flag ? ("$firstHalf...") : (firstHalf + secondHalf),
                 textAlign: TextAlign.justify,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.surface,
+                      color: Theme.of(context).colorScheme.onBackground,
                     ),
               ),
               const SizedBox(height: 10.0),
@@ -49,7 +54,7 @@ class DescriptionTextWidgetState extends State<DescriptionTextWidget> {
                       style: Theme.of(context)
                           .textTheme
                           .titleLarge!
-                          .copyWith(color: Theme.of(context).colorScheme.surface),
+                          .copyWith(color: Theme.of(context).colorScheme.primary),
                     ),
                   ],
                 ),

@@ -2,9 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
+import 'package:sport_app/presentation/pages/booking/cubit/booking_cubit.dart';
 import 'package:sport_app/presentation/pages/edit_profile/edit_profile_page.dart';
-import 'package:sport_app/presentation/pages/facility_details/facility_booking_page.dart';
-import 'package:sport_app/presentation/pages/facility_details/facility_details_page.dart';
+import 'package:sport_app/presentation/pages/booking/facility_booking_page.dart';
+import 'package:sport_app/presentation/pages/booking/facility_details_page.dart';
 import 'package:sport_app/presentation/pages/favorite/favorite_page.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/profile_page.dart';
@@ -60,12 +61,14 @@ class AppRouter {
         ),
         GoRoute(
           path: AppRoutes.facilityBooking,
-          builder: (BuildContext context, GoRouterState state) => const FacilityBookingPage(),
+          builder: (BuildContext context, GoRouterState state) => FacilityBookingPage(
+            facilityId: (state.extra as List<dynamic>)[0] as int,
+            bookingCubit: (state.extra as List<dynamic>)[1] as BookingCubit,
+          ),
         ),
         GoRoute(
           path: AppRoutes.facilityDetails,
-          builder: (BuildContext context, GoRouterState state) =>
-              FacilityDetailsPage(
+          builder: (BuildContext context, GoRouterState state) => FacilityDetailsPage(
             facilityData: state.extra as FacilityData,
           ),
         ),

@@ -9,7 +9,7 @@ import 'package:sport_app/presentation/widgets/app_text_button.dart';
 class FacilityFilter extends StatelessWidget {
   final FilterCubit filterCubit;
 
-  const FacilityFilter({Key? key, required this.filterCubit}) : super(key: key);
+  const FacilityFilter({super.key, required this.filterCubit});
 
   @override
   Widget build(BuildContext context) {
