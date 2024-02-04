@@ -8,13 +8,18 @@ part of 'facility_data.dart';
 
 _$FacilityDataImpl _$$FacilityDataImplFromJson(Map<String, dynamic> json) =>
     _$FacilityDataImpl(
-      id: json['id'] as int?,
-      name: json['name'] as String?,
+      id: json['id'] as int,
+      name: json['name'] as String,
       address: json['address'] as String?,
       sportType: json['sportType'] as String?,
       coveringType: json['coveringType'] as String?,
+      district: json['district'] as String?,
+      minBookingTime: json['minBookingTime'] as int?,
       facilityType: json['facilityType'] as String?,
       description: json['description'] as String?,
+      images: (json['images'] as List<dynamic>)
+          .map((e) => FacilityDataImage.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$FacilityDataImplToJson(_$FacilityDataImpl instance) =>
@@ -24,6 +29,9 @@ Map<String, dynamic> _$$FacilityDataImplToJson(_$FacilityDataImpl instance) =>
       'address': instance.address,
       'sportType': instance.sportType,
       'coveringType': instance.coveringType,
+      'district': instance.district,
+      'minBookingTime': instance.minBookingTime,
       'facilityType': instance.facilityType,
       'description': instance.description,
+      'images': instance.images,
     };

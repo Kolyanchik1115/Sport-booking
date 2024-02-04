@@ -17,10 +17,10 @@ class AppSwitch extends StatelessWidget {
       value: isChecked,
       activeThumbImage: const AssetImage(AppPng.night),
       inactiveThumbImage: const AssetImage(AppPng.day),
-      activeColor: isChecked ? Theme.of(context).colorScheme.onSecondary : Theme.of(context).colorScheme.shadow,
-      inactiveTrackColor: Theme.of(context).colorScheme.outline,
-      activeTrackColor: Theme.of(context).colorScheme.shadow,
-      inactiveThumbColor: Theme.of(context).colorScheme.outline,
+      activeColor: isChecked ? Theme.of(context).colorScheme.onSecondary : Theme.of(context).colorScheme.surface,
+      inactiveTrackColor: Theme.of(context).colorScheme.primary,
+      activeTrackColor: Theme.of(context).colorScheme.surface,
+      inactiveThumbColor: Theme.of(context).colorScheme.primary,
       onChanged: (value) => onChanged(value),
     );
   }

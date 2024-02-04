@@ -14,7 +14,7 @@ class ButtonTile extends StatelessWidget {
   final Function()? onPressed;
 
   const ButtonTile({
-    Key? key,
+    super.key,
     required this.icon,
     this.title,
     this.customText,
@@ -24,7 +24,7 @@ class ButtonTile extends StatelessWidget {
     this.containsSwitch = false,
     this.toggle,
     this.padding = const EdgeInsets.all(10.0),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,8 @@ class ButtonTile extends StatelessWidget {
                       Text(title ?? '', style: Theme.of(context).textTheme.bodyMedium),
                     ],
                   ),
-                  Text(subtitle ?? '', style: Theme.of(context).textTheme.bodySmall),
+                  Text(subtitle ?? '', style: Theme.of(context).textTheme.titleLarge?.
+                  copyWith(color: Theme.of(context).colorScheme.secondary)),
                 ],
               ),
               const Spacer(),

@@ -12,7 +12,7 @@ class DateParser {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: Theme.of(context).colorScheme.outline,
+              primary: Theme.of(context).colorScheme.primary,
               background: Theme.of(context).colorScheme.onSurface,
             ),
           ),

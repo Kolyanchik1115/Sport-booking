@@ -73,7 +73,7 @@ class _EditingProfilePageState extends State<EditingProfilePage> {
                           .labelLarge!
                           .copyWith(color: Theme.of(context).colorScheme.background),
                     ),
-                    backgroundColor: Theme.of(context).colorScheme.outline,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                   ),
                 );
               }

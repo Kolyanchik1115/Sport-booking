@@ -5,5 +5,6 @@ class FilterState with _$FilterState {
   const factory FilterState({
     String? selectedSportType,
     String? selectedCoveringType,
+    String? selectedFacilityType,
   }) = _FilterState;
 }

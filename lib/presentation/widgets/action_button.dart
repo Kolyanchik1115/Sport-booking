@@ -21,7 +21,7 @@ class ActionButton extends StatelessWidget {
       child: Padding(
         padding: padding,
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.outline),
+          style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.primary),
           onPressed: onPressed,
           child: Center(
             child: isLoading

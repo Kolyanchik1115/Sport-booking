@@ -6,6 +6,7 @@ class GridFacilityBuilder extends StatelessWidget {
   final String label;
   final String? selectedType;
   final List<String> filterData;
+  final List<String> icons;
   final Function(String?) onSelectionChanged;
 
   const GridFacilityBuilder({
@@ -15,6 +16,7 @@ class GridFacilityBuilder extends StatelessWidget {
     required this.label,
     required this.filterData,
     required this.onSelectionChanged,
+    required this.icons,
   });
 
   @override
@@ -25,8 +27,8 @@ class GridFacilityBuilder extends StatelessWidget {
           children: [
             Text(
               label,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.surfaceTint,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground,
                   ),
             ),
           ],
@@ -36,8 +38,8 @@ class GridFacilityBuilder extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 16.0,
-            mainAxisSpacing: 16.0,
-            mainAxisExtent: 90.0,
+            mainAxisSpacing: 8.0,
+            mainAxisExtent: 80.0,
           ),
           itemCount: itemCount,
           shrinkWrap: true,
@@ -45,9 +47,10 @@ class GridFacilityBuilder extends StatelessWidget {
           itemBuilder: (context, index) {
             return FilterContainer(
               text: filterData[index],
-              color: Theme.of(context).colorScheme.outline,
+              color: Theme.of(context).colorScheme.primary,
               isSelected: selectedType == filterData[index],
               onSelectionChanged: () => onSelectionChanged(filterData[index]),
+              icon: icons[index],
             );
           },
         ),

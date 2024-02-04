@@ -15,7 +15,7 @@ final theme = ThemeData(
       systemNavigationBarColor: AppColors.white,
     ),
   ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme:  BottomNavigationBarThemeData(
     backgroundColor: AppColors.crayola,
     showSelectedLabels: true,
     selectedItemColor: AppColors.white,
@@ -71,40 +71,8 @@ final theme = ThemeData(
   ),
   textTheme: TextTheme(
     displayLarge: const TextStyle(),
-
-    bodyLarge: GoogleFonts.roboto(
-      fontSize: 12.0,
-      fontWeight: FontWeight.w500,
-      color: AppColors.crayola,
-    ),
-
     displaySmall: GoogleFonts.roboto(
       fontSize: 30.0,
-      fontWeight: FontWeight.w700,
-      color: AppColors.crayola,
-    ),
-    bodyMedium: GoogleFonts.roboto(
-      fontSize: 20.0,
-      fontWeight: FontWeight.w700,
-      color: AppColors.black,
-    ),
-    bodySmall: GoogleFonts.roboto(
-      fontSize: 16.0,
-      fontWeight: FontWeight.w700,
-      color: AppColors.silver,
-    ),
-    displayMedium: GoogleFonts.roboto(
-      fontSize: 14.0,
-      fontWeight: FontWeight.w700,
-      color: AppColors.crayola,
-    ),
-    titleSmall: GoogleFonts.roboto(
-      fontSize: 14.0,
-      fontWeight: FontWeight.w700,
-      color: AppColors.crayola,
-    ),
-    titleLarge: GoogleFonts.roboto(
-      fontSize: 16.0,
       fontWeight: FontWeight.w700,
       color: AppColors.crayola,
     ),
@@ -113,23 +81,39 @@ final theme = ThemeData(
       fontWeight: FontWeight.w700,
       color: AppColors.white,
     ),
+    bodyMedium: GoogleFonts.roboto(
+      fontSize: 20.0,
+      fontWeight: FontWeight.w700,
+      color: AppColors.black,
+    ),
+    titleLarge: GoogleFonts.roboto(
+      fontSize: 16.0,
+      fontWeight: FontWeight.w700,
+      color: AppColors.crayola,
+    ),
+    displayMedium: GoogleFonts.roboto(
+      fontSize: 14.0,
+      fontWeight: FontWeight.w700,
+      color: AppColors.crayola,
+    ),
+    bodyLarge: GoogleFonts.roboto(
+      fontSize: 12.0,
+      fontWeight: FontWeight.w500,
+      color: AppColors.crayola,
+    ),
   ),
   colorScheme: const ColorScheme(
-    onSecondaryContainer: AppColors.lightSilver,
     brightness: Brightness.dark,
-    shadow: AppColors.cerulian,
-    surfaceTint: AppColors.black,
-    outline: AppColors.crayola,
-    primary: AppColors.lightSilver,
-    onPrimary: AppColors.lightSilver,
-    secondary: AppColors.silver,
     onSecondary: AppColors.salmon,
-    error: AppColors.lightSilver,
-    onError: AppColors.lightSilver,
-    onBackground: AppColors.lightSilver,
-    surface: AppColors.lightSilver,
-    onPrimaryContainer: AppColors.crayola,
     onSurface: AppColors.whiteIce,
     background: AppColors.white,
+    secondary: AppColors.silver,
+    onPrimary: AppColors.lightSilver,
+    surface: AppColors.cerulian,
+    onBackground: AppColors.black,
+    primary: AppColors.crayola,
+
+    error: AppColors.lightSilver,
+    onError: AppColors.lightSilver,
   ),
 );

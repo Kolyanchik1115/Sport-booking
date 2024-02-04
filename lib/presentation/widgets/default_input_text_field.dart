@@ -18,6 +18,7 @@ class DefaultInputTextField extends StatefulWidget {
   final Function(String value)? onChanged;
   final Function()? onEditingComplete;
   final bool readOnly;
+  final Color? fillColor;
   final int? maxLines;
 
   const DefaultInputTextField({
@@ -32,6 +33,7 @@ class DefaultInputTextField extends StatefulWidget {
     this.onEditingComplete,
     super.key,
     this.placeText,
+    this.fillColor,
     this.border,
     this.prefixIcon,
     this.suffixIcon,
@@ -100,7 +102,7 @@ class _DefaultInputTextFieldState extends State<DefaultInputTextField> {
             controller: widget.textEditingController,
             focusNode: widget.focusNode,
             keyboardType: widget.keyboardType,
-            style: Theme.of(context).textTheme.titleSmall,
+            style: Theme.of(context).textTheme.displayMedium,
             onChanged: widget.onChanged,
             onEditingComplete: widget.onEditingComplete,
             onTapOutside: (_) => FocusScope.of(context).unfocus(),
@@ -113,7 +115,9 @@ class _DefaultInputTextFieldState extends State<DefaultInputTextField> {
               focusedBorder: widget.border,
               errorText: errorText,
               filled: widget.filled,
+              fillColor: widget.fillColor,
               hintText: widget.placeText,
+
               hintStyle: widget.hintStyle,
               prefixIcon: widget.prefixIcon,
               suffixIcon: widget.suffixIcon,

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$FilterState {
   String? get selectedSportType => throw _privateConstructorUsedError;
   String? get selectedCoveringType => throw _privateConstructorUsedError;
+  String? get selectedFacilityType => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FilterStateCopyWith<FilterState> get copyWith =>
@@ -30,7 +31,10 @@ abstract class $FilterStateCopyWith<$Res> {
           FilterState value, $Res Function(FilterState) then) =
       _$FilterStateCopyWithImpl<$Res, FilterState>;
   @useResult
-  $Res call({String? selectedSportType, String? selectedCoveringType});
+  $Res call(
+      {String? selectedSportType,
+      String? selectedCoveringType,
+      String? selectedFacilityType});
 }
 
 /// @nodoc
@@ -48,6 +52,7 @@ class _$FilterStateCopyWithImpl<$Res, $Val extends FilterState>
   $Res call({
     Object? selectedSportType = freezed,
     Object? selectedCoveringType = freezed,
+    Object? selectedFacilityType = freezed,
   }) {
     return _then(_value.copyWith(
       selectedSportType: freezed == selectedSportType
@@ -57,6 +62,10 @@ class _$FilterStateCopyWithImpl<$Res, $Val extends FilterState>
       selectedCoveringType: freezed == selectedCoveringType
           ? _value.selectedCoveringType
           : selectedCoveringType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selectedFacilityType: freezed == selectedFacilityType
+          ? _value.selectedFacilityType
+          : selectedFacilityType // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -70,7 +79,10 @@ abstract class _$$FilterStateImplCopyWith<$Res>
       __$$FilterStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? selectedSportType, String? selectedCoveringType});
+  $Res call(
+      {String? selectedSportType,
+      String? selectedCoveringType,
+      String? selectedFacilityType});
 }
 
 /// @nodoc
@@ -86,6 +98,7 @@ class __$$FilterStateImplCopyWithImpl<$Res>
   $Res call({
     Object? selectedSportType = freezed,
     Object? selectedCoveringType = freezed,
+    Object? selectedFacilityType = freezed,
   }) {
     return _then(_$FilterStateImpl(
       selectedSportType: freezed == selectedSportType
@@ -96,6 +109,10 @@ class __$$FilterStateImplCopyWithImpl<$Res>
           ? _value.selectedCoveringType
           : selectedCoveringType // ignore: cast_nullable_to_non_nullable
               as String?,
+      selectedFacilityType: freezed == selectedFacilityType
+          ? _value.selectedFacilityType
+          : selectedFacilityType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -103,16 +120,21 @@ class __$$FilterStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FilterStateImpl implements _FilterState {
-  const _$FilterStateImpl({this.selectedSportType, this.selectedCoveringType});
+  const _$FilterStateImpl(
+      {this.selectedSportType,
+      this.selectedCoveringType,
+      this.selectedFacilityType});
 
   @override
   final String? selectedSportType;
   @override
   final String? selectedCoveringType;
+  @override
+  final String? selectedFacilityType;
 
   @override
   String toString() {
-    return 'FilterState(selectedSportType: $selectedSportType, selectedCoveringType: $selectedCoveringType)';
+    return 'FilterState(selectedSportType: $selectedSportType, selectedCoveringType: $selectedCoveringType, selectedFacilityType: $selectedFacilityType)';
   }
 
   @override
@@ -123,12 +145,14 @@ class _$FilterStateImpl implements _FilterState {
             (identical(other.selectedSportType, selectedSportType) ||
                 other.selectedSportType == selectedSportType) &&
             (identical(other.selectedCoveringType, selectedCoveringType) ||
-                other.selectedCoveringType == selectedCoveringType));
+                other.selectedCoveringType == selectedCoveringType) &&
+            (identical(other.selectedFacilityType, selectedFacilityType) ||
+                other.selectedFacilityType == selectedFacilityType));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, selectedSportType, selectedCoveringType);
+  int get hashCode => Object.hash(runtimeType, selectedSportType,
+      selectedCoveringType, selectedFacilityType);
 
   @JsonKey(ignore: true)
   @override
@@ -140,12 +164,15 @@ class _$FilterStateImpl implements _FilterState {
 abstract class _FilterState implements FilterState {
   const factory _FilterState(
       {final String? selectedSportType,
-      final String? selectedCoveringType}) = _$FilterStateImpl;
+      final String? selectedCoveringType,
+      final String? selectedFacilityType}) = _$FilterStateImpl;
 
   @override
   String? get selectedSportType;
   @override
   String? get selectedCoveringType;
+  @override
+  String? get selectedFacilityType;
   @override
   @JsonKey(ignore: true)
   _$$FilterStateImplCopyWith<_$FilterStateImpl> get copyWith =>

@@ -1,13 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/core/utils/dummy_data.dart';
 import 'package:sport_app/presentation/pages/search/cubit/facility/facility_cubit.dart';
 import 'package:sport_app/presentation/pages/search/cubit/filter/filter_cubit.dart';
 import 'package:sport_app/presentation/pages/search/widget/facility_filter.dart';
 import 'package:sport_app/presentation/widgets/empty_layout.dart';
-
 import 'widget/facility_container.dart';
 import 'widget/search_field.dart';
 
@@ -21,6 +24,8 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   late final FacilityCubit facilityCubit;
   late final FilterCubit filterCubit;
+  final SearchController searchController = SearchController();
+  final FocusNode searchFocus = FocusNode();
 
   @override
   void initState() {
@@ -28,12 +33,15 @@ class _SearchPageState extends State<SearchPage> {
     filterCubit = FilterCubit(
       sportTypeList: DummyData.sportType,
       coveringTypeList: DummyData.coveringType,
+      facilityTypeList: DummyData.facilityType,
     );
     super.initState();
   }
 
   @override
   void dispose() {
+    searchController.dispose();
+    searchFocus.dispose();
     facilityCubit.close();
     filterCubit.close();
     super.dispose();
@@ -62,7 +70,8 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             builder: (context) {
-              return SingleChildScrollView(
+              return SizedBox(
+                height: MediaQuery.sizeOf(context).height / 1.2,
                 child: FacilityFilter(filterCubit: filterCubit),
               );
             },
@@ -70,30 +79,32 @@ class _SearchPageState extends State<SearchPage> {
             if (filterState != null && filterState is FilterState) {
               facilityCubit.sportType = filterState.selectedSportType;
               facilityCubit.coveringType = filterState.selectedCoveringType;
-              return facilityCubit.loadFirstPage();
+              facilityCubit.facilityType = filterState.selectedFacilityType;
+              return facilityCubit.loadFirstPage(search: searchController.text.trim());
             }
           }),
-          backgroundColor: Theme.of(context).colorScheme.outline,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           child: SvgPicture.asset(AppSvg.filter, height: 16.0),
         ),
         appbarColor: Theme.of(context).colorScheme.background,
         background: Theme.of(context).colorScheme.onSurface,
-        child: BlocBuilder<FacilityCubit, FacilityState>(
-          builder: (context, state) {
-            if (state.isLoading && state.currentPage == 1) {
-              return Center(
-                child: CircularProgressIndicator(color: Theme.of(context).colorScheme.outline),
-              );
-            }
-            return Column(
-              children: [
-                SearchField(
-                  textEditingController: TextEditingController(),
-                  focusNode: FocusNode(),
-                  onChanged: (data) {},
-                  onPressedRightButton: () {},
-                ),
-                Expanded(
+        child: Column(
+          children: [
+            SearchField(
+              textEditingController: searchController,
+              focusNode: searchFocus,
+              onChanged: (query) {
+                facilityCubit.onSearch(query.trim());
+              },
+            ),
+            BlocBuilder<FacilityCubit, FacilityState>(
+              builder: (context, state) {
+                if (state.isLoading && state.currentPage == 1) {
+                  return Center(
+                    child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
+                  );
+                }
+                return Expanded(
                   child: NotificationListener<ScrollEndNotification>(
                     onNotification: (ScrollEndNotification scrollInfo) {
                       if (scrollInfo.metrics.pixels >= (scrollInfo.metrics.maxScrollExtent - 50) &&
@@ -107,20 +118,21 @@ class _SearchPageState extends State<SearchPage> {
                       itemCount: state.data.length + (state.isLoading ? 1 : 0),
                       itemBuilder: (context, index) {
                         if (index == state.data.length && state.isLoading) {
-                          return CircularProgressIndicator(color: Theme.of(context).colorScheme.outline);
+                          return CircularProgressIndicator(color: Theme.of(context).colorScheme.primary);
                         } else {
                           return FacilityContainer(
                             facility: state.data[index],
-                            onTap: () {},
+                            onTap: () => context.push(AppRoutes.facilityDetails, extra: state.data[index]),
+                            onPressed: () {},
                           );
                         }
                       },
                     ),
                   ),
-                ),
-              ],
-            );
-          },
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

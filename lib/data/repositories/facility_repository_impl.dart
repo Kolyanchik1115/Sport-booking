@@ -19,14 +19,18 @@ class FacilityRepositoryImpl implements FacilityRepository {
     required int page,
     String? sportType,
     String? coveringType,
+    String? search,
+    String? facilityType,
   }) async {
     try {
       final data = {
         "facilitiesFilterInput": {
+          "search": search,
           "sportType": sportType,
           "coveringType": coveringType,
+          "facilityType": facilityType,
         },
-        "paginationArgs": {"limit": 3, "page": page}
+        "paginationArgs": {"limit": 10, "page": page}
       };
       final result = await remoteClient.getAllFacility(data: data);
       return Right(result);
