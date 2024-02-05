@@ -17,6 +17,7 @@ _$FacilityDataImpl _$$FacilityDataImplFromJson(Map<String, dynamic> json) =>
       minBookingTime: json['minBookingTime'] as int?,
       facilityType: json['facilityType'] as String?,
       description: json['description'] as String?,
+      avgPrice: (json['avgPrice'] as num?)?.toDouble(),
       images: (json['images'] as List<dynamic>)
           .map((e) => FacilityDataImage.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -33,5 +34,6 @@ Map<String, dynamic> _$$FacilityDataImplToJson(_$FacilityDataImpl instance) =>
       'minBookingTime': instance.minBookingTime,
       'facilityType': instance.facilityType,
       'description': instance.description,
+      'avgPrice': instance.avgPrice,
       'images': instance.images,
     };

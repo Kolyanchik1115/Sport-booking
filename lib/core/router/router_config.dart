@@ -16,6 +16,8 @@ import 'package:sport_app/presentation/pages/sign_up/sign_up_page.dart';
 import 'package:sport_app/presentation/pages/splash/splash_page.dart';
 import 'package:sport_app/presentation/widgets/scaffold_with_nav_bar.dart';
 
+import '../../presentation/pages/booking/facility_confirm_booking_page.dart';
+
 class AppRouter {
   static final AppRouter _appRouter = AppRouter._();
 
@@ -59,6 +61,7 @@ class AppRouter {
             profileCubit: state.extra as ProfileCubit,
           ),
         ),
+
         GoRoute(
           path: AppRoutes.facilityBooking,
           builder: (BuildContext context, GoRouterState state) => FacilityBookingPage(
@@ -70,6 +73,18 @@ class AppRouter {
           path: AppRoutes.facilityDetails,
           builder: (BuildContext context, GoRouterState state) => FacilityDetailsPage(
             facilityData: state.extra as FacilityData,
+          ),
+        ),
+        GoRoute(
+          path: AppRoutes.editProfile,
+          builder: (BuildContext context, GoRouterState state) => EditingProfilePage(
+            profileCubit: state.extra as ProfileCubit,
+          ),
+        ),
+        GoRoute(
+          path: AppRoutes.confirmBooking,
+          builder: (BuildContext context, GoRouterState state) => FacilityConfirmBookingPage(
+            price: state.extra as double,
           ),
         ),
         StatefulShellRoute.indexedStack(

@@ -11,13 +11,29 @@ part 'booking_cubit.freezed.dart';
 class BookingCubit extends Cubit<BookingState> {
   BookingCubit() : super(const BookingState());
 
-  int? _currentPrice;
+  double? _currentPrice;
+  List<int>? _cells;
+  List<DateTime>? _dates;
 
-  int? get currentPrice => _currentPrice;
+  List<int>? get cells => _cells;
 
-  set currentPrice(int? value) {
+  double? get currentPrice => _currentPrice;
+
+  List<DateTime>? get dates => _dates;
+
+  set cells(List<int>?  value) {
+    _cells = value;
+    emit(state.copyWith(cells: value!));
+  }
+
+  set currentPrice(double? value) {
     _currentPrice = value;
     emit(state.copyWith(price: value));
+  }
+
+  set dates(List<DateTime>? value) {
+    _dates = value;
+    emit(state.copyWith(dates: value!));
   }
 
   Future<void> getAllBookings({required int id}) async {

@@ -39,7 +39,8 @@ const String getAllFacilityQuery =
         minBookingTime
         images {
             image
-        } 
+        }
+        avgPrice 
       }
   }
 }

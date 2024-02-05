@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/core/router/router_config.dart';
 import 'package:sport_app/core/router/routes.dart';
@@ -31,6 +32,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     injector<TokenStorage>().removeTokens();
     injector<SportAppApi>().token = '';
     injector<SportAppApi>().refreshToken = '';
+    GoogleSignIn().signOut();
     injector<AppRouter>().go(AppRoutes.signIn);
   }
 }

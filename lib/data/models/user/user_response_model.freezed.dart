@@ -23,6 +23,7 @@ mixin _$UserResponseModel {
   UserResponse? get login => throw _privateConstructorUsedError;
   UserResponse? get register => throw _privateConstructorUsedError;
   UserData? get getProfile => throw _privateConstructorUsedError;
+  UserResponse? get googleAuth => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,11 +38,15 @@ abstract class $UserResponseModelCopyWith<$Res> {
       _$UserResponseModelCopyWithImpl<$Res, UserResponseModel>;
   @useResult
   $Res call(
-      {UserResponse? login, UserResponse? register, UserData? getProfile});
+      {UserResponse? login,
+      UserResponse? register,
+      UserData? getProfile,
+      UserResponse? googleAuth});
 
   $UserResponseCopyWith<$Res>? get login;
   $UserResponseCopyWith<$Res>? get register;
   $UserDataCopyWith<$Res>? get getProfile;
+  $UserResponseCopyWith<$Res>? get googleAuth;
 }
 
 /// @nodoc
@@ -60,6 +65,7 @@ class _$UserResponseModelCopyWithImpl<$Res, $Val extends UserResponseModel>
     Object? login = freezed,
     Object? register = freezed,
     Object? getProfile = freezed,
+    Object? googleAuth = freezed,
   }) {
     return _then(_value.copyWith(
       login: freezed == login
@@ -74,6 +80,10 @@ class _$UserResponseModelCopyWithImpl<$Res, $Val extends UserResponseModel>
           ? _value.getProfile
           : getProfile // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      googleAuth: freezed == googleAuth
+          ? _value.googleAuth
+          : googleAuth // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
     ) as $Val);
   }
 
@@ -112,6 +122,18 @@ class _$UserResponseModelCopyWithImpl<$Res, $Val extends UserResponseModel>
       return _then(_value.copyWith(getProfile: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserResponseCopyWith<$Res>? get googleAuth {
+    if (_value.googleAuth == null) {
+      return null;
+    }
+
+    return $UserResponseCopyWith<$Res>(_value.googleAuth!, (value) {
+      return _then(_value.copyWith(googleAuth: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -123,7 +145,10 @@ abstract class _$$UserResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {UserResponse? login, UserResponse? register, UserData? getProfile});
+      {UserResponse? login,
+      UserResponse? register,
+      UserData? getProfile,
+      UserResponse? googleAuth});
 
   @override
   $UserResponseCopyWith<$Res>? get login;
@@ -131,6 +156,8 @@ abstract class _$$UserResponseModelImplCopyWith<$Res>
   $UserResponseCopyWith<$Res>? get register;
   @override
   $UserDataCopyWith<$Res>? get getProfile;
+  @override
+  $UserResponseCopyWith<$Res>? get googleAuth;
 }
 
 /// @nodoc
@@ -147,6 +174,7 @@ class __$$UserResponseModelImplCopyWithImpl<$Res>
     Object? login = freezed,
     Object? register = freezed,
     Object? getProfile = freezed,
+    Object? googleAuth = freezed,
   }) {
     return _then(_$UserResponseModelImpl(
       login: freezed == login
@@ -161,6 +189,10 @@ class __$$UserResponseModelImplCopyWithImpl<$Res>
           ? _value.getProfile
           : getProfile // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      googleAuth: freezed == googleAuth
+          ? _value.googleAuth
+          : googleAuth // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
     ));
   }
 }
@@ -168,7 +200,8 @@ class __$$UserResponseModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserResponseModelImpl implements _UserResponseModel {
-  const _$UserResponseModelImpl({this.login, this.register, this.getProfile});
+  const _$UserResponseModelImpl(
+      {this.login, this.register, this.getProfile, this.googleAuth});
 
   factory _$UserResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserResponseModelImplFromJson(json);
@@ -179,10 +212,12 @@ class _$UserResponseModelImpl implements _UserResponseModel {
   final UserResponse? register;
   @override
   final UserData? getProfile;
+  @override
+  final UserResponse? googleAuth;
 
   @override
   String toString() {
-    return 'UserResponseModel(login: $login, register: $register, getProfile: $getProfile)';
+    return 'UserResponseModel(login: $login, register: $register, getProfile: $getProfile, googleAuth: $googleAuth)';
   }
 
   @override
@@ -194,12 +229,15 @@ class _$UserResponseModelImpl implements _UserResponseModel {
             (identical(other.register, register) ||
                 other.register == register) &&
             (identical(other.getProfile, getProfile) ||
-                other.getProfile == getProfile));
+                other.getProfile == getProfile) &&
+            (identical(other.googleAuth, googleAuth) ||
+                other.googleAuth == googleAuth));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, login, register, getProfile);
+  int get hashCode =>
+      Object.hash(runtimeType, login, register, getProfile, googleAuth);
 
   @JsonKey(ignore: true)
   @override
@@ -220,7 +258,8 @@ abstract class _UserResponseModel implements UserResponseModel {
   const factory _UserResponseModel(
       {final UserResponse? login,
       final UserResponse? register,
-      final UserData? getProfile}) = _$UserResponseModelImpl;
+      final UserData? getProfile,
+      final UserResponse? googleAuth}) = _$UserResponseModelImpl;
 
   factory _UserResponseModel.fromJson(Map<String, dynamic> json) =
       _$UserResponseModelImpl.fromJson;
@@ -231,6 +270,8 @@ abstract class _UserResponseModel implements UserResponseModel {
   UserResponse? get register;
   @override
   UserData? get getProfile;
+  @override
+  UserResponse? get googleAuth;
   @override
   @JsonKey(ignore: true)
   _$$UserResponseModelImplCopyWith<_$UserResponseModelImpl> get copyWith =>
