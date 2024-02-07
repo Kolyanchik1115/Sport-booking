@@ -10,6 +10,7 @@ import 'package:sport_app/presentation/pages/favorite/favorite_page.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/profile_page.dart';
 import 'package:sport_app/presentation/pages/reservation/reservation_page.dart';
+import 'package:sport_app/presentation/pages/search/facilities_map_page.dart';
 import 'package:sport_app/presentation/pages/search/search_page.dart';
 import 'package:sport_app/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:sport_app/presentation/pages/sign_up/sign_up_page.dart';
@@ -17,6 +18,7 @@ import 'package:sport_app/presentation/pages/splash/splash_page.dart';
 import 'package:sport_app/presentation/widgets/scaffold_with_nav_bar.dart';
 
 import '../../presentation/pages/booking/facility_confirm_booking_page.dart';
+import '../../presentation/pages/booking/payment_page.dart';
 
 class AppRouter {
   static final AppRouter _appRouter = AppRouter._();
@@ -61,7 +63,6 @@ class AppRouter {
             profileCubit: state.extra as ProfileCubit,
           ),
         ),
-
         GoRoute(
           path: AppRoutes.facilityBooking,
           builder: (BuildContext context, GoRouterState state) => FacilityBookingPage(
@@ -82,11 +83,31 @@ class AppRouter {
           ),
         ),
         GoRoute(
+          parentNavigatorKey:_rootNavigatorKey ,
+          path: AppRoutes.payment,
+          builder: (BuildContext context, GoRouterState state) => const PaymentPage(),
+        ),
+        GoRoute(
           path: AppRoutes.confirmBooking,
           builder: (BuildContext context, GoRouterState state) => FacilityConfirmBookingPage(
             price: state.extra as double,
           ),
         ),
+        GoRoute(
+          path: AppRoutes.signUp,
+          pageBuilder: (BuildContext context, GoRouterState state) => _customTransitionPage(
+            state,
+            Duration.zero,
+            const SignUpPage(),
+          ),
+        ),
+
+        // GoRoute(
+        //   path: AppRoutes.facilitiesMap,
+        //   builder: (BuildContext context, GoRouterState state) =>  FacilitiesMapPage(
+        //     facilities: state.extra as List<FacilityData>,
+        //   ),
+        // ),
         StatefulShellRoute.indexedStack(
           builder: (BuildContext context, GoRouterState state, StatefulNavigationShell navigationShell) {
             return ScaffoldWithNavBar(navigationShell: navigationShell);

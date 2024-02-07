@@ -53,10 +53,10 @@ android {
 
     signingConfigs {
         debug {
-            keyAlias String.fromEnvironment('keyAlias');
-            keyPassword String.fromEnvironment('keyPassword');
+            keyAlias 'appkey'
+            keyPassword 'spratDev'
             storeFile file('app_keystore.jks')
-            storePassword String.fromEnvironment('storePassword');
+            storePassword 'spratDev'
         }
     }
 

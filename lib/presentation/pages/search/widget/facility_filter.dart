@@ -81,7 +81,7 @@ class FacilityFilter extends StatelessWidget {
               ),
               Container(
                 color: Theme.of(context).colorScheme.background,
-                padding: const EdgeInsets.only(bottom: 10.0),
+                padding: const EdgeInsets.only(bottom: 20.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

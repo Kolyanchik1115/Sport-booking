@@ -1,9 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/core/utils/dummy_data.dart';
@@ -11,6 +11,7 @@ import 'package:sport_app/presentation/pages/search/cubit/facility/facility_cubi
 import 'package:sport_app/presentation/pages/search/cubit/filter/filter_cubit.dart';
 import 'package:sport_app/presentation/pages/search/widget/facility_filter.dart';
 import 'package:sport_app/presentation/widgets/empty_layout.dart';
+import 'package:sport_app/presentation/widgets/svg_button.dart';
 import 'widget/facility_container.dart';
 import 'widget/search_field.dart';
 
@@ -90,12 +91,39 @@ class _SearchPageState extends State<SearchPage> {
         background: Theme.of(context).colorScheme.onSurface,
         child: Column(
           children: [
-            SearchField(
-              textEditingController: searchController,
-              focusNode: searchFocus,
-              onChanged: (query) {
-                facilityCubit.onSearch(query.trim());
-              },
+            Container(
+              color: Theme.of(context).colorScheme.background,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: SearchField(
+                      textEditingController: searchController,
+                      focusNode: searchFocus,
+                      onChanged: (query) {
+                        facilityCubit.onSearch(query.trim());
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 13.0, bottom: 5.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      height: 40.0,
+                      width: 40.0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: SvgButton(
+                          asset: AppSvg.map,
+                          onTap: () => context.push(AppRoutes.facilitiesMap, extra: facilityCubit.state.data),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             BlocBuilder<FacilityCubit, FacilityState>(
               builder: (context, state) {

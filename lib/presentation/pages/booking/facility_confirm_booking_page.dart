@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/presentation/pages/booking/widget/row_data_widget.dart';
 import 'package:sport_app/presentation/widgets/app_elevated_button.dart';
 import 'package:sport_app/presentation/widgets/scaffold_with_app_bar.dart';
@@ -102,7 +104,9 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                         textStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
                               color: Theme.of(context).colorScheme.background,
                             ),
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push(AppRoutes.payment);
+                        },
                       ),
                     ),
                   ],

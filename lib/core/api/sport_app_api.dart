@@ -94,20 +94,20 @@ class SportAppApi {
     log('Executing query/mutation: $query');
     final queryResult = isMutation
         ? await graphqlClient.mutate(MutationOptions(
-            document: gql(query),
-            variables: data ?? {},
-            cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
-            fetchPolicy: FetchPolicy.noCache,
-            onError: (err) => throw GraphQLError(message: err!.graphqlErrors.first.message)))
-        // update: (GraphQLDataProxy cache, QueryResult result) {
-        // return cache;
-        // },
+        document: gql(query),
+        variables: data ?? {},
+        cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
+        fetchPolicy: FetchPolicy.noCache,
+        onError: (err) => throw GraphQLError(message: err!.graphqlErrors.first.message)))
+    // update: (GraphQLDataProxy cache, QueryResult result) {
+    // return cache;
+    // },
         : await graphqlClient.query(QueryOptions(
-            document: gql(query),
-            variables: data ?? {},
-            cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
-            fetchPolicy: FetchPolicy.noCache,
-            onError: (err) => throw GraphQLError(message: err!.graphqlErrors.first.message)));
+        document: gql(query),
+        variables: data ?? {},
+        cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
+        fetchPolicy: FetchPolicy.noCache,
+        onError: (err) => throw GraphQLError(message: err!.graphqlErrors.first.message)));
     // pollInterval: const Duration(seconds: 10),
     if (queryResult.hasException) {
       log('Query/mutation execution failed.');
