@@ -14,6 +14,27 @@ const String loginMutation = r'''
   }
 }
 ''';
+
+
+
+
+const googleLoginMutation = r'''
+mutation GoogleAuth($token: String!) {
+  googleAuth(token: $token) {
+    user {
+      id
+      email
+      fullname
+      dateOfBirth
+      isActivated
+      avatar
+    }
+    accessToken
+    refreshToken
+  }
+}
+''';
+
 const String registrationMutation = r'''
 mutation register($registerInput: RegisterDto!) {
   register(registerInput: $registerInput) {

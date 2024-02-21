@@ -14,5 +14,12 @@ class AppRoutes {
   static const String editProfile = '/edit_profile';
   static const String facilityDetails = '/facility_details';
   static const String facilityBooking = '/facility_booking';
+  static const String confirmBooking = '/confirm_booking';
+
+  static const String facilitiesMap = '/facilities_map';
+  static const String payment = '/payment';
+
+
+
 
 }

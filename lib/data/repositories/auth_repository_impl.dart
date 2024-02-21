@@ -43,4 +43,18 @@ class AuthorizationRepositoryImpl implements AuthorizationRepository {
       return Left(ServerFailure(message: "An unexpected error occurred"));
     }
   }
+
+  @override
+  Future<Either<Failure, UserResponseModel>> googleSignIn({required String token}) async {
+    try {
+      final user = await remoteClient.googleSignIn(data: {"token": token});
+      return Right(user);
+    } on StateError {
+      return Left(ServerFailure(message: "Internet Error"));
+    } on GraphQLError catch (e) {
+      return Left(ServerFailure(message: e.message));
+    } catch (e) {
+      return Left(ServerFailure(message: "An unexpected error occurred"));
+    }
+  }
 }

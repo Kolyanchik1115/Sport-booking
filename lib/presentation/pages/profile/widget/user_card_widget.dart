@@ -45,7 +45,7 @@ class UserCardWidget extends StatelessWidget {
                     ),
                     Text(
                       user.email ?? '',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 23.0),
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22.0),
                     ),
                   ],
                 ),

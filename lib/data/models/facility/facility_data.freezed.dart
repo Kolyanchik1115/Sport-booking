@@ -12,7 +12,7 @@ part of 'facility_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 FacilityData _$FacilityDataFromJson(Map<String, dynamic> json) {
   return _FacilityData.fromJson(json);
@@ -29,6 +29,8 @@ mixin _$FacilityData {
   int? get minBookingTime => throw _privateConstructorUsedError;
   String? get facilityType => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  double? get avgPrice => throw _privateConstructorUsedError;
+  String? get location => throw _privateConstructorUsedError;
   List<FacilityDataImage> get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,6 +55,8 @@ abstract class $FacilityDataCopyWith<$Res> {
       int? minBookingTime,
       String? facilityType,
       String? description,
+      double? avgPrice,
+      String? location,
       List<FacilityDataImage> images});
 }
 
@@ -78,6 +82,8 @@ class _$FacilityDataCopyWithImpl<$Res, $Val extends FacilityData>
     Object? minBookingTime = freezed,
     Object? facilityType = freezed,
     Object? description = freezed,
+    Object? avgPrice = freezed,
+    Object? location = freezed,
     Object? images = null,
   }) {
     return _then(_value.copyWith(
@@ -117,6 +123,14 @@ class _$FacilityDataCopyWithImpl<$Res, $Val extends FacilityData>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      avgPrice: freezed == avgPrice
+          ? _value.avgPrice
+          : avgPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
@@ -143,6 +157,8 @@ abstract class _$$FacilityDataImplCopyWith<$Res>
       int? minBookingTime,
       String? facilityType,
       String? description,
+      double? avgPrice,
+      String? location,
       List<FacilityDataImage> images});
 }
 
@@ -166,6 +182,8 @@ class __$$FacilityDataImplCopyWithImpl<$Res>
     Object? minBookingTime = freezed,
     Object? facilityType = freezed,
     Object? description = freezed,
+    Object? avgPrice = freezed,
+    Object? location = freezed,
     Object? images = null,
   }) {
     return _then(_$FacilityDataImpl(
@@ -205,6 +223,14 @@ class __$$FacilityDataImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      avgPrice: freezed == avgPrice
+          ? _value.avgPrice
+          : avgPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
@@ -226,6 +252,8 @@ class _$FacilityDataImpl implements _FacilityData {
       required this.minBookingTime,
       required this.facilityType,
       required this.description,
+      required this.avgPrice,
+      required this.location,
       required final List<FacilityDataImage> images})
       : _images = images;
 
@@ -250,6 +278,10 @@ class _$FacilityDataImpl implements _FacilityData {
   final String? facilityType;
   @override
   final String? description;
+  @override
+  final double? avgPrice;
+  @override
+  final String? location;
   final List<FacilityDataImage> _images;
   @override
   List<FacilityDataImage> get images {
@@ -260,11 +292,11 @@ class _$FacilityDataImpl implements _FacilityData {
 
   @override
   String toString() {
-    return 'FacilityData(id: $id, name: $name, address: $address, sportType: $sportType, coveringType: $coveringType, district: $district, minBookingTime: $minBookingTime, facilityType: $facilityType, description: $description, images: $images)';
+    return 'FacilityData(id: $id, name: $name, address: $address, sportType: $sportType, coveringType: $coveringType, district: $district, minBookingTime: $minBookingTime, facilityType: $facilityType, description: $description, avgPrice: $avgPrice, location: $location, images: $images)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FacilityDataImpl &&
@@ -283,6 +315,10 @@ class _$FacilityDataImpl implements _FacilityData {
                 other.facilityType == facilityType) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.avgPrice, avgPrice) ||
+                other.avgPrice == avgPrice) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
             const DeepCollectionEquality().equals(other._images, _images));
   }
 
@@ -299,6 +335,8 @@ class _$FacilityDataImpl implements _FacilityData {
       minBookingTime,
       facilityType,
       description,
+      avgPrice,
+      location,
       const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
@@ -326,6 +364,8 @@ abstract class _FacilityData implements FacilityData {
       required final int? minBookingTime,
       required final String? facilityType,
       required final String? description,
+      required final double? avgPrice,
+      required final String? location,
       required final List<FacilityDataImage> images}) = _$FacilityDataImpl;
 
   factory _FacilityData.fromJson(Map<String, dynamic> json) =
@@ -349,6 +389,10 @@ abstract class _FacilityData implements FacilityData {
   String? get facilityType;
   @override
   String? get description;
+  @override
+  double? get avgPrice;
+  @override
+  String? get location;
   @override
   List<FacilityDataImage> get images;
   @override

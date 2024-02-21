@@ -17,6 +17,8 @@ class FacilityData with _$FacilityData {
     required int? minBookingTime,
     required String? facilityType,
     required String? description,
+    required double? avgPrice,
+    required String? location,
     required List<FacilityDataImage> images,
   }) = _FacilityData;
 

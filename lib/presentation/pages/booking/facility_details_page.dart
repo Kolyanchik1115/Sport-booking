@@ -76,13 +76,15 @@ class _FacilityDetailsPageState extends State<FacilityDetailsPage> {
                                       crossAxisAlignment: CrossAxisAlignment.end,
                                       children: [
                                         Text(
-                                          '~ 400₴',
+                                          widget.facilityData.avgPrice != null
+                                              ? '~ ${widget.facilityData.avgPrice}₴'
+                                              : '',
                                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                 color: Theme.of(context).colorScheme.onBackground,
                                               ),
                                         ),
                                         Text(
-                                          'in hour',
+                                          widget.facilityData.avgPrice != null ? 'in hour' : '',
                                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                                 color: Theme.of(context).colorScheme.secondary.withOpacity(0.9),
                                               ),
@@ -103,20 +105,19 @@ class _FacilityDetailsPageState extends State<FacilityDetailsPage> {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 30.0),
-                                RowWithButtonWidget(
-                                  title: 'Date',
-                                  text: '${DateTime.now().day} january ${DateTime.now().year}',
-                                  onPressed: () {},
-                                ),
                                 const SizedBox(height: 15.0),
                                 RowWithButtonWidget(
                                   title: 'Time',
-                                  text: 'Select your schedule time',
+                                  text: state.dates.isEmpty
+                                      ? 'Select your schedule time'
+                                      : '${state.dates.first.hour.toString().padLeft(2, '0')}:'
+                                          '${state.dates.first.minute.toString().padLeft(2, '0')} '
+                                          '- ${state.dates.last.hour.toString().padLeft(2, '0')}'
+                                          ':${state.dates.last.minute.toString().padLeft(2, '0')}',
                                   onPressed: () => context.push(
-                                      AppRoutes.facilityBooking,
-                                      extra: [widget.facilityData.id, bookingCubit],
-                                    ),
+                                    AppRoutes.facilityBooking,
+                                    extra: [widget.facilityData.id, bookingCubit],
+                                  ),
                                 ),
                                 const SizedBox(height: 15.0),
                                 RowDataWidget(title: 'Type', text: widget.facilityData.facilityType ?? ''),
@@ -165,10 +166,24 @@ class _FacilityDetailsPageState extends State<FacilityDetailsPage> {
                         child: SizedBox(
                           child: AppElevatedButton(
                             text: 'Submit',
-                            textStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                  color: Theme.of(context).colorScheme.onPrimary,
-                                ),
-                            onPressed: () {},
+                            textStyle: state.price != null
+                                ? Theme.of(context).textTheme.titleLarge?.copyWith(
+                                      color: Theme.of(context).colorScheme.background,
+                                    )
+                                : Theme.of(context).textTheme.titleLarge?.copyWith(
+                                      color: Theme.of(context).colorScheme.onPrimary,
+                                    ),
+                            onPressed: () {
+                              if (state.price != null && state.cells.isNotEmpty) {
+                                return context.push(AppRoutes.confirmBooking, extra: [
+                                  state.price,
+                                  state.dates,
+                                  widget.facilityData,
+                                  state.dateTime,
+                                  state.cells,
+                                ]);
+                              }
+                            },
                           ),
                         ),
                       ),

@@ -18,6 +18,9 @@ _$UserResponseModelImpl _$$UserResponseModelImplFromJson(
       getProfile: json['getProfile'] == null
           ? null
           : UserData.fromJson(json['getProfile'] as Map<String, dynamic>),
+      googleAuth: json['googleAuth'] == null
+          ? null
+          : UserResponse.fromJson(json['googleAuth'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$UserResponseModelImplToJson(
@@ -26,4 +29,5 @@ Map<String, dynamic> _$$UserResponseModelImplToJson(
       'login': instance.login,
       'register': instance.register,
       'getProfile': instance.getProfile,
+      'googleAuth': instance.googleAuth,
     };

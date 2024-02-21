@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
-import 'package:sport_app/presentation/pages/sign_in/cubit/sign_in_cubit.dart';
+import 'package:sport_app/presentation/pages/sign_in/social_media.dart';
 import 'package:sport_app/presentation/widgets/arrow_button.dart';
 import 'package:sport_app/presentation/widgets/default_input_text_field.dart';
 import 'package:sport_app/presentation/widgets/empty_layout.dart';
 import 'package:sport_app/presentation/widgets/password_input_text_field.dart';
+
+import 'cubit/sign_in/sign_in_cubit.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -69,6 +71,10 @@ class _SignInPageState extends State<SignInPage> {
                                 builder: (context, state) {
                                   return Column(
                                     children: [
+                                      const SizedBox(height: 20.0),
+                                      const SocialMediaAuth(),
+                                      const SizedBox(height: 16.0),
+                                      const SizedBox(height: 16.0),
                                       const SizedBox(height: 16.0),
                                       DefaultInputTextField(
                                         error: state.emailError,

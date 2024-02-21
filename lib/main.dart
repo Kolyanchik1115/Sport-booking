@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
         title: 'Sport-booking',
+
         debugShowCheckedModeBanner: false,
         theme: theme,
         routerConfig: injector<AppRouter>().config,

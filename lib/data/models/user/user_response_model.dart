@@ -12,6 +12,7 @@ class UserResponseModel with _$UserResponseModel {
     UserResponse? login,
     UserResponse? register,
     UserData? getProfile,
+    UserResponse? googleAuth,
   }) = _UserResponseModel;
 
   factory UserResponseModel.fromJson(Map<String, dynamic> json) => _$UserResponseModelFromJson(json);

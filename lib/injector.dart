@@ -11,6 +11,7 @@ import 'package:sport_app/domain/repositories/auth_repository.dart';
 import 'package:sport_app/domain/repositories/booking_repository.dart';
 import 'package:sport_app/domain/repositories/facility_repository.dart';
 import 'package:sport_app/domain/repositories/user_repository.dart';
+import 'package:sport_app/domain/usecases/auth/google_sign_in_use_case.dart';
 import 'package:sport_app/domain/usecases/auth/sign_in_use_case.dart';
 import 'package:sport_app/domain/usecases/auth/sign_up_use_case.dart';
 import 'package:sport_app/domain/usecases/booking/get_all_bookings.dart';
@@ -30,6 +31,7 @@ void init() {
   injector.registerLazySingleton(() => UpdateUserUseCase(injector()));
   injector.registerLazySingleton(() => GetAllFacilityUseCase(injector()));
   injector.registerLazySingleton(() => GetAllBookingsUseCase(injector()));
+  injector.registerLazySingleton(() => GoogleSignInUserUseCase(injector()));
 
 
 
@@ -38,7 +40,6 @@ void init() {
   injector.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(injector()));
   injector.registerLazySingleton<FacilityRepository>(() => FacilityRepositoryImpl(injector()));
   injector.registerLazySingleton<BookingRepository>(() => BookingRepositoryImpl(injector()));
-
 
   // API
 
