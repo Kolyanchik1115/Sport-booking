@@ -1,35 +1,64 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
+import 'package:sport_app/presentation/pages/booking/cubit/booking_cubit.dart';
+import 'package:sport_app/presentation/widgets/custom_error_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:sport_app/presentation/widgets/scaffold_with_app_bar.dart';
 
-class PaymentPage extends StatelessWidget {
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sport_app/core/router/routes.dart';
+import 'package:sport_app/presentation/pages/booking/cubit/booking_cubit.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:sport_app/presentation/widgets/scaffold_with_app_bar.dart';
+
+class PaymentPage extends StatefulWidget {
   final double price;
   final String desc;
   final int facilityId;
   final List<int> cells;
 
   const PaymentPage({
-    super.key,
+    Key? key,
     required this.price,
     required this.desc,
     required this.cells,
     required this.facilityId,
-  });
+  }) : super(key: key);
+
+  @override
+  State<PaymentPage> createState() => _PaymentPageState();
+}
+
+class _PaymentPageState extends State<PaymentPage> {
+  late BookingCubit bookingCubit;
+
+  @override
+  void initState() {
+    bookingCubit = BookingCubit();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     String publicKey = 'sandbox_i69297607762';
     String privateKey = 'sandbox_1iShFxZY7Xsp9Ab6lGojbEs4mNGy6ngW9BqGBRuv';
-    String orderId = '62';
-    double amount = price;
+    String orderId = '76';
+    double amount = widget.price;
     String currency = 'UAH';
-    String description = desc;
+    String description = widget.desc;
     String language = 'UK';
     String data = _generateData(publicKey, orderId, amount, currency, description, language);
     String signature = _generateSignature(privateKey, data);
@@ -38,33 +67,44 @@ class PaymentPage extends StatelessWidget {
     String successUrl = 'https://www.liqpay.ua/uk/promo';
     String url = 'https://www.liqpay.ua/api/3/checkout?data=$data&signature=$signature';
 
-    _webViewController = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onNavigationRequest: (NavigationRequest request) {
-            if (request.url.contains(successUrl)) {
-              // Uri uri = Uri.parse(request.url);
-              // print(uri.queryParameters['payment_id']);
-              // print(uri.queryParameters['uid']);
-              // print(uri.queryParameters['order_id']);
-              Future.delayed(const Duration(seconds: 3)).then(
-                (value) => context.go(AppRoutes.reservation),
-              );
-              return NavigationDecision.prevent;
-            }
-            return NavigationDecision.navigate;
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse(url));
+    return BlocProvider.value(
+      value: bookingCubit,
+      child: BlocBuilder<BookingCubit, BookingState>(
+        builder: (context, state) {
+          if (state.isLoading) {
+            return const CircularProgressIndicator();
+          } else if (state.errorMessage != null) {
+            return CustomErrorWidget(errorMessage: state.errorMessage!);
+          }
+          _webViewController = WebViewController()
+            ..setJavaScriptMode(JavaScriptMode.unrestricted)
+            ..setBackgroundColor(const Color(0x00000000))
+            ..setNavigationDelegate(
+              NavigationDelegate(
+                onNavigationRequest: (NavigationRequest request) {
+                  if (request.url.contains(successUrl)) {
+                    Future.delayed(const Duration(seconds: 5))
+                        .then((value) => context.read<BookingCubit>().createBooking(
+                              facilityId: widget.facilityId,
+                              timeSlots: widget.cells,
+                            ))
+                        .then((value) => context.go(AppRoutes.reservation));
+                    return NavigationDecision.prevent;
+                  }
+                  return NavigationDecision.navigate;
+                },
+              ),
+            )
+            ..loadRequest(Uri.parse(url));
 
-    return ScaffoldWithAppBar(
-      appBarTitle: "Choose payment",
-      centerTitle: true,
-      child: WebViewWidget(
-        controller: _webViewController,
+          return ScaffoldWithAppBar(
+            appBarTitle: "Choose payment",
+            centerTitle: true,
+            child: WebViewWidget(
+              controller: _webViewController,
+            ),
+          );
+        },
       ),
     );
   }

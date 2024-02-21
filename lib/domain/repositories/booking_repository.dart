@@ -9,4 +9,6 @@ abstract interface class BookingRepository {
   BookingRepository(this.remoteClient);
 
   Future<Either<Failure, BookingResponseModel>> getAllBookings({required int id});
+
+  Future<Either<Failure, BookingResponseModel>> createBooking({required int facilityId, required List<int> timeSlots});
 }

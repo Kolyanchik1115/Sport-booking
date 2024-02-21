@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
 import 'package:sport_app/injector.dart';
+
 class DottedCarousel extends StatefulWidget {
   final FacilityData facilityData;
 
@@ -24,7 +25,7 @@ class _DottedCarouselState extends State<DottedCarousel> {
             alignment: Alignment.bottomCenter,
             children: [
               PageView.builder(
-                itemCount: 3,
+                itemCount: widget.facilityData.images.length,
                 controller: PageController(),
                 onPageChanged: (index) {
                   setState(() {
@@ -35,11 +36,11 @@ class _DottedCarouselState extends State<DottedCarousel> {
                   return Container(
                     margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
-                      color: Colors.amber,
+                      color: Theme.of(context).colorScheme.background,
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
                         image: NetworkImage(injector<SportAppApi>().imageFromDB(
-                          widget.facilityData.images.first.image,
+                          widget.facilityData.images[index].image,
                         )),
                         fit: BoxFit.cover,
                       ),
@@ -54,14 +55,16 @@ class _DottedCarouselState extends State<DottedCarousel> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
-                      3, (index) =>
-                        Container(
-                          width: 15.0,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: _currentIndex == index ? Theme.of(context).colorScheme.background :Theme.of(context).colorScheme.secondary ,
-                          ),
+                      widget.facilityData.images.length,
+                      (index) => Container(
+                        width: 15.0,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _currentIndex == index
+                              ? Theme.of(context).colorScheme.background
+                              : Theme.of(context).colorScheme.secondary,
                         ),
+                      ),
                     ),
                   ),
                 ),

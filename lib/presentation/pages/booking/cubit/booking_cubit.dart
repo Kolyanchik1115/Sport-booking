@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sport_app/data/models/booking/booking_time_slots_model.dart';
+import 'package:sport_app/domain/usecases/booking/create_booking.dart';
 import 'package:sport_app/domain/usecases/booking/get_all_bookings.dart';
 import 'package:sport_app/injector.dart';
 
@@ -16,18 +17,18 @@ class BookingCubit extends Cubit<BookingState> {
   List<DateTime>? _dates;
   DateTime? _dateTime;
 
-
   List<int>? get cells => _cells;
 
   double? get currentPrice => _currentPrice;
 
   List<DateTime>? get dates => _dates;
 
-  set cells(List<int>?  value) {
+  set cells(List<int>? value) {
     _cells = value;
     emit(state.copyWith(cells: value!));
   }
-  set dateTime(DateTime?  value) {
+
+  set dateTime(DateTime? value) {
     _dateTime = value;
     emit(state.copyWith(dateTime: value));
   }
@@ -49,9 +50,23 @@ class BookingCubit extends Cubit<BookingState> {
 
     data.fold(
       (error) => emit(state.copyWith(errorMessage: error.runtimeType.toString(), isLoading: false)),
-      (booking) => emit(state.copyWith(timeSlots: booking.facility.timeSlots)),
+      (booking) => emit(state.copyWith(timeSlots: booking.facility?.timeSlots ?? [])),
     );
     emit(state.copyWith(isLoading: false));
   }
 
+  Future<void> createBooking({required int facilityId, required List<int> timeSlots}) async {
+    emit(state.copyWith(isLoading: true));
+
+    final data = await injector<CreateBookingUseCase>()(CreateBookingParams(
+      facilityId: facilityId,
+      timeSlots: timeSlots,
+    ));
+
+    data.fold(
+      (error) => emit(state.copyWith(errorMessage: error.runtimeType.toString(), isLoading: false)),
+      (booking) => emit(state.copyWith(errorMessage: '', isLoading: false)),
+    );
+    emit(state.copyWith(isLoading: false));
+  }
 }

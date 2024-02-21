@@ -16,4 +16,5 @@ abstract interface class FacilityRepository {
     String? search,
     String? facilityType,
   });
+
 }
