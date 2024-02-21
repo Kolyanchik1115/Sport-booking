@@ -19,4 +19,20 @@ class BookingRepositoryImpl implements BookingRepository {
       return Left(ServerFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, BookingResponseModel>> createBooking(
+      {required int facilityId, required List<int> timeSlots}) async {
+    try {
+      final result = await remoteClient.createBooking(data: {
+        "createBookingInput": {
+          "facilityId": facilityId,
+          "timeSlotIds": timeSlots,
+        }
+      });
+      return Right(result);
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
 }

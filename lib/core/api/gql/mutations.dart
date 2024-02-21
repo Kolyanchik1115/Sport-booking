@@ -15,8 +15,14 @@ const String loginMutation = r'''
 }
 ''';
 
-
-
+const createBookingMutation = r''' mutation CreateBooking($createBookingInput: CreateBookingInput!) {
+  createBooking(createBookingInput: $createBookingInput) {
+    id
+    userId
+    status
+    price
+  }
+}''';
 
 const googleLoginMutation = r'''
 mutation GoogleAuth($token: String!) {
@@ -60,5 +66,3 @@ mutation RefreshToken($refresh: String) {
 const String updateProfileMutation = r'''
 mutation UpdateProfile($profileInput: UpdateUserDto, $avatar: Upload) { updateProfile(profileInput: $profileInput, avatar: $avatar)
  { fullname dateOfBirth avatar } }''';
-
-

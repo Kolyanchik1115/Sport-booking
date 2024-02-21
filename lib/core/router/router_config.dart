@@ -87,8 +87,8 @@ class AppRouter {
           builder: (BuildContext context, GoRouterState state) => PaymentPage(
             price: (state.extra as List<dynamic>)[0] as double,
             desc: (state.extra as List<dynamic>)[1] as String,
-            cells: (state.extra as List<dynamic>)[2] as List<int>,
-            facilityId: (state.extra as List<dynamic>)[3] as int,
+            facilityId: (state.extra as List<dynamic>)[2] as int,
+            cells: (state.extra as List<dynamic>)[3] as List<int>,
           ),
         ),
         GoRoute(

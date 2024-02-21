@@ -46,7 +46,11 @@ class _SearchFieldState extends State<SearchField> {
         },
         textEditingController: widget.textEditingController,
         hintText: '',
+        textStyle: Theme.of(context).textTheme.displayMedium?.copyWith(
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
         filled: true,
+        cursorColor: Theme.of(context).colorScheme.secondary,
         fillColor: Theme.of(context).colorScheme.onPrimary,
         placeText: 'Search',
         border: UnderlineInputBorder(
