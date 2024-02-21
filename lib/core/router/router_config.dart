@@ -3,14 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
 import 'package:sport_app/presentation/pages/booking/cubit/booking_cubit.dart';
-import 'package:sport_app/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:sport_app/presentation/pages/booking/facility_booking_page.dart';
 import 'package:sport_app/presentation/pages/booking/facility_details_page.dart';
+import 'package:sport_app/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:sport_app/presentation/pages/favorite/favorite_page.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/profile_page.dart';
 import 'package:sport_app/presentation/pages/reservation/reservation_page.dart';
-import 'package:sport_app/presentation/pages/search/facilities_map_page.dart';
 import 'package:sport_app/presentation/pages/search/search_page.dart';
 import 'package:sport_app/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:sport_app/presentation/pages/sign_up/sign_up_page.dart';
@@ -83,14 +82,23 @@ class AppRouter {
           ),
         ),
         GoRoute(
-          parentNavigatorKey:_rootNavigatorKey ,
+          parentNavigatorKey: _rootNavigatorKey,
           path: AppRoutes.payment,
-          builder: (BuildContext context, GoRouterState state) => const PaymentPage(),
+          builder: (BuildContext context, GoRouterState state) => PaymentPage(
+            price: (state.extra as List<dynamic>)[0] as double,
+            desc: (state.extra as List<dynamic>)[1] as String,
+            cells: (state.extra as List<dynamic>)[2] as List<int>,
+            facilityId: (state.extra as List<dynamic>)[3] as int,
+          ),
         ),
         GoRoute(
           path: AppRoutes.confirmBooking,
           builder: (BuildContext context, GoRouterState state) => FacilityConfirmBookingPage(
-            price: state.extra as double,
+            price: (state.extra as List<dynamic>)[0] as double,
+            dates: (state.extra as List<dynamic>)[1] as List<DateTime>,
+            facilityData: (state.extra as List<dynamic>)[2] as FacilityData,
+            dateTime: (state.extra as List<dynamic>)[3] as DateTime,
+            cells: (state.extra as List<dynamic>)[4] as List<int>,
           ),
         ),
         GoRoute(

@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BookingState {
   dynamic get price => throw _privateConstructorUsedError;
+  dynamic get dateTime => throw _privateConstructorUsedError;
   List<DateTime> get dates => throw _privateConstructorUsedError;
   List<int> get cells => throw _privateConstructorUsedError;
   List<BookingTimeSlotsModel> get timeSlots =>
@@ -37,6 +38,7 @@ abstract class $BookingStateCopyWith<$Res> {
   @useResult
   $Res call(
       {dynamic price,
+      dynamic dateTime,
       List<DateTime> dates,
       List<int> cells,
       List<BookingTimeSlotsModel> timeSlots,
@@ -58,6 +60,7 @@ class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
   @override
   $Res call({
     Object? price = freezed,
+    Object? dateTime = freezed,
     Object? dates = null,
     Object? cells = null,
     Object? timeSlots = null,
@@ -68,6 +71,10 @@ class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      dateTime: freezed == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
               as dynamic,
       dates: null == dates
           ? _value.dates
@@ -103,6 +110,7 @@ abstract class _$$BookingStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {dynamic price,
+      dynamic dateTime,
       List<DateTime> dates,
       List<int> cells,
       List<BookingTimeSlotsModel> timeSlots,
@@ -122,6 +130,7 @@ class __$$BookingStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? price = freezed,
+    Object? dateTime = freezed,
     Object? dates = null,
     Object? cells = null,
     Object? timeSlots = null,
@@ -130,6 +139,7 @@ class __$$BookingStateImplCopyWithImpl<$Res>
   }) {
     return _then(_$BookingStateImpl(
       price: freezed == price ? _value.price! : price,
+      dateTime: freezed == dateTime ? _value.dateTime! : dateTime,
       dates: null == dates
           ? _value._dates
           : dates // ignore: cast_nullable_to_non_nullable
@@ -159,6 +169,7 @@ class __$$BookingStateImplCopyWithImpl<$Res>
 class _$BookingStateImpl implements _BookingState {
   const _$BookingStateImpl(
       {this.price = 0.0,
+      this.dateTime = DateTime.now,
       final List<DateTime> dates = const [],
       final List<int> cells = const [],
       final List<BookingTimeSlotsModel> timeSlots = const [],
@@ -171,6 +182,9 @@ class _$BookingStateImpl implements _BookingState {
   @override
   @JsonKey()
   final dynamic price;
+  @override
+  @JsonKey()
+  final dynamic dateTime;
   final List<DateTime> _dates;
   @override
   @JsonKey()
@@ -206,7 +220,7 @@ class _$BookingStateImpl implements _BookingState {
 
   @override
   String toString() {
-    return 'BookingState(price: $price, dates: $dates, cells: $cells, timeSlots: $timeSlots, isLoading: $isLoading, errorMessage: $errorMessage)';
+    return 'BookingState(price: $price, dateTime: $dateTime, dates: $dates, cells: $cells, timeSlots: $timeSlots, isLoading: $isLoading, errorMessage: $errorMessage)';
   }
 
   @override
@@ -215,6 +229,7 @@ class _$BookingStateImpl implements _BookingState {
         (other.runtimeType == runtimeType &&
             other is _$BookingStateImpl &&
             const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
             const DeepCollectionEquality().equals(other._dates, _dates) &&
             const DeepCollectionEquality().equals(other._cells, _cells) &&
             const DeepCollectionEquality()
@@ -229,6 +244,7 @@ class _$BookingStateImpl implements _BookingState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(dateTime),
       const DeepCollectionEquality().hash(_dates),
       const DeepCollectionEquality().hash(_cells),
       const DeepCollectionEquality().hash(_timeSlots),
@@ -245,6 +261,7 @@ class _$BookingStateImpl implements _BookingState {
 abstract class _BookingState implements BookingState {
   const factory _BookingState(
       {final dynamic price,
+      final dynamic dateTime,
       final List<DateTime> dates,
       final List<int> cells,
       final List<BookingTimeSlotsModel> timeSlots,
@@ -253,6 +270,8 @@ abstract class _BookingState implements BookingState {
 
   @override
   dynamic get price;
+  @override
+  dynamic get dateTime;
   @override
   List<DateTime> get dates;
   @override

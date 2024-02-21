@@ -175,7 +175,13 @@ class _FacilityDetailsPageState extends State<FacilityDetailsPage> {
                                     ),
                             onPressed: () {
                               if (state.price != null && state.cells.isNotEmpty) {
-                                return context.push(AppRoutes.confirmBooking, extra: state.price);
+                                return context.push(AppRoutes.confirmBooking, extra: [
+                                  state.price,
+                                  state.dates,
+                                  widget.facilityData,
+                                  state.dateTime,
+                                  state.cells,
+                                ]);
                               }
                             },
                           ),

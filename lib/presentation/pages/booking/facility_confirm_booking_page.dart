@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
+import 'package:sport_app/core/utils/dummy_data.dart';
+import 'package:sport_app/data/models/facility/facility_data.dart';
 import 'package:sport_app/presentation/pages/booking/widget/row_data_widget.dart';
 import 'package:sport_app/presentation/widgets/app_elevated_button.dart';
 import 'package:sport_app/presentation/widgets/scaffold_with_app_bar.dart';
 
 class FacilityConfirmBookingPage extends StatelessWidget {
   final double price;
+  final List<DateTime> dates;
+  final FacilityData facilityData;
+  final DateTime dateTime;
+  final List<int> cells;
 
-  const FacilityConfirmBookingPage({super.key, required this.price});
+  const FacilityConfirmBookingPage({
+    super.key,
+    required this.price,
+    required this.dates,
+    required this.facilityData,
+    required this.dateTime,
+    required this.cells,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +49,7 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                         color: Theme.of(context).colorScheme.secondary,
                       ),
                 ),
-                const Text("Long club name with additional information"),
+                Text(facilityData.name),
                 const SizedBox(height: 5.0),
                 Text(
                   "Reservation №",
@@ -45,7 +58,7 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                         color: Theme.of(context).colorScheme.secondary,
                       ),
                 ),
-                const Text("Unique reservation number: ABC123456"),
+                const Text("1234567"),
                 const SizedBox(height: 5.0),
                 Text(
                   "Address",
@@ -54,30 +67,35 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                         color: Theme.of(context).colorScheme.secondary,
                       ),
                 ),
-                const Text("1234 Street, City, Country"),
+                Text("${facilityData.address ?? "Unknown address"} / ${facilityData.district ?? "Unknown district"}"),
                 const SizedBox(height: 10.0),
                 const Divider(color: Colors.black),
                 const SizedBox(height: 30.0),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      RowDataWidget(title: 'Date', text: '06 February 2024'),
-                      RowDataWidget(title: 'Reserve time', text: '15-00:16:00'),
-                      Text('1h'),
+                      RowDataWidget(title: 'Date', text: '${dateTime.day} ${DummyData.monthNames[dateTime.month - 1]}'),
+                      RowDataWidget(
+                          title: 'Reserve time',
+                          text: '${dates.first.hour.toString().padLeft(2, '0')}:'
+                              '${dates.first.minute.toString().padLeft(2, '0')} '
+                              '- ${dates.last.hour.toString().padLeft(2, '0')}'
+                              ':${dates.last.minute.toString().padLeft(2, '0')}'),
+                      Text('${(dates.first.difference(dates.last).abs().inMinutes / 60).toStringAsFixed(1)} h'),
                     ],
                   ),
                 ),
                 const SizedBox(height: 20.0),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      RowDataWidget(title: 'Sport type', text: 'basketball'),
-                      RowDataWidget(title: 'Type', text: 'outdoor'),
-                      RowDataWidget(title: 'Covering type', text: 'rubber'),
+                      RowDataWidget(title: 'Sport type', text: facilityData.sportType),
+                      RowDataWidget(title: 'Type', text: facilityData.facilityType),
+                      RowDataWidget(title: 'Covering type', text: facilityData.coveringType),
                     ],
                   ),
                 ),
@@ -105,7 +123,12 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                               color: Theme.of(context).colorScheme.background,
                             ),
                         onPressed: () {
-                          context.push(AppRoutes.payment);
+                          context.push(AppRoutes.payment, extra: [
+                            price,
+                            facilityData.name,
+                            facilityData.id,
+                            cells,
+                          ]);
                         },
                       ),
                     ),

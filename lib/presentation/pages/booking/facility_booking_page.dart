@@ -27,6 +27,8 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
   List<List<BookingTimeSlotsModel>> scheduleData = List.generate(7, (day) => []);
   List<List<bool>> isOrange = List.generate(7, (day) => List.filled(48, false));
   List<bool> isActiveDay = [];
+  DateTime selectedDate = DateTime.now();
+
 
   Future<void> fetchData() async {
     await widget.bookingCubit.getAllBookings(id: widget.facilityId);
@@ -68,7 +70,7 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
                                 for (int i = 0; i < daysOfWeek.length; i++) {
                                   isOrange[i] = List.filled(48, false);
                                 }
-                                isOrange[daysOfWeek.indexOf(selectedDay)] = List.filled(48, false);
+                                selectedDate = DateTime.now().add(Duration(days: index));
                               });
                             }
                           },
@@ -121,14 +123,12 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
                                     int currentIndex = index;
                                     int? previousIndex = selectedTimeSlotIndex;
 
-                                    // If it's the first selection or a non-sequential selection
                                     if (previousIndex == null || (currentIndex - previousIndex).abs() > 1) {
                                       isOrange[daysOfWeek.indexOf(selectedDay)].fillRange(
                                           0, isOrange[daysOfWeek.indexOf(selectedDay)].length, false);
                                       selectedCellIds[daysOfWeek.indexOf(selectedDay)].clear();
                                     }
 
-                                    // Fill the slots between the first selected and the newly selected slot
                                     int start = currentIndex;
                                     int end = previousIndex ?? currentIndex;
 
@@ -138,18 +138,15 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
                                       end = temp;
                                     }
 
-                                    // Toggle selected status for each slot between start and end
                                     for (int i = start; i <= end; i++) {
                                       isOrange[daysOfWeek.indexOf(selectedDay)][i] = true;
                                       selectedCellIds[daysOfWeek.indexOf(selectedDay)].add(
                                           scheduleData[daysOfWeek.indexOf(selectedDay)][i].id);
                                     }
 
-                                    // Print selected cell IDs
                                     List<int> activeCellIds = selectedCellIds[daysOfWeek.indexOf(selectedDay)].toList();
                                     print('Active Cell IDs: $activeCellIds');
 
-                                    // Print selected range
                                     DateTime selectedStartTime =
                                     scheduleData[daysOfWeek.indexOf(selectedDay)][currentIndex].startTime.toUtc();
                                     DateTime selectedEndTime = selectedStartTime.add(const Duration(minutes: 30))
@@ -283,8 +280,9 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
                                 print('Last Selected Time: $lastSelectedTime');
 
                                 widget.bookingCubit.currentPrice = currentPrice;
-                                widget.bookingCubit.cells = selectedCellIds.first;
+                                widget.bookingCubit.cells = selectedCellIds[selectedDayIndex];
                                 widget.bookingCubit.dates = [firstSelectedTime, lastSelectedTime];
+                                widget.bookingCubit.dateTime = selectedDate;
                                 context.pop();
                               }
                             },
@@ -331,7 +329,12 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
         }
       }
     }
-
+    for (int i = 0; i < isActiveDay.length; i++) {
+      if (isActiveDay[i]) {
+        selectedDate = selectedDate.add(Duration(days: i));
+        break;
+      }
+    }
     return totalPrice != 0 ? totalPrice : null;
   }
 

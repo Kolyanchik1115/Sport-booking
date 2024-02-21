@@ -14,6 +14,8 @@ class BookingCubit extends Cubit<BookingState> {
   double? _currentPrice;
   List<int>? _cells;
   List<DateTime>? _dates;
+  DateTime? _dateTime;
+
 
   List<int>? get cells => _cells;
 
@@ -24,6 +26,10 @@ class BookingCubit extends Cubit<BookingState> {
   set cells(List<int>?  value) {
     _cells = value;
     emit(state.copyWith(cells: value!));
+  }
+  set dateTime(DateTime?  value) {
+    _dateTime = value;
+    emit(state.copyWith(dateTime: value));
   }
 
   set currentPrice(double? value) {
@@ -47,4 +53,5 @@ class BookingCubit extends Cubit<BookingState> {
     );
     emit(state.copyWith(isLoading: false));
   }
+
 }
