@@ -9,9 +9,14 @@ import 'package:sport_app/presentation/widgets/svg_button.dart';
 class FacilityContainer extends StatelessWidget {
   final FacilityData? facility;
   final Function() onTap;
-  final Function() onPressed;
+  final Function() onIconTap;
 
-  const FacilityContainer({super.key, required this.facility, required this.onTap, required this.onPressed});
+  const FacilityContainer({
+    super.key,
+    required this.facility,
+    required this.onTap,
+    required this.onIconTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +56,7 @@ class FacilityContainer extends StatelessWidget {
                   right: 20.0,
                   child: SvgButton(
                     asset: AppSvg.heart,
-                    onTap: onPressed,
+                    onTap: onIconTap,
                   ),
                 ),
                 Positioned(
@@ -86,7 +91,6 @@ class FacilityContainer extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10.0),
               child: Row(children: [Text('${facility?.facilityType} · ${facility?.coveringType}')]),
             ),
-
           ],
         ),
       ),

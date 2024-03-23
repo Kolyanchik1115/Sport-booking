@@ -151,7 +151,7 @@ class _SearchPageState extends State<SearchPage> {
                           return FacilityContainer(
                             facility: state.data[index],
                             onTap: () => context.push(AppRoutes.facilityDetails, extra: state.data[index]),
-                            onPressed: () {},
+                            onIconTap: () {},
                           );
                         }
                       },

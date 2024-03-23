@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sport_app/core/utils/data_parser.dart';
 import 'package:sport_app/core/utils/dummy_data.dart';
 import 'package:sport_app/data/models/booking/booking_time_slots_model.dart';
 import 'package:sport_app/presentation/pages/booking/cubit/booking_cubit.dart';
@@ -22,13 +23,13 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
   List<String> daysOfWeek = DummyData.daysOfWeek;
   String selectedDay = DummyData.daysOfWeek.first;
   int? selectedTimeSlotIndex;
+  List<List<BookingTimeSlotsModel>> scheduleData = List.generate(7, (day) => []);
 
   List<List<int>> selectedCellIds = List.generate(7, (day) => []);
-  List<List<BookingTimeSlotsModel>> scheduleData = List.generate(7, (day) => []);
   List<List<bool>> isOrange = List.generate(7, (day) => List.filled(48, false));
   List<bool> isActiveDay = [];
-  DateTime selectedDate = DateTime.now();
 
+  DateTime selectedDate = DateTime.now();
 
   Future<void> fetchData() async {
     await widget.bookingCubit.getAllBookings(id: widget.facilityId);
@@ -44,8 +45,8 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
 
   @override
   Widget build(BuildContext context) {
-    double? currentPrice = getCurrentSelectedPrice();
-
+    double? currentPrice =
+        DateParser.getCurrentSelectedPrice(isOrange, scheduleData, daysOfWeek, isActiveDay, selectedDate);
     return BlocProvider.value(
       value: widget.bookingCubit,
       child: BlocBuilder<BookingCubit, BookingState>(
@@ -99,10 +100,12 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
                     itemExtent: itemExtend,
                     itemBuilder: (context, index) {
                       if (index < scheduleData[daysOfWeek.indexOf(selectedDay)].length) {
-                        int? price = getPriceForTimeRange(
+                        int? price = DateParser.getPriceForTimeRange(
                           scheduleData[daysOfWeek.indexOf(selectedDay)][index].startTime.toIso8601String(),
                           scheduleData[daysOfWeek.indexOf(selectedDay)][index].endTime.toIso8601String(),
                           selectedDay,
+                          scheduleData,
+                          daysOfWeek,
                         );
                         return ListTile(
                           contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -117,47 +120,46 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
                             ),
                           ),
                           subtitle: InkWell(
-                              onTap: () {
-                                if (isActiveDay[daysOfWeek.indexOf(selectedDay)]) {
-                                  setState(() {
-                                    int currentIndex = index;
-                                    int? previousIndex = selectedTimeSlotIndex;
+                            onTap: () {
+                              if (isActiveDay[daysOfWeek.indexOf(selectedDay)]) {
+                                setState(() {
+                                  int currentIndex = index;
+                                  int? previousIndex = selectedTimeSlotIndex;
 
-                                    if (previousIndex == null || (currentIndex - previousIndex).abs() > 1) {
-                                      isOrange[daysOfWeek.indexOf(selectedDay)].fillRange(
-                                          0, isOrange[daysOfWeek.indexOf(selectedDay)].length, false);
-                                      selectedCellIds[daysOfWeek.indexOf(selectedDay)].clear();
-                                    }
+                                  if (previousIndex == null || (currentIndex - previousIndex).abs() > 1) {
+                                    isOrange[daysOfWeek.indexOf(selectedDay)]
+                                        .fillRange(0, isOrange[daysOfWeek.indexOf(selectedDay)].length, false);
+                                    selectedCellIds[daysOfWeek.indexOf(selectedDay)].clear();
+                                  }
 
-                                    int start = currentIndex;
-                                    int end = previousIndex ?? currentIndex;
+                                  int start = currentIndex;
+                                  int end = previousIndex ?? currentIndex;
 
-                                    if (start > end) {
-                                      int temp = start;
-                                      start = end;
-                                      end = temp;
-                                    }
+                                  if (start > end) {
+                                    int temp = start;
+                                    start = end;
+                                    end = temp;
+                                  }
 
-                                    for (int i = start; i <= end; i++) {
-                                      isOrange[daysOfWeek.indexOf(selectedDay)][i] = true;
-                                      selectedCellIds[daysOfWeek.indexOf(selectedDay)].add(
-                                          scheduleData[daysOfWeek.indexOf(selectedDay)][i].id);
-                                    }
+                                  for (int i = start; i <= end; i++) {
+                                    isOrange[daysOfWeek.indexOf(selectedDay)][i] = true;
+                                    selectedCellIds[daysOfWeek.indexOf(selectedDay)]
+                                        .add(scheduleData[daysOfWeek.indexOf(selectedDay)][i].id);
+                                  }
 
-                                    List<int> activeCellIds = selectedCellIds[daysOfWeek.indexOf(selectedDay)].toList();
-                                    print('Active Cell IDs: $activeCellIds');
+                                  List<int> activeCellIds = selectedCellIds[daysOfWeek.indexOf(selectedDay)].toList();
+                                  print('Active Cell IDs: $activeCellIds');
 
-                                    DateTime selectedStartTime =
-                                    scheduleData[daysOfWeek.indexOf(selectedDay)][currentIndex].startTime.toUtc();
-                                    DateTime selectedEndTime = selectedStartTime.add(const Duration(minutes: 30))
-                                        .toUtc();
-                                    print('Selected Range: $selectedStartTime to $selectedEndTime');
+                                  DateTime selectedStartTime =
+                                      scheduleData[daysOfWeek.indexOf(selectedDay)][currentIndex].startTime.toUtc();
+                                  DateTime selectedEndTime = selectedStartTime.add(const Duration(minutes: 30)).toUtc();
+                                  print('Selected Range: $selectedStartTime to $selectedEndTime');
 
-                                    selectedTimeSlotIndex = currentIndex;
-                                  });
-                                }
-                              },
-                              child: DecoratedBox(
+                                  selectedTimeSlotIndex = currentIndex;
+                                });
+                              }
+                            },
+                            child: DecoratedBox(
                               decoration: BoxDecoration(
                                 color: price != null &&
                                         isOrange[daysOfWeek.indexOf(selectedDay)][index] &&
@@ -264,25 +266,31 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
                               if (currentPrice != null && selectedCellIds.isNotEmpty) {
                                 int selectedDayIndex = daysOfWeek.indexOf(selectedDay);
 
-                                int firstSelectedIndex =
-                                    selectedCellIds[selectedDayIndex].reduce((min, id) => id < min ? id : min);
-                                int lastSelectedIndex =
-                                    selectedCellIds[selectedDayIndex].reduce((max, id) => id > max ? id : max);
-
                                 DateTime firstSelectedTime = scheduleData[selectedDayIndex]
-                                    .firstWhere((slot) => slot.id == firstSelectedIndex)
+                                    .firstWhere((slot) =>
+                                        slot.id ==
+                                        selectedCellIds[selectedDayIndex].reduce(
+                                          (min, id) => id < min ? id : min,
+                                        ))
                                     .startTime;
+
                                 DateTime lastSelectedTime = scheduleData[selectedDayIndex]
-                                    .firstWhere((slot) => slot.id == lastSelectedIndex)
+                                    .firstWhere((slot) =>
+                                        slot.id ==
+                                        selectedCellIds[selectedDayIndex].reduce(
+                                          (max, id) => id > max ? id : max,
+                                        ))
                                     .endTime;
 
                                 print('First Selected Time: $firstSelectedTime');
                                 print('Last Selected Time: $lastSelectedTime');
 
-                                widget.bookingCubit.currentPrice = currentPrice;
-                                widget.bookingCubit.cells = selectedCellIds[selectedDayIndex];
-                                widget.bookingCubit.dates = [firstSelectedTime, lastSelectedTime];
-                                widget.bookingCubit.dateTime = selectedDate;
+                                context.read<BookingCubit>().updateState(
+                                  cells: selectedCellIds[selectedDayIndex],
+                                  price: currentPrice,
+                                  dateTime: selectedDate,
+                                  dates: [firstSelectedTime, lastSelectedTime],
+                                );
                                 context.pop();
                               }
                             },
@@ -298,65 +306,5 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
         },
       ),
     );
-  }
-
-  double? getCurrentSelectedPrice() {
-    double totalPrice = 0;
-
-    for (int dayIndex = 0; dayIndex < 7; dayIndex++) {
-      for (int index = 0; index < isOrange[dayIndex].length; index++) {
-        if (isOrange[dayIndex][index]) {
-          DateTime startTime;
-          DateTime endTime;
-
-          if (index < scheduleData[dayIndex].length) {
-            startTime = scheduleData[dayIndex][index].startTime.toUtc();
-            endTime = startTime.add(const Duration(minutes: 30));
-          } else {
-            startTime = DateTime(1970, 1, 1, 0, 0).toUtc();
-            endTime = DateTime(1970, 1, 1, 0, 0).toUtc();
-          }
-
-          int? price = getPriceForTimeRange(
-            startTime.toUtc().toIso8601String(),
-            endTime.toUtc().toIso8601String(),
-            daysOfWeek[dayIndex],
-          );
-
-          if (price != null) {
-            totalPrice += price;
-          }
-        }
-      }
-    }
-    for (int i = 0; i < isActiveDay.length; i++) {
-      if (isActiveDay[i]) {
-        selectedDate = selectedDate.add(Duration(days: i));
-        break;
-      }
-    }
-    return totalPrice != 0 ? totalPrice : null;
-  }
-
-  int? getPriceForTimeRange(String startTimeString, String endTimeString, String selectedDay) {
-    int totalPrice = 0;
-
-    for (var interval in scheduleData[daysOfWeek.indexOf(selectedDay)]) {
-      DateTime intervalStartTime = DateTime.parse('${interval.startTime}').toUtc();
-      DateTime intervalEndTime = DateTime.parse('${interval.endTime}').toUtc();
-      DateTime startTime = DateTime.parse(startTimeString).toUtc();
-      DateTime endTime = DateTime.parse(endTimeString).toUtc();
-
-      // print('Interval: $intervalStartTime to $intervalEndTime');
-      // print('Selected Range: $startTime to $endTime');
-
-      if (startTime.isBefore(intervalEndTime) && endTime.isAfter(intervalStartTime)) {
-        double partialPrice = endTime.difference(startTime).inMinutes / 30 * interval.price;
-        totalPrice += partialPrice.round();
-      }
-    }
-    // print('Total Price: $totalPrice');
-
-    return totalPrice != 0 ? totalPrice : null;
   }
 }

@@ -22,27 +22,13 @@ class FacilityDetailsPage extends StatefulWidget {
 }
 
 class _FacilityDetailsPageState extends State<FacilityDetailsPage> {
-  late final BookingCubit bookingCubit;
-
-  @override
-  void initState() {
-    bookingCubit = BookingCubit();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    bookingCubit.close();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithAppBar(
       appBarTitle: "New reservation",
       centerTitle: true,
-      child: BlocProvider.value(
-        value: bookingCubit,
+      child: BlocProvider(
+        create: (context) => BookingCubit(),
         child: BlocBuilder<BookingCubit, BookingState>(
           builder: (context, state) {
             return Column(
@@ -116,7 +102,7 @@ class _FacilityDetailsPageState extends State<FacilityDetailsPage> {
                                           ':${state.dates.last.minute.toString().padLeft(2, '0')}',
                                   onPressed: () => context.push(
                                     AppRoutes.facilityBooking,
-                                    extra: [widget.facilityData.id, bookingCubit],
+                                    extra: [widget.facilityData.id, context.read<BookingCubit>()],
                                   ),
                                 ),
                                 const SizedBox(height: 15.0),
@@ -175,13 +161,8 @@ class _FacilityDetailsPageState extends State<FacilityDetailsPage> {
                                     ),
                             onPressed: () {
                               if (state.price != null && state.cells.isNotEmpty) {
-                                return context.push(AppRoutes.confirmBooking, extra: [
-                                  state.price,
-                                  state.dates,
-                                  widget.facilityData,
-                                  state.dateTime,
-                                  state.cells,
-                                ]);
+                                return context.push(AppRoutes.confirmBooking,
+                                    extra: [widget.facilityData, context.read<BookingCubit>()]);
                               }
                             },
                           ),

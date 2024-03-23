@@ -62,6 +62,7 @@ class AppRouter {
             profileCubit: state.extra as ProfileCubit,
           ),
         ),
+
         GoRoute(
           path: AppRoutes.facilityBooking,
           builder: (BuildContext context, GoRouterState state) => FacilityBookingPage(
@@ -76,31 +77,22 @@ class AppRouter {
           ),
         ),
         GoRoute(
-          path: AppRoutes.editProfile,
-          builder: (BuildContext context, GoRouterState state) => EditingProfilePage(
-            profileCubit: state.extra as ProfileCubit,
-          ),
-        ),
-        GoRoute(
           parentNavigatorKey: _rootNavigatorKey,
           path: AppRoutes.payment,
           builder: (BuildContext context, GoRouterState state) => PaymentPage(
-            price: (state.extra as List<dynamic>)[0] as double,
+            bookingCubit: (state.extra as List<dynamic>)[0] as BookingCubit,
             desc: (state.extra as List<dynamic>)[1] as String,
             facilityId: (state.extra as List<dynamic>)[2] as int,
-            cells: (state.extra as List<dynamic>)[3] as List<int>,
           ),
         ),
         GoRoute(
           path: AppRoutes.confirmBooking,
           builder: (BuildContext context, GoRouterState state) => FacilityConfirmBookingPage(
-            price: (state.extra as List<dynamic>)[0] as double,
-            dates: (state.extra as List<dynamic>)[1] as List<DateTime>,
-            facilityData: (state.extra as List<dynamic>)[2] as FacilityData,
-            dateTime: (state.extra as List<dynamic>)[3] as DateTime,
-            cells: (state.extra as List<dynamic>)[4] as List<int>,
+            facilityData: (state.extra as List<dynamic>)[0] as FacilityData,
+            bookingCubit: (state.extra as List<dynamic>)[1] as BookingCubit,
           ),
         ),
+
         GoRoute(
           path: AppRoutes.signUp,
           pageBuilder: (BuildContext context, GoRouterState state) => _customTransitionPage(
@@ -184,5 +176,45 @@ class AppRouter {
         );
       },
     );
+  }
+}
+
+void _popUntilRouter(GoRouter goRouter, String location) {
+  final matches = goRouter.routerDelegate.currentConfiguration.matches;
+  final currentRoute = goRouter.routerDelegate.currentConfiguration.last.matchedLocation;
+
+  int count = 0;
+
+  bool isStackHasMatch = false;
+  for (var routeMatch in matches) {
+    if (routeMatch.matchedLocation == location) {
+      isStackHasMatch = true;
+      break;
+    }
+  }
+
+  assert(isStackHasMatch, 'Location should be in stack');
+  assert(location.isNotEmpty, 'Location should not be empty');
+  assert(location != currentRoute, 'Location should not be the same as current');
+  assert(location != '/', 'Location should not be the same as splash page');
+  while (currentRoute != location && count < matches.length) {
+    if (!goRouter.canPop()) {
+      return;
+    }
+
+    debugPrint('Popping $currentRoute');
+    goRouter.pop();
+    count++;
+  }
+}
+
+extension GoRouterExtension on GoRouter {
+  void popUntil(String location) => _popUntilRouter(this, location);
+}
+
+extension ContextNavigationExtension on BuildContext {
+  void popUntil(String location) {
+    final goRouter = GoRouter.of(this);
+    _popUntilRouter(goRouter, location);
   }
 }
