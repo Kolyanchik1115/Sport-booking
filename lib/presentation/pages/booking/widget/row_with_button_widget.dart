@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sport_app/presentation/widgets/app_elevated_button.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/app_elevated_button.dart';
 
 class RowWithButtonWidget extends StatelessWidget {
   final String title;

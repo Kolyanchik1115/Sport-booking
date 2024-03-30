@@ -7,9 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/router_config.dart';
 import 'package:sport_app/core/router/routes.dart';
-import 'package:sport_app/presentation/pages/booking/cubit/booking_cubit.dart';
-import 'package:sport_app/presentation/widgets/custom_error_widget.dart';
-import 'package:sport_app/presentation/widgets/scaffold_with_app_bar.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/custom_error_widget.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/scaffold_with_app_bar.dart';
+import 'package:sport_app/presentation/pages/booking/cubit/booking/booking_cubit.dart';
+
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentPage extends StatelessWidget {
@@ -32,8 +33,8 @@ class PaymentPage extends StatelessWidget {
         builder: (context, state) {
           String publicKey = 'sandbox_i69297607762';
           String privateKey = 'sandbox_1iShFxZY7Xsp9Ab6lGojbEs4mNGy6ngW9BqGBRuv';
-          String orderId = '12342';
-          double amount = state.price;
+          String orderId = '13453';
+          double amount = state.totalPrice;
           String currency = 'UAH';
           String description = desc;
           String language = 'UK';

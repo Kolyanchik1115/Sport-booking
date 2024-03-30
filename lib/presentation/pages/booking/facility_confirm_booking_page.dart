@@ -1,15 +1,14 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/utils/dummy_data.dart';
+import 'package:sport_app/core/utils/enums.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
-import 'package:sport_app/presentation/pages/booking/cubit/booking_cubit.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/app_elevated_button.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/scaffold_with_app_bar.dart';
+import 'package:sport_app/presentation/pages/booking/cubit/booking/booking_cubit.dart';
 import 'package:sport_app/presentation/pages/booking/widget/row_data_widget.dart';
-import 'package:sport_app/presentation/widgets/app_elevated_button.dart';
-import 'package:sport_app/presentation/widgets/scaffold_with_app_bar.dart';
 
 class FacilityConfirmBookingPage extends StatelessWidget {
   final FacilityData facilityData;
@@ -80,14 +79,17 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             RowDataWidget(
-                                title: 'Date', text: '${state.dateTime.day} ${DummyData.monthNames[state.dateTime.month - 1]}'),
+                                title: 'Date',
+                                text:
+                                    '${state.dateTime?.day ?? DateTime.now().day} ${DummyData.monthNames[state.dateTime?.month ?? DateTime.now().month - 1]}'),
                             RowDataWidget(
                                 title: 'Reserve time',
                                 text: '${state.dates.first.hour.toString().padLeft(2, '0')}:'
                                     '${state.dates.first.minute.toString().padLeft(2, '0')} '
                                     '- ${state.dates.last.hour.toString().padLeft(2, '0')}'
                                     ':${state.dates.last.minute.toString().padLeft(2, '0')}'),
-                            Text('${(state.dates.first.difference(state.dates.last).abs().inMinutes / 60).toStringAsFixed(1)} h'),
+                            Text(
+                                '${(state.dates.first.difference(state.dates.last).abs().inMinutes / 60).toStringAsFixed(1)} h'),
                           ],
                         ),
                       ),
@@ -116,7 +118,7 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                                 .copyWith(color: Theme.of(context).colorScheme.onBackground),
                           ),
                           Text(
-                            '${state.price}₴',
+                            '${state.totalPrice}₴',
                             style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(

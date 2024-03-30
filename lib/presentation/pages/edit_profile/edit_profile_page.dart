@@ -5,15 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/core/utils/data_parser.dart';
+import 'package:sport_app/features/additional_pages/presentation/bloc/user/user_cubit.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/action_button.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/default_input_text_field.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/scaffold_with_app_bar.dart';
 import 'package:sport_app/injector.dart';
-import 'package:sport_app/presentation/pages/additions_pages/user/user_cubit.dart';
 import 'package:sport_app/presentation/pages/edit_profile/cubit/editing_profile_cubit.dart';
 import 'package:sport_app/presentation/pages/edit_profile/widget/avatar_picker.dart';
 import 'package:sport_app/presentation/pages/edit_profile/widget/custom_tile.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
-import 'package:sport_app/presentation/widgets/action_button.dart';
-import 'package:sport_app/presentation/widgets/default_input_text_field.dart';
-import 'package:sport_app/presentation/widgets/scaffold_with_app_bar.dart';
 
 class EditingProfilePage extends StatefulWidget {
   final ProfileCubit profileCubit;

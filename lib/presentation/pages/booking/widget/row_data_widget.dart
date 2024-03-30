@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sport_app/presentation/widgets/description_text_widget.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/description_text_widget.dart';
 
 class RowDataWidget extends StatelessWidget {
   final String title;

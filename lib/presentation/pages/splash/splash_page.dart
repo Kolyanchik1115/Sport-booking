@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/storage/token_storage.dart';
+import 'package:sport_app/features/additional_pages/presentation/bloc/user/user_cubit.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/empty_layout.dart';
 import 'package:sport_app/injector.dart';
-import 'package:sport_app/presentation/pages/additions_pages/user/user_cubit.dart';
 import 'package:sport_app/presentation/pages/splash/cubit/initial_cubit.dart';
-import 'package:sport_app/presentation/widgets/empty_layout.dart';
 
 class SplashPage extends StatelessWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {

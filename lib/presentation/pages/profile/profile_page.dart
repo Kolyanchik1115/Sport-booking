@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
-import 'package:sport_app/presentation/pages/additions_pages/documents/documents_cubit.dart';
+import 'package:sport_app/features/additional_pages/presentation/bloc/documents/documents_cubit.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/button_tile_widget.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/custom_error_widget.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/empty_layout.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/widget/user_card_widget.dart';
-import 'package:sport_app/presentation/widgets/button_tile_widget.dart';
-import 'package:sport_app/presentation/widgets/custom_error_widget.dart';
-import 'package:sport_app/presentation/widgets/empty_layout.dart';
+
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/default_input_text_field.dart';
 
-import 'package:sport_app/presentation/widgets/default_input_text_field.dart';
 
 class SearchField extends StatefulWidget {
   final TextEditingController textEditingController;

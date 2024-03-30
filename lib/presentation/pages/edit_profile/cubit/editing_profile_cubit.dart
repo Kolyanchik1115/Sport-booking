@@ -2,13 +2,12 @@ import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/core/router/router_config.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/data/models/user/user_data.dart';
 import 'package:sport_app/domain/usecases/user/update_user_use_case.dart';
+import 'package:sport_app/features/additional_pages/presentation/bloc/user/user_cubit.dart';
 import 'package:sport_app/injector.dart';
-import 'package:sport_app/presentation/pages/additions_pages/user/user_cubit.dart';
 
 part 'editing_profile_cubit.freezed.dart';
 part 'editing_profile_state.dart';

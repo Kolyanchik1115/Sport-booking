@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/svg_button.dart';
 import 'package:sport_app/injector.dart';
-import 'package:sport_app/presentation/widgets/svg_button.dart';
 
 class FacilityContainer extends StatelessWidget {
   final FacilityData? facility;

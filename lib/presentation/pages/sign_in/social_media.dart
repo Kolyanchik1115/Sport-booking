@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/svg_button.dart';
 import 'package:sport_app/presentation/pages/sign_in/cubit/social_sign_in/social_auth_cubit.dart';
-import 'package:sport_app/presentation/widgets/svg_button.dart';
 
 class SocialMediaAuth extends StatelessWidget {
   const SocialMediaAuth({super.key});

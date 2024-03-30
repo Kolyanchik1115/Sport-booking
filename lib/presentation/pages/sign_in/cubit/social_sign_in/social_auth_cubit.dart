@@ -9,7 +9,7 @@ import 'package:sport_app/core/router/router_config.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/domain/usecases/auth/google_sign_in_use_case.dart';
 import 'package:sport_app/injector.dart';
-import 'package:sport_app/presentation/pages/additions_pages/user/user_cubit.dart';
+import 'package:sport_app/features/additional_pages/presentation/bloc/user/user_cubit.dart';
 
 part 'social_auth_state.dart';
 

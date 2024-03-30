@@ -2,11 +2,14 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
-import 'package:sport_app/presentation/pages/booking/cubit/booking_cubit.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/scaffold_with_nav_bar.dart';
+import 'package:sport_app/presentation/pages/booking/cubit/booking/booking_cubit.dart';
 import 'package:sport_app/presentation/pages/booking/facility_booking_page.dart';
+import 'package:sport_app/presentation/pages/booking/facility_confirm_booking_page.dart';
 import 'package:sport_app/presentation/pages/booking/facility_details_page.dart';
 import 'package:sport_app/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:sport_app/presentation/pages/favorite/favorite_page.dart';
+import 'package:sport_app/presentation/pages/payment/payment_page.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/profile_page.dart';
 import 'package:sport_app/presentation/pages/reservation/reservation_page.dart';
@@ -14,10 +17,8 @@ import 'package:sport_app/presentation/pages/search/search_page.dart';
 import 'package:sport_app/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:sport_app/presentation/pages/sign_up/sign_up_page.dart';
 import 'package:sport_app/presentation/pages/splash/splash_page.dart';
-import 'package:sport_app/presentation/widgets/scaffold_with_nav_bar.dart';
 
-import '../../presentation/pages/booking/facility_confirm_booking_page.dart';
-import '../../presentation/pages/booking/payment_page.dart';
+
 
 class AppRouter {
   static final AppRouter _appRouter = AppRouter._();

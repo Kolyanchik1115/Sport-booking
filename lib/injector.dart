@@ -19,7 +19,7 @@ import 'package:sport_app/domain/usecases/booking/get_all_bookings.dart';
 import 'package:sport_app/domain/usecases/facility/get_all_facility.dart';
 import 'package:sport_app/domain/usecases/user/get_current_user_use_case.dart';
 import 'package:sport_app/domain/usecases/user/update_user_use_case.dart';
-import 'presentation/pages/additions_pages/user/user_cubit.dart';
+import 'package:sport_app/features/additional_pages/presentation/bloc/user/user_cubit.dart';
 
 final injector = GetIt.instance;
 
