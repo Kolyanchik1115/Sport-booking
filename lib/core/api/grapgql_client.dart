@@ -1,6 +1,7 @@
 import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/data/models/booking/booking_response_model.dart';
 import 'package:sport_app/data/models/facility/facility_response_model.dart';
+import 'package:sport_app/data/models/favorite/favorite_response_model.dart';
 import 'package:sport_app/data/models/user/user_data.dart';
 import 'package:sport_app/data/models/user/user_response_model.dart';
 
@@ -50,5 +51,14 @@ class GraphClient {
   Future<BookingResponseModel> createBooking({required Map<String, dynamic> data}) async {
     final queryResult = await sportAppApi.execute(query: createBookingMutation, data: data, isMutation: true);
     return BookingResponseModel.fromJson(queryResult);
+  }
+
+  Future<FavoriteResponseModel> addFavorite({required Map<String, dynamic> data}) async {
+    final queryResult = await sportAppApi.execute(query: addFavoriteMutation, data: data, isMutation: true);
+    return FavoriteResponseModel.fromJson(queryResult);
+  }
+  Future<FavoriteResponseModel> removeFavorite({required Map<String, dynamic> data}) async {
+    final queryResult = await sportAppApi.execute(query: removeFavoriteMutation, data: data, isMutation: true);
+    return FavoriteResponseModel.fromJson(queryResult);
   }
 }
