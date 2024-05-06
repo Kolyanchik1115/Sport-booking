@@ -5,6 +5,7 @@ import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/svg_button.dart';
 import 'package:sport_app/injector.dart';
+import 'package:sport_app/presentation/pages/search/widget/facility_tag_label.dart';
 
 class FacilityContainer extends StatelessWidget {
   final FacilityData? facility;
@@ -83,13 +84,12 @@ class FacilityContainer extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 5.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0),
-              child: Text(facility?.sportType ?? ''),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0),
-              child: Row(children: [Text('${facility?.facilityType} · ${facility?.coveringType}')]),
+            FacilityTagLabel(labelType: "sportType", facility: facility),
+            Row(
+              children: [
+                FacilityTagLabel(labelType: "facilityType", facility: facility),
+                FacilityTagLabel(labelType: "coveringType", facility: facility),
+              ],
             ),
           ],
         ),

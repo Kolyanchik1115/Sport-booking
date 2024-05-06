@@ -23,9 +23,9 @@ mixin _$FacilityData {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
-  String? get sportType => throw _privateConstructorUsedError;
+  List<String>? get sportType => throw _privateConstructorUsedError;
   String? get coveringType => throw _privateConstructorUsedError;
-  String? get district => throw _privateConstructorUsedError;
+  FacilityDistrict? get district => throw _privateConstructorUsedError;
   int? get minBookingTime => throw _privateConstructorUsedError;
   String? get facilityType => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
@@ -49,15 +49,17 @@ abstract class $FacilityDataCopyWith<$Res> {
       {int id,
       String name,
       String? address,
-      String? sportType,
+      List<String>? sportType,
       String? coveringType,
-      String? district,
+      FacilityDistrict? district,
       int? minBookingTime,
       String? facilityType,
       String? description,
       double? avgPrice,
       String? location,
       List<FacilityDataImage> images});
+
+  $FacilityDistrictCopyWith<$Res>? get district;
 }
 
 /// @nodoc
@@ -102,7 +104,7 @@ class _$FacilityDataCopyWithImpl<$Res, $Val extends FacilityData>
       sportType: freezed == sportType
           ? _value.sportType
           : sportType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as List<String>?,
       coveringType: freezed == coveringType
           ? _value.coveringType
           : coveringType // ignore: cast_nullable_to_non_nullable
@@ -110,7 +112,7 @@ class _$FacilityDataCopyWithImpl<$Res, $Val extends FacilityData>
       district: freezed == district
           ? _value.district
           : district // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as FacilityDistrict?,
       minBookingTime: freezed == minBookingTime
           ? _value.minBookingTime
           : minBookingTime // ignore: cast_nullable_to_non_nullable
@@ -137,6 +139,18 @@ class _$FacilityDataCopyWithImpl<$Res, $Val extends FacilityData>
               as List<FacilityDataImage>,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FacilityDistrictCopyWith<$Res>? get district {
+    if (_value.district == null) {
+      return null;
+    }
+
+    return $FacilityDistrictCopyWith<$Res>(_value.district!, (value) {
+      return _then(_value.copyWith(district: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -151,15 +165,18 @@ abstract class _$$FacilityDataImplCopyWith<$Res>
       {int id,
       String name,
       String? address,
-      String? sportType,
+      List<String>? sportType,
       String? coveringType,
-      String? district,
+      FacilityDistrict? district,
       int? minBookingTime,
       String? facilityType,
       String? description,
       double? avgPrice,
       String? location,
       List<FacilityDataImage> images});
+
+  @override
+  $FacilityDistrictCopyWith<$Res>? get district;
 }
 
 /// @nodoc
@@ -200,9 +217,9 @@ class __$$FacilityDataImplCopyWithImpl<$Res>
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
       sportType: freezed == sportType
-          ? _value.sportType
+          ? _value._sportType
           : sportType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as List<String>?,
       coveringType: freezed == coveringType
           ? _value.coveringType
           : coveringType // ignore: cast_nullable_to_non_nullable
@@ -210,7 +227,7 @@ class __$$FacilityDataImplCopyWithImpl<$Res>
       district: freezed == district
           ? _value.district
           : district // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as FacilityDistrict?,
       minBookingTime: freezed == minBookingTime
           ? _value.minBookingTime
           : minBookingTime // ignore: cast_nullable_to_non_nullable
@@ -246,7 +263,7 @@ class _$FacilityDataImpl implements _FacilityData {
       {required this.id,
       required this.name,
       required this.address,
-      required this.sportType,
+      required final List<String>? sportType,
       required this.coveringType,
       required this.district,
       required this.minBookingTime,
@@ -255,7 +272,8 @@ class _$FacilityDataImpl implements _FacilityData {
       required this.avgPrice,
       required this.location,
       required final List<FacilityDataImage> images})
-      : _images = images;
+      : _sportType = sportType,
+        _images = images;
 
   factory _$FacilityDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$FacilityDataImplFromJson(json);
@@ -266,12 +284,20 @@ class _$FacilityDataImpl implements _FacilityData {
   final String name;
   @override
   final String? address;
+  final List<String>? _sportType;
   @override
-  final String? sportType;
+  List<String>? get sportType {
+    final value = _sportType;
+    if (value == null) return null;
+    if (_sportType is EqualUnmodifiableListView) return _sportType;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? coveringType;
   @override
-  final String? district;
+  final FacilityDistrict? district;
   @override
   final int? minBookingTime;
   @override
@@ -303,8 +329,8 @@ class _$FacilityDataImpl implements _FacilityData {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.sportType, sportType) ||
-                other.sportType == sportType) &&
+            const DeepCollectionEquality()
+                .equals(other._sportType, _sportType) &&
             (identical(other.coveringType, coveringType) ||
                 other.coveringType == coveringType) &&
             (identical(other.district, district) ||
@@ -329,7 +355,7 @@ class _$FacilityDataImpl implements _FacilityData {
       id,
       name,
       address,
-      sportType,
+      const DeepCollectionEquality().hash(_sportType),
       coveringType,
       district,
       minBookingTime,
@@ -358,9 +384,9 @@ abstract class _FacilityData implements FacilityData {
       {required final int id,
       required final String name,
       required final String? address,
-      required final String? sportType,
+      required final List<String>? sportType,
       required final String? coveringType,
-      required final String? district,
+      required final FacilityDistrict? district,
       required final int? minBookingTime,
       required final String? facilityType,
       required final String? description,
@@ -378,11 +404,11 @@ abstract class _FacilityData implements FacilityData {
   @override
   String? get address;
   @override
-  String? get sportType;
+  List<String>? get sportType;
   @override
   String? get coveringType;
   @override
-  String? get district;
+  FacilityDistrict? get district;
   @override
   int? get minBookingTime;
   @override

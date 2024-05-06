@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/utils/dummy_data.dart';
-import 'package:sport_app/core/utils/enums.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/app_elevated_button.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/scaffold_with_app_bar.dart';
@@ -69,7 +68,7 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                             ),
                       ),
                       Text(
-                          "${facilityData.address ?? "Unknown address"} / ${facilityData.district ?? "Unknown district"}"),
+                          "${facilityData.address ?? "Unknown address"} / ${facilityData.district?.name ?? "Unknown district"}"),
                       const SizedBox(height: 10.0),
                       const Divider(color: Colors.black),
                       const SizedBox(height: 30.0),
@@ -99,7 +98,7 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            RowDataWidget(title: 'Sport type', text: facilityData.sportType),
+                            RowDataWidget(title: 'Sport type', text: (facilityData.sportType ?? []).join(", ")),
                             RowDataWidget(title: 'Type', text: facilityData.facilityType),
                             RowDataWidget(title: 'Covering type', text: facilityData.coveringType),
                           ],

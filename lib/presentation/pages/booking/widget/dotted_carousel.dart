@@ -25,7 +25,7 @@ class _DottedCarouselState extends State<DottedCarousel> {
             alignment: Alignment.bottomCenter,
             children: [
               PageView.builder(
-                itemCount: widget.facilityData.images.length,
+                itemCount: widget.facilityData.images.isNotEmpty ? widget.facilityData.images.length : 1,
                 controller: PageController(),
                 onPageChanged: (index) {
                   setState(() {
@@ -36,14 +36,16 @@ class _DottedCarouselState extends State<DottedCarousel> {
                   return Container(
                     margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.background,
-                      borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: NetworkImage(injector<SportAppApi>().imageFromDB(
-                          widget.facilityData.images[index].image,
-                        )),
+                        image: widget.facilityData.images.isNotEmpty
+                            ? NetworkImage(injector<SportAppApi>().imageFromDB(
+                                widget.facilityData.images[index].image,
+                              ))
+                            : const NetworkImage(
+                                'https://images.unsplash.com/photo-1481349518771-20055b2a7b24?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmFuZG9tfGVufDB8fDB8fHww'),
                         fit: BoxFit.cover,
                       ),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   );
                 },
@@ -54,18 +56,20 @@ class _DottedCarouselState extends State<DottedCarousel> {
                   height: 9.0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      widget.facilityData.images.length,
-                      (index) => Container(
-                        width: 15.0,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _currentIndex == index
-                              ? Theme.of(context).colorScheme.background
-                              : Theme.of(context).colorScheme.secondary,
-                        ),
-                      ),
-                    ),
+                    children: widget.facilityData.images.isNotEmpty && widget.facilityData.images.length > 1
+                        ? List.generate(
+                            widget.facilityData.images.length,
+                            (index) => Container(
+                              width: 15.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: _currentIndex == index
+                                    ? Theme.of(context).colorScheme.background
+                                    : Theme.of(context).colorScheme.secondary,
+                              ),
+                            ),
+                          )
+                        : [],
                   ),
                 ),
               ),

@@ -32,7 +32,14 @@ const String getAllFacilityQuery =
         name
         address
         sportType
-        district
+        district {
+             city {
+                 id
+                 name
+             }
+            id
+            name
+        }
         location
         coveringType
         facilityType

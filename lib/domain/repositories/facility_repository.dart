@@ -11,7 +11,7 @@ abstract interface class FacilityRepository {
 
   Future<Either<Failure, FacilityResponseModel>> getAllFacility({
     required int page,
-    String? sportType,
+    List<String>? sportType,
     String? coveringType,
     String? search,
     String? facilityType,

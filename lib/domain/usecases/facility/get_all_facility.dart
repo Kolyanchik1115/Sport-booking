@@ -24,7 +24,7 @@ class GetAllFacilityUseCase implements UseCase<FacilityResponseModel, GetAllFaci
 
 class GetAllFacilityParams extends Equatable {
   final int page;
-  final String? sportType;
+  final List<String>? sportType;
   final String? coveringType;
   final String? search;
   final String? facilityType;
