@@ -15,8 +15,26 @@ const String loginMutation = r'''
 }
 ''';
 
+const createBookingMutation = r''' 
+mutation CreateBooking($createBookingInput: CreateBookingInput!) {
+  createBooking(createBookingInput: $createBookingInput) {
+    id
+    userId
+    status
+    price
+  }
+}''';
 
-
+const addFavoriteMutation = r''' 
+mutation AddFavorite($facilityId: Int!) {
+  addFavorite(facilityId: $facilityId)
+}
+''';
+const removeFavoriteMutation = r''' 
+mutation RemoveFavorite($facilityId: Int!) {
+  removeFavorite(facilityId: $facilityId)
+}
+''';
 
 const googleLoginMutation = r'''
 mutation GoogleAuth($token: String!) {
@@ -60,5 +78,3 @@ mutation RefreshToken($refresh: String) {
 const String updateProfileMutation = r'''
 mutation UpdateProfile($profileInput: UpdateUserDto, $avatar: Upload) { updateProfile(profileInput: $profileInput, avatar: $avatar)
  { fullname dateOfBirth avatar } }''';
-
-

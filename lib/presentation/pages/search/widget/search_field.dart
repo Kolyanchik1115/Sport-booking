@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/default_input_text_field.dart';
 
-import 'package:sport_app/presentation/widgets/default_input_text_field.dart';
 
 class SearchField extends StatefulWidget {
   final TextEditingController textEditingController;
@@ -46,7 +46,11 @@ class _SearchFieldState extends State<SearchField> {
         },
         textEditingController: widget.textEditingController,
         hintText: '',
+        textStyle: Theme.of(context).textTheme.displayMedium?.copyWith(
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
         filled: true,
+        cursorColor: Theme.of(context).colorScheme.secondary,
         fillColor: Theme.of(context).colorScheme.onPrimary,
         placeText: 'Search',
         border: UnderlineInputBorder(

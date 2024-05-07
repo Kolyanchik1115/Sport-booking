@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sport_app/core/api/sport_app_api.dart';
-import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/injector.dart';
 
 class UserCircleAvatar extends StatelessWidget {

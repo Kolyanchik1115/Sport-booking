@@ -29,8 +29,8 @@ abstract class AppSvg {
   static const String tennis = 'assets/svg/icons/tennis.svg';
   static const String soccer = 'assets/svg/icons/soccer.svg';
 
-  static const String closed = 'assets/svg/icons/closed.svg';
-  static const String opened = 'assets/svg/icons/opened.svg';
+  static const String indoor = 'assets/svg/icons/indoor.svg';
+  static const String outdoor = 'assets/svg/icons/outdoor.svg';
 
   static const String rubber = 'assets/svg/icons/rubber.svg';
   static const String sand = 'assets/svg/icons/sand.svg';

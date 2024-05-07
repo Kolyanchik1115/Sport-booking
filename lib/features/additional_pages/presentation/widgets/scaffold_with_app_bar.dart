@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
-import 'package:sport_app/presentation/widgets/svg_button.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/svg_button.dart';
 
 class ScaffoldWithAppBar extends StatelessWidget {
   final String appBarTitle;

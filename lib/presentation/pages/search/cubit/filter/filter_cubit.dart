@@ -37,7 +37,7 @@ class FilterCubit extends Cubit<FilterState> {
   }
 
   void selectSportTypeFilterIndex(String? value) {
-    emit(state.copyWith(selectedSportType: value));
+    emit(state.copyWith(selectedSportType: [value!]));
   }
 
   void selectFacilityTypeFilterIndex(String? value) {

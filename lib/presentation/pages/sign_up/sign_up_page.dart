@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/arrow_button.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/default_input_text_field.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/empty_layout.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/password_input_text_field.dart';
 import 'package:sport_app/presentation/pages/sign_up/cubit/sign_up_cubit.dart';
-import 'package:sport_app/presentation/widgets/arrow_button.dart';
-import 'package:sport_app/presentation/widgets/default_input_text_field.dart';
-import 'package:sport_app/presentation/widgets/empty_layout.dart';
-import 'package:sport_app/presentation/widgets/password_input_text_field.dart';
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

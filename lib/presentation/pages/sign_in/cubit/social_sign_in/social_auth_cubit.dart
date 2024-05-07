@@ -9,7 +9,7 @@ import 'package:sport_app/core/router/router_config.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/domain/usecases/auth/google_sign_in_use_case.dart';
 import 'package:sport_app/injector.dart';
-import 'package:sport_app/presentation/pages/additions_pages/user/user_cubit.dart';
+import 'package:sport_app/features/additional_pages/presentation/bloc/user/user_cubit.dart';
 
 part 'social_auth_state.dart';
 
@@ -21,11 +21,11 @@ class SocialAuthCubit extends Cubit<SocialAuthState> {
   Future<void> signInWithGoogle({bool isAgree = true}) async {
     const String androidClientId = kReleaseMode
         ? 'kk'
-        : '953820261350-upko59qj8ai7sf25rovgmb1v6n4gk0e6.apps.googleusercontent.com';
+        : '557636996835-ts09e2krufejrvium62anmrbgnn54t2t.apps.googleusercontent.com';
 
     final String clientId = Platform.isAndroid
         ? androidClientId
-        : '953820261350-hevutgciqeisj53ddct4f8eu6qc5t77o.apps.googleusercontent.com';
+        : '557636996835-ts09e2krufejrvium62anmrbgnn54t2t.apps.googleusercontent.com';
 
     try {
       final GoogleSignIn  googleSignIn = GoogleSignIn(

@@ -1,6 +1,7 @@
 import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/data/models/booking/booking_response_model.dart';
 import 'package:sport_app/data/models/facility/facility_response_model.dart';
+import 'package:sport_app/data/models/favorite/favorite_response_model.dart';
 import 'package:sport_app/data/models/user/user_data.dart';
 import 'package:sport_app/data/models/user/user_response_model.dart';
 
@@ -16,6 +17,7 @@ class GraphClient {
     final queryResult = await sportAppApi.execute(query: loginMutation, data: data, isMutation: true);
     return UserResponseModel.fromJson(queryResult);
   }
+
   Future<UserResponseModel> googleSignIn({required Map<String, dynamic> data}) async {
     final queryResult = await sportAppApi.execute(query: googleLoginMutation, data: data, isMutation: true);
     return UserResponseModel.fromJson(queryResult);
@@ -44,5 +46,19 @@ class GraphClient {
   Future<BookingResponseModel> getAllBooking({required Map<String, dynamic> data}) async {
     final queryResult = await sportAppApi.execute(query: getAllBookingQuery, data: data);
     return BookingResponseModel.fromJson(queryResult);
+  }
+
+  Future<BookingResponseModel> createBooking({required Map<String, dynamic> data}) async {
+    final queryResult = await sportAppApi.execute(query: createBookingMutation, data: data, isMutation: true);
+    return BookingResponseModel.fromJson(queryResult);
+  }
+
+  Future<FavoriteResponseModel> addFavorite({required Map<String, dynamic> data}) async {
+    final queryResult = await sportAppApi.execute(query: addFavoriteMutation, data: data, isMutation: true);
+    return FavoriteResponseModel.fromJson(queryResult);
+  }
+  Future<FavoriteResponseModel> removeFavorite({required Map<String, dynamic> data}) async {
+    final queryResult = await sportAppApi.execute(query: removeFavoriteMutation, data: data, isMutation: true);
+    return FavoriteResponseModel.fromJson(queryResult);
   }
 }

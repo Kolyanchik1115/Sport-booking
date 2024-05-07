@@ -11,9 +11,13 @@ _$FacilityDataImpl _$$FacilityDataImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       name: json['name'] as String,
       address: json['address'] as String?,
-      sportType: json['sportType'] as String?,
+      sportType: (json['sportType'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       coveringType: json['coveringType'] as String?,
-      district: json['district'] as String?,
+      district: json['district'] == null
+          ? null
+          : FacilityDistrict.fromJson(json['district'] as Map<String, dynamic>),
       minBookingTime: json['minBookingTime'] as int?,
       facilityType: json['facilityType'] as String?,
       description: json['description'] as String?,

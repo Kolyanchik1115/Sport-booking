@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FilterState {
-  String? get selectedSportType => throw _privateConstructorUsedError;
+  List<String>? get selectedSportType => throw _privateConstructorUsedError;
   String? get selectedCoveringType => throw _privateConstructorUsedError;
   String? get selectedFacilityType => throw _privateConstructorUsedError;
 
@@ -32,7 +32,7 @@ abstract class $FilterStateCopyWith<$Res> {
       _$FilterStateCopyWithImpl<$Res, FilterState>;
   @useResult
   $Res call(
-      {String? selectedSportType,
+      {List<String>? selectedSportType,
       String? selectedCoveringType,
       String? selectedFacilityType});
 }
@@ -58,7 +58,7 @@ class _$FilterStateCopyWithImpl<$Res, $Val extends FilterState>
       selectedSportType: freezed == selectedSportType
           ? _value.selectedSportType
           : selectedSportType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as List<String>?,
       selectedCoveringType: freezed == selectedCoveringType
           ? _value.selectedCoveringType
           : selectedCoveringType // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,7 @@ abstract class _$$FilterStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? selectedSportType,
+      {List<String>? selectedSportType,
       String? selectedCoveringType,
       String? selectedFacilityType});
 }
@@ -102,9 +102,9 @@ class __$$FilterStateImplCopyWithImpl<$Res>
   }) {
     return _then(_$FilterStateImpl(
       selectedSportType: freezed == selectedSportType
-          ? _value.selectedSportType
+          ? _value._selectedSportType
           : selectedSportType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as List<String>?,
       selectedCoveringType: freezed == selectedCoveringType
           ? _value.selectedCoveringType
           : selectedCoveringType // ignore: cast_nullable_to_non_nullable
@@ -121,12 +121,22 @@ class __$$FilterStateImplCopyWithImpl<$Res>
 
 class _$FilterStateImpl implements _FilterState {
   const _$FilterStateImpl(
-      {this.selectedSportType,
+      {final List<String>? selectedSportType,
       this.selectedCoveringType,
-      this.selectedFacilityType});
+      this.selectedFacilityType})
+      : _selectedSportType = selectedSportType;
 
+  final List<String>? _selectedSportType;
   @override
-  final String? selectedSportType;
+  List<String>? get selectedSportType {
+    final value = _selectedSportType;
+    if (value == null) return null;
+    if (_selectedSportType is EqualUnmodifiableListView)
+      return _selectedSportType;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? selectedCoveringType;
   @override
@@ -142,8 +152,8 @@ class _$FilterStateImpl implements _FilterState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterStateImpl &&
-            (identical(other.selectedSportType, selectedSportType) ||
-                other.selectedSportType == selectedSportType) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedSportType, _selectedSportType) &&
             (identical(other.selectedCoveringType, selectedCoveringType) ||
                 other.selectedCoveringType == selectedCoveringType) &&
             (identical(other.selectedFacilityType, selectedFacilityType) ||
@@ -151,8 +161,11 @@ class _$FilterStateImpl implements _FilterState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedSportType,
-      selectedCoveringType, selectedFacilityType);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_selectedSportType),
+      selectedCoveringType,
+      selectedFacilityType);
 
   @JsonKey(ignore: true)
   @override
@@ -163,12 +176,12 @@ class _$FilterStateImpl implements _FilterState {
 
 abstract class _FilterState implements FilterState {
   const factory _FilterState(
-      {final String? selectedSportType,
+      {final List<String>? selectedSportType,
       final String? selectedCoveringType,
       final String? selectedFacilityType}) = _$FilterStateImpl;
 
   @override
-  String? get selectedSportType;
+  List<String>? get selectedSportType;
   @override
   String? get selectedCoveringType;
   @override

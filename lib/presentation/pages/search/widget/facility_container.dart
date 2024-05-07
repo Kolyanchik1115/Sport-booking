@@ -3,15 +3,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/svg_button.dart';
 import 'package:sport_app/injector.dart';
-import 'package:sport_app/presentation/widgets/svg_button.dart';
+import 'package:sport_app/presentation/pages/search/widget/facility_tag_label.dart';
 
 class FacilityContainer extends StatelessWidget {
   final FacilityData? facility;
   final Function() onTap;
-  final Function() onPressed;
+  final Function() onIconTap;
 
-  const FacilityContainer({super.key, required this.facility, required this.onTap, required this.onPressed});
+  const FacilityContainer({
+    super.key,
+    required this.facility,
+    required this.onTap,
+    required this.onIconTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +57,7 @@ class FacilityContainer extends StatelessWidget {
                   right: 20.0,
                   child: SvgButton(
                     asset: AppSvg.heart,
-                    onTap: onPressed,
+                    onTap: onIconTap,
                   ),
                 ),
                 Positioned(
@@ -78,15 +84,13 @@ class FacilityContainer extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 5.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0),
-              child: Text(facility?.sportType ?? ''),
+            FacilityTagLabel(labelType: "sportType", facility: facility),
+            Row(
+              children: [
+                FacilityTagLabel(labelType: "facilityType", facility: facility),
+                FacilityTagLabel(labelType: "coveringType", facility: facility),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0),
-              child: Row(children: [Text('${facility?.facilityType} · ${facility?.coveringType}')]),
-            ),
-
           ],
         ),
       ),

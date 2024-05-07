@@ -15,7 +15,7 @@ class FacilityCubit extends Cubit<FacilityState> {
   FacilityCubit() : super(const FacilityState());
 
   int _currentPage = 1;
-  String? _sportType;
+  List<String>? _sportType;
   String? _coveringType;
   String? _facilityType;
 
@@ -27,7 +27,7 @@ class FacilityCubit extends Cubit<FacilityState> {
     _coveringType = value;
   }
 
-  set sportType(String? value) {
+  set sportType(List<String>? value) {
     _sportType = value;
   }
 

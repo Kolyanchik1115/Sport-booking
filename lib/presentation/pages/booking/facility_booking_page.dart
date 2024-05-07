@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/utils/dummy_data.dart';
-import 'package:sport_app/data/models/booking/booking_time_slots_model.dart';
-import 'package:sport_app/presentation/pages/booking/cubit/booking_cubit.dart';
-import 'package:sport_app/presentation/widgets/app_elevated_button.dart';
-import 'package:sport_app/presentation/widgets/empty_layout.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/empty_layout.dart';
+import 'package:sport_app/presentation/pages/booking/cubit/booking/booking_cubit.dart';
+import 'package:sport_app/presentation/pages/booking/cubit/day_of_week/day_of_week_cubit.dart';
+import 'package:sport_app/presentation/pages/booking/widget/cells_list_view.dart';
+import 'package:sport_app/presentation/pages/booking/widget/total_row_widget.dart';
 
 class FacilityBookingPage extends StatefulWidget {
   final int facilityId;
@@ -21,342 +22,104 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
   final double itemExtend = 45.0;
   List<String> daysOfWeek = DummyData.daysOfWeek;
   String selectedDay = DummyData.daysOfWeek.first;
-  int? selectedTimeSlotIndex;
-
-  List<List<int>> selectedCellIds = List.generate(7, (day) => []);
-  List<List<BookingTimeSlotsModel>> scheduleData = List.generate(7, (day) => []);
-  List<List<bool>> isOrange = List.generate(7, (day) => List.filled(48, false));
-  List<bool> isActiveDay = [];
-  DateTime selectedDate = DateTime.now();
-
-
-  Future<void> fetchData() async {
-    await widget.bookingCubit.getAllBookings(id: widget.facilityId);
-    scheduleData = List.generate(
-        7, (day) => widget.bookingCubit.state.timeSlots.where((data) => data.dayOfWeek == day + 1).toList());
-  }
-
-  @override
-  void initState() {
-    fetchData();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    double? currentPrice = getCurrentSelectedPrice();
-
-    return BlocProvider.value(
-      value: widget.bookingCubit,
-      child: BlocBuilder<BookingCubit, BookingState>(
-        builder: (context, state) {
-          isActiveDay = List.generate(daysOfWeek.length, (index) => scheduleData[index].isNotEmpty);
-          return EmptyLayout(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: itemExtend + 5,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: daysOfWeek.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            if (isActiveDay[index]) {
-                              setState(() {
-                                selectedDay = daysOfWeek[index];
-                                for (int i = 0; i < daysOfWeek.length; i++) {
-                                  isOrange[i] = List.filled(48, false);
-                                }
-                                selectedDate = DateTime.now().add(Duration(days: index));
-                              });
-                            }
-                          },
-                          child: Container(
-                            width: itemExtend + 5,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: isActiveDay[index]
-                                  ? selectedDay == daysOfWeek[index]
-                                      ? Theme.of(context).colorScheme.primary
-                                      : Theme.of(context).colorScheme.primary.withOpacity(0.5)
-                                  : Theme.of(context).colorScheme.background,
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Text(daysOfWeek[index]),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: scheduleData[daysOfWeek.indexOf(selectedDay)].length + 1,
-                    padding: const EdgeInsets.only(top: 25.0),
-                    itemExtent: itemExtend,
-                    itemBuilder: (context, index) {
-                      if (index < scheduleData[daysOfWeek.indexOf(selectedDay)].length) {
-                        int? price = getPriceForTimeRange(
-                          scheduleData[daysOfWeek.indexOf(selectedDay)][index].startTime.toIso8601String(),
-                          scheduleData[daysOfWeek.indexOf(selectedDay)][index].endTime.toIso8601String(),
-                          selectedDay,
-                        );
-                        return ListTile(
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          leading: SizedBox(
-                            width: itemExtend + 5,
-                            child: Transform.translate(
-                              offset: Offset(0, -itemExtend / 2),
-                              child: Text(
-                                '${scheduleData[daysOfWeek.indexOf(selectedDay)][index].startTime.hour.toString().padLeft(2, '0')}:${scheduleData[daysOfWeek.indexOf(selectedDay)][index].startTime.minute.toString().padLeft(2, '0')}',
-                                style: const TextStyle(fontSize: 16.0, color: Colors.black),
-                              ),
-                            ),
-                          ),
-                          subtitle: InkWell(
-                              onTap: () {
-                                if (isActiveDay[daysOfWeek.indexOf(selectedDay)]) {
-                                  setState(() {
-                                    int currentIndex = index;
-                                    int? previousIndex = selectedTimeSlotIndex;
-
-                                    if (previousIndex == null || (currentIndex - previousIndex).abs() > 1) {
-                                      isOrange[daysOfWeek.indexOf(selectedDay)].fillRange(
-                                          0, isOrange[daysOfWeek.indexOf(selectedDay)].length, false);
-                                      selectedCellIds[daysOfWeek.indexOf(selectedDay)].clear();
-                                    }
-
-                                    int start = currentIndex;
-                                    int end = previousIndex ?? currentIndex;
-
-                                    if (start > end) {
-                                      int temp = start;
-                                      start = end;
-                                      end = temp;
-                                    }
-
-                                    for (int i = start; i <= end; i++) {
-                                      isOrange[daysOfWeek.indexOf(selectedDay)][i] = true;
-                                      selectedCellIds[daysOfWeek.indexOf(selectedDay)].add(
-                                          scheduleData[daysOfWeek.indexOf(selectedDay)][i].id);
-                                    }
-
-                                    List<int> activeCellIds = selectedCellIds[daysOfWeek.indexOf(selectedDay)].toList();
-                                    print('Active Cell IDs: $activeCellIds');
-
-                                    DateTime selectedStartTime =
-                                    scheduleData[daysOfWeek.indexOf(selectedDay)][currentIndex].startTime.toUtc();
-                                    DateTime selectedEndTime = selectedStartTime.add(const Duration(minutes: 30))
-                                        .toUtc();
-                                    print('Selected Range: $selectedStartTime to $selectedEndTime');
-
-                                    selectedTimeSlotIndex = currentIndex;
-                                  });
-                                }
-                              },
-                              child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: price != null &&
-                                        isOrange[daysOfWeek.indexOf(selectedDay)][index] &&
-                                        isActiveDay[daysOfWeek.indexOf(selectedDay)]
-                                    ? Theme.of(context).colorScheme.primary.withOpacity(0.5)
-                                    : Colors.transparent,
-                                border: Border(
-                                  left: BorderSide(
-                                      color: price != null ? Theme.of(context).colorScheme.primary : Colors.transparent,
-                                      width: 4.0),
-                                  top: const BorderSide(color: Colors.black, width: 0.2),
-                                ),
-                              ),
-                              child: Center(
-                                child: price != null
-                                    ? Text(
-                                        '$price₴',
-                                        style: const TextStyle(color: Colors.black),
-                                      )
-                                    : const SizedBox.shrink(),
-                              ),
-                            ),
-                          ),
-                        );
-                      } else {
-                        DateTime lastCellEndTime = scheduleData[daysOfWeek.indexOf(selectedDay)].isNotEmpty
-                            ? scheduleData[daysOfWeek.indexOf(selectedDay)].last.endTime
-                            : DateTime.now();
-                        return ListTile(
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          leading: SizedBox(
-                            width: itemExtend + 5,
-                            child: Transform.translate(
-                              offset: Offset(0, -itemExtend / 2),
-                              child: Text(
-                                '${lastCellEndTime.hour.toString().padLeft(2, '0')}:${lastCellEndTime.minute.toString().padLeft(2, '0')}',
-                                style: const TextStyle(fontSize: 16.0, color: Colors.black),
-                              ),
-                            ),
-                          ),
-                          subtitle: InkWell(
-                            onTap: () {},
-                            child: const DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: Colors.transparent,
-                                border: Border(
-                                  left: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 4.0,
-                                  ),
-                                  top: BorderSide(color: Colors.black, width: 0.2),
-                                ),
-                              ),
-                              child: Center(
-                                child: SizedBox.shrink(),
-                              ),
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => DayOfWeekCubit()..fetchData(widget.facilityId),
+        ),
+        BlocProvider.value(value: widget.bookingCubit),
+      ],
+      child: EmptyLayout(
+        child: BlocBuilder<DayOfWeekCubit, DayOfWeekState>(
+          builder: (context, weekState) {
+            return weekState.maybeWhen(
+              loading: () => const Center(child: CircularProgressIndicator()),
+              orElse: () => const SizedBox.shrink(),
+              data: (scheduleData, selectedDay) => BlocBuilder<BookingCubit, BookingState>(
+                builder: (context, state) {
+                  context.read<BookingCubit>().getBooking(scheduleData[selectedDay]);
+                  return Column(
                     children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 25.0),
-                            child: Text(
-                              'Total:  ',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(color: Theme.of(context).colorScheme.secondary),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(
-                              currentPrice != null ? '$currentPrice₴' : '0.0₴',
-                              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 50.0),
-                        child: SizedBox(
-                          child: AppElevatedButton(
-                            text: 'Submit',
-                            textStyle: currentPrice != null
-                                ? Theme.of(context).textTheme.titleLarge?.copyWith(
-                                      color: Theme.of(context).colorScheme.background,
-                                    )
-                                : Theme.of(context).textTheme.titleLarge?.copyWith(
-                                      color: Theme.of(context).colorScheme.onPrimary,
-                                    ),
-                            onPressed: () {
-                              if (currentPrice != null && selectedCellIds.isNotEmpty) {
-                                int selectedDayIndex = daysOfWeek.indexOf(selectedDay);
-
-                                int firstSelectedIndex =
-                                    selectedCellIds[selectedDayIndex].reduce((min, id) => id < min ? id : min);
-                                int lastSelectedIndex =
-                                    selectedCellIds[selectedDayIndex].reduce((max, id) => id > max ? id : max);
-
-                                DateTime firstSelectedTime = scheduleData[selectedDayIndex]
-                                    .firstWhere((slot) => slot.id == firstSelectedIndex)
-                                    .startTime;
-                                DateTime lastSelectedTime = scheduleData[selectedDayIndex]
-                                    .firstWhere((slot) => slot.id == lastSelectedIndex)
-                                    .endTime;
-
-                                print('First Selected Time: $firstSelectedTime');
-                                print('Last Selected Time: $lastSelectedTime');
-
-                                widget.bookingCubit.currentPrice = currentPrice;
-                                widget.bookingCubit.cells = selectedCellIds[selectedDayIndex];
-                                widget.bookingCubit.dates = [firstSelectedTime, lastSelectedTime];
-                                widget.bookingCubit.dateTime = selectedDate;
-                                context.pop();
-                              }
-                            },
-                          ),
+                      SizedBox(
+                        height: itemExtend + 5,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: daysOfWeek.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  context.read<BookingCubit>().resetRange();
+                                  context.read<BookingCubit>().getBooking(scheduleData[selectedDay]);
+                                  context.read<DayOfWeekCubit>().selectDate(index);
+                                },
+                                child: Container(
+                                  width: itemExtend + 5,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: scheduleData[index].isNotEmpty
+                                        ? selectedDay == index
+                                            ? Theme.of(context).colorScheme.primary
+                                            : Theme.of(context).colorScheme.primary.withOpacity(0.5)
+                                        : Theme.of(context).colorScheme.background,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  child: Text(daysOfWeek[index]),
+                                ),
+                              ),
+                            );
+                          },
                         ),
+                      ),
+                      CellsListViewBuilder(
+                        itemExtend: itemExtend,
+                        scheduleData: scheduleData,
+                        daysOfWeek: daysOfWeek,
+                        selectedDay: DummyData.daysOfWeek[selectedDay],
+                        selectedIdRange: state.selectedIdRange,
+                        onTap: (index) {
+                          context.read<BookingCubit>().updateRange(scheduleData[selectedDay][index].id);
+                        },
+                      ),
+                      TotalRowWidget(
+                        totalPrice: state.totalPrice,
+                        selectedIdRange: state.selectedIdRange,
+                        onPressed: () {
+                          if (state.totalPrice != 0 && state.selectedIdRange.isNotEmpty) {
+                            DateTime startTime = scheduleData[selectedDay]
+                                .firstWhere((slot) => state.selectedIdRange.contains(slot.id))
+                                .startTime;
+                            DateTime endTime = scheduleData[selectedDay]
+                                .lastWhere((slot) => state.selectedIdRange.contains(slot.id))
+                                .endTime;
+
+                            print('First Selected Time: $startTime');
+                            print('Last Selected Time: $endTime');
+                            print('price: ${state.totalPrice}');
+                            print('cells: ${state.selectedIdRange}');
+
+                            context.read<BookingCubit>().updateState(
+                              cells: state.selectedIdRange,
+                              price: state.totalPrice,
+                              dateTime: DateTime.now(),
+                              dates: [startTime, endTime],
+                            );
+                            context.pop();
+                          }
+                        },
                       ),
                     ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
+                  );
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
-  }
-
-  double? getCurrentSelectedPrice() {
-    double totalPrice = 0;
-
-    for (int dayIndex = 0; dayIndex < 7; dayIndex++) {
-      for (int index = 0; index < isOrange[dayIndex].length; index++) {
-        if (isOrange[dayIndex][index]) {
-          DateTime startTime;
-          DateTime endTime;
-
-          if (index < scheduleData[dayIndex].length) {
-            startTime = scheduleData[dayIndex][index].startTime.toUtc();
-            endTime = startTime.add(const Duration(minutes: 30));
-          } else {
-            startTime = DateTime(1970, 1, 1, 0, 0).toUtc();
-            endTime = DateTime(1970, 1, 1, 0, 0).toUtc();
-          }
-
-          int? price = getPriceForTimeRange(
-            startTime.toUtc().toIso8601String(),
-            endTime.toUtc().toIso8601String(),
-            daysOfWeek[dayIndex],
-          );
-
-          if (price != null) {
-            totalPrice += price;
-          }
-        }
-      }
-    }
-    for (int i = 0; i < isActiveDay.length; i++) {
-      if (isActiveDay[i]) {
-        selectedDate = selectedDate.add(Duration(days: i));
-        break;
-      }
-    }
-    return totalPrice != 0 ? totalPrice : null;
-  }
-
-  int? getPriceForTimeRange(String startTimeString, String endTimeString, String selectedDay) {
-    int totalPrice = 0;
-
-    for (var interval in scheduleData[daysOfWeek.indexOf(selectedDay)]) {
-      DateTime intervalStartTime = DateTime.parse('${interval.startTime}').toUtc();
-      DateTime intervalEndTime = DateTime.parse('${interval.endTime}').toUtc();
-      DateTime startTime = DateTime.parse(startTimeString).toUtc();
-      DateTime endTime = DateTime.parse(endTimeString).toUtc();
-
-      // print('Interval: $intervalStartTime to $intervalEndTime');
-      // print('Selected Range: $startTime to $endTime');
-
-      if (startTime.isBefore(intervalEndTime) && endTime.isAfter(intervalStartTime)) {
-        double partialPrice = endTime.difference(startTime).inMinutes / 30 * interval.price;
-        totalPrice += partialPrice.round();
-      }
-    }
-    // print('Total Price: $totalPrice');
-
-    return totalPrice != 0 ? totalPrice : null;
   }
 }

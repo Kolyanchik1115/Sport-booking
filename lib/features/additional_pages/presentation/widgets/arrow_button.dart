@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sport_app/core/themes/app_assets.dart';
 
-import '../../core/themes/app_assets.dart';
 
 class ArrowButton extends StatelessWidget {
   final String title;

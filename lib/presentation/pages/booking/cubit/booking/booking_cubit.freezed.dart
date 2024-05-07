@@ -16,13 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BookingState {
-  dynamic get price => throw _privateConstructorUsedError;
-  dynamic get dateTime => throw _privateConstructorUsedError;
+  double get totalPrice => throw _privateConstructorUsedError;
+  DateTime? get dateTime => throw _privateConstructorUsedError;
   List<DateTime> get dates => throw _privateConstructorUsedError;
   List<int> get cells => throw _privateConstructorUsedError;
   List<BookingTimeSlotsModel> get timeSlots =>
       throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  List<int> get selectedIdRange => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -37,12 +38,13 @@ abstract class $BookingStateCopyWith<$Res> {
       _$BookingStateCopyWithImpl<$Res, BookingState>;
   @useResult
   $Res call(
-      {dynamic price,
-      dynamic dateTime,
+      {double totalPrice,
+      DateTime? dateTime,
       List<DateTime> dates,
       List<int> cells,
       List<BookingTimeSlotsModel> timeSlots,
       bool isLoading,
+      List<int> selectedIdRange,
       String? errorMessage});
 }
 
@@ -59,23 +61,24 @@ class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? price = freezed,
+    Object? totalPrice = null,
     Object? dateTime = freezed,
     Object? dates = null,
     Object? cells = null,
     Object? timeSlots = null,
     Object? isLoading = null,
+    Object? selectedIdRange = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      totalPrice: null == totalPrice
+          ? _value.totalPrice
+          : totalPrice // ignore: cast_nullable_to_non_nullable
+              as double,
       dateTime: freezed == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as DateTime?,
       dates: null == dates
           ? _value.dates
           : dates // ignore: cast_nullable_to_non_nullable
@@ -92,6 +95,10 @@ class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedIdRange: null == selectedIdRange
+          ? _value.selectedIdRange
+          : selectedIdRange // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -109,12 +116,13 @@ abstract class _$$BookingStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {dynamic price,
-      dynamic dateTime,
+      {double totalPrice,
+      DateTime? dateTime,
       List<DateTime> dates,
       List<int> cells,
       List<BookingTimeSlotsModel> timeSlots,
       bool isLoading,
+      List<int> selectedIdRange,
       String? errorMessage});
 }
 
@@ -129,17 +137,24 @@ class __$$BookingStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? price = freezed,
+    Object? totalPrice = null,
     Object? dateTime = freezed,
     Object? dates = null,
     Object? cells = null,
     Object? timeSlots = null,
     Object? isLoading = null,
+    Object? selectedIdRange = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_$BookingStateImpl(
-      price: freezed == price ? _value.price! : price,
-      dateTime: freezed == dateTime ? _value.dateTime! : dateTime,
+      totalPrice: null == totalPrice
+          ? _value.totalPrice
+          : totalPrice // ignore: cast_nullable_to_non_nullable
+              as double,
+      dateTime: freezed == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       dates: null == dates
           ? _value._dates
           : dates // ignore: cast_nullable_to_non_nullable
@@ -156,6 +171,10 @@ class __$$BookingStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedIdRange: null == selectedIdRange
+          ? _value._selectedIdRange
+          : selectedIdRange // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -168,23 +187,24 @@ class __$$BookingStateImplCopyWithImpl<$Res>
 
 class _$BookingStateImpl implements _BookingState {
   const _$BookingStateImpl(
-      {this.price = 0.0,
-      this.dateTime = DateTime.now,
+      {this.totalPrice = 0.0,
+      this.dateTime,
       final List<DateTime> dates = const [],
       final List<int> cells = const [],
       final List<BookingTimeSlotsModel> timeSlots = const [],
       this.isLoading = false,
+      final List<int> selectedIdRange = const [],
       this.errorMessage})
       : _dates = dates,
         _cells = cells,
-        _timeSlots = timeSlots;
+        _timeSlots = timeSlots,
+        _selectedIdRange = selectedIdRange;
 
   @override
   @JsonKey()
-  final dynamic price;
+  final double totalPrice;
   @override
-  @JsonKey()
-  final dynamic dateTime;
+  final DateTime? dateTime;
   final List<DateTime> _dates;
   @override
   @JsonKey()
@@ -215,12 +235,21 @@ class _$BookingStateImpl implements _BookingState {
   @override
   @JsonKey()
   final bool isLoading;
+  final List<int> _selectedIdRange;
+  @override
+  @JsonKey()
+  List<int> get selectedIdRange {
+    if (_selectedIdRange is EqualUnmodifiableListView) return _selectedIdRange;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedIdRange);
+  }
+
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'BookingState(price: $price, dateTime: $dateTime, dates: $dates, cells: $cells, timeSlots: $timeSlots, isLoading: $isLoading, errorMessage: $errorMessage)';
+    return 'BookingState(totalPrice: $totalPrice, dateTime: $dateTime, dates: $dates, cells: $cells, timeSlots: $timeSlots, isLoading: $isLoading, selectedIdRange: $selectedIdRange, errorMessage: $errorMessage)';
   }
 
   @override
@@ -228,14 +257,18 @@ class _$BookingStateImpl implements _BookingState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BookingStateImpl &&
-            const DeepCollectionEquality().equals(other.price, price) &&
-            const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
+            (identical(other.totalPrice, totalPrice) ||
+                other.totalPrice == totalPrice) &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime) &&
             const DeepCollectionEquality().equals(other._dates, _dates) &&
             const DeepCollectionEquality().equals(other._cells, _cells) &&
             const DeepCollectionEquality()
                 .equals(other._timeSlots, _timeSlots) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedIdRange, _selectedIdRange) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
@@ -243,12 +276,13 @@ class _$BookingStateImpl implements _BookingState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(price),
-      const DeepCollectionEquality().hash(dateTime),
+      totalPrice,
+      dateTime,
       const DeepCollectionEquality().hash(_dates),
       const DeepCollectionEquality().hash(_cells),
       const DeepCollectionEquality().hash(_timeSlots),
       isLoading,
+      const DeepCollectionEquality().hash(_selectedIdRange),
       errorMessage);
 
   @JsonKey(ignore: true)
@@ -260,18 +294,19 @@ class _$BookingStateImpl implements _BookingState {
 
 abstract class _BookingState implements BookingState {
   const factory _BookingState(
-      {final dynamic price,
-      final dynamic dateTime,
+      {final double totalPrice,
+      final DateTime? dateTime,
       final List<DateTime> dates,
       final List<int> cells,
       final List<BookingTimeSlotsModel> timeSlots,
       final bool isLoading,
+      final List<int> selectedIdRange,
       final String? errorMessage}) = _$BookingStateImpl;
 
   @override
-  dynamic get price;
+  double get totalPrice;
   @override
-  dynamic get dateTime;
+  DateTime? get dateTime;
   @override
   List<DateTime> get dates;
   @override
@@ -280,6 +315,8 @@ abstract class _BookingState implements BookingState {
   List<BookingTimeSlotsModel> get timeSlots;
   @override
   bool get isLoading;
+  @override
+  List<int> get selectedIdRange;
   @override
   String? get errorMessage;
   @override

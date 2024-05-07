@@ -4,9 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/data/models/user/user_data.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/svg_button.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/user_avatar_widget.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
-import 'package:sport_app/presentation/widgets/svg_button.dart';
-import 'package:sport_app/presentation/widgets/user_avatar_widget.dart';
+
 
 class UserCardWidget extends StatelessWidget {
   final UserData user;

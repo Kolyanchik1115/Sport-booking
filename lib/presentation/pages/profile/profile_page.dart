@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
+import 'package:sport_app/features/additional_pages/presentation/bloc/documents/documents_cubit.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/button_tile_widget.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/custom_error_widget.dart';
+import 'package:sport_app/features/additional_pages/presentation/widgets/empty_layout.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/widget/user_card_widget.dart';
-import 'package:sport_app/presentation/widgets/button_tile_widget.dart';
-import 'package:sport_app/presentation/widgets/custom_error_widget.dart';
-import 'package:sport_app/presentation/widgets/empty_layout.dart';
+
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProfileCubit()..getProfile(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ProfileCubit()..getProfile(),
+        ),
+        BlocProvider(
+          create: (context) => DocumentsCubit(),
+        ),
+      ],
       child: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           if (state.isLoading) {
@@ -33,8 +42,8 @@ class ProfilePage extends StatelessWidget {
                     ButtonTile(
                       icon: AppSvg.fingerprint,
                       title: 'Privacy',
-                      onPressed: () {},
-                      color:  Theme.of(context).colorScheme.surface,
+                      onPressed: () => context.read<DocumentsCubit>().openDocument(DocumentType.privacyPolicy),
+                      color: Theme.of(context).colorScheme.surface,
                       subtitle: 'Read the privacy policy',
                     ),
                     // ButtonTile(
@@ -47,8 +56,8 @@ class ProfilePage extends StatelessWidget {
                     // ),
                     ButtonTile(
                       icon: AppSvg.about,
-                      title: 'About',
-                      onPressed: () {},
+                      title: 'About Us',
+                      onPressed: () => context.read<DocumentsCubit>().openDocument(DocumentType.about),
                       color: Theme.of(context).colorScheme.primary,
                       subtitle: 'Learn more about Sport App',
                     ),
