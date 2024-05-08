@@ -45,6 +45,7 @@ const String getAllFacilityQuery =
         facilityType
         description
         minBookingTime
+        currentUserIsFavorite
         images {
             image
         }
@@ -53,3 +54,31 @@ const String getAllFacilityQuery =
   }
 }
 ''';
+const getAllUserFavoriteQuery = r'''query GetUserFavorites($paginationArgs: PaginationArgs) {
+  getUserFavorites(paginationArgs: $paginationArgs) {
+       facilities {
+        id
+        name
+        address
+        sportType
+        district {
+             city {
+                 id
+                 name
+             }
+            id
+            name
+        }
+        location
+        coveringType
+        facilityType
+        description
+        minBookingTime
+        currentUserIsFavorite
+        images {
+            image
+        }
+        avgPrice 
+      }
+  }
+}''';

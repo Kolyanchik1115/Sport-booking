@@ -46,11 +46,23 @@ class FacilityRepositoryImpl implements FacilityRepository {
       return Left(ServerFailure(message: e.toString()));
     }
   }
+
   @override
   Future<Either<Failure, FavoriteResponseModel>> removeFavorite({required int facilityId}) async {
     try {
       final data = {"facilityId": facilityId};
       final result = await remoteClient.removeFavorite(data: data);
+      return Right(result);
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, FacilityResponseModel>> getAllUserFavorites() async {
+    try {
+      final data = {"paginationArgs": {"limit": 20, "page": 1}};
+      final result = await remoteClient.getAllUserFavorites(data: data);
       return Right(result);
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));

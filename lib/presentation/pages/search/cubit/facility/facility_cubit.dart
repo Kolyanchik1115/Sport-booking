@@ -51,15 +51,15 @@ class FacilityCubit extends Cubit<FacilityState> {
       },
       (data) {
         if (_currentPage == 1) {
-          facilities = data.findAll.facilities;
+          facilities = data.findAll!.facilities;
         } else {
-          facilities.addAll(data.findAll.facilities);
+          facilities.addAll(data.findAll!.facilities);
         }
         emit(state.copyWith(
           data: facilities,
           currentPage: _currentPage,
           isLoading: false,
-          hasReachedEnd: data.findAll.facilities.isEmpty,
+          hasReachedEnd: data.findAll!.facilities.isEmpty,
         ));
         _currentPage++;
       },

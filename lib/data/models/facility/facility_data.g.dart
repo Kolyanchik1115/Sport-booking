@@ -23,6 +23,7 @@ _$FacilityDataImpl _$$FacilityDataImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       avgPrice: (json['avgPrice'] as num?)?.toDouble(),
       location: json['location'] as String?,
+      currentUserIsFavorite: json['currentUserIsFavorite'] as bool?,
       images: (json['images'] as List<dynamic>)
           .map((e) => FacilityDataImage.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -41,5 +42,6 @@ Map<String, dynamic> _$$FacilityDataImplToJson(_$FacilityDataImpl instance) =>
       'description': instance.description,
       'avgPrice': instance.avgPrice,
       'location': instance.location,
+      'currentUserIsFavorite': instance.currentUserIsFavorite,
       'images': instance.images,
     };

@@ -21,7 +21,8 @@ FacilityResponseModel _$FacilityResponseModelFromJson(
 
 /// @nodoc
 mixin _$FacilityResponseModel {
-  FacilityResponse get findAll => throw _privateConstructorUsedError;
+  FacilityResponse? get findAll => throw _privateConstructorUsedError;
+  FacilityResponse? get getUserFavorites => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +36,10 @@ abstract class $FacilityResponseModelCopyWith<$Res> {
           $Res Function(FacilityResponseModel) then) =
       _$FacilityResponseModelCopyWithImpl<$Res, FacilityResponseModel>;
   @useResult
-  $Res call({FacilityResponse findAll});
+  $Res call({FacilityResponse? findAll, FacilityResponse? getUserFavorites});
 
-  $FacilityResponseCopyWith<$Res> get findAll;
+  $FacilityResponseCopyWith<$Res>? get findAll;
+  $FacilityResponseCopyWith<$Res>? get getUserFavorites;
 }
 
 /// @nodoc
@@ -54,21 +56,42 @@ class _$FacilityResponseModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? findAll = null,
+    Object? findAll = freezed,
+    Object? getUserFavorites = freezed,
   }) {
     return _then(_value.copyWith(
-      findAll: null == findAll
+      findAll: freezed == findAll
           ? _value.findAll
           : findAll // ignore: cast_nullable_to_non_nullable
-              as FacilityResponse,
+              as FacilityResponse?,
+      getUserFavorites: freezed == getUserFavorites
+          ? _value.getUserFavorites
+          : getUserFavorites // ignore: cast_nullable_to_non_nullable
+              as FacilityResponse?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $FacilityResponseCopyWith<$Res> get findAll {
-    return $FacilityResponseCopyWith<$Res>(_value.findAll, (value) {
+  $FacilityResponseCopyWith<$Res>? get findAll {
+    if (_value.findAll == null) {
+      return null;
+    }
+
+    return $FacilityResponseCopyWith<$Res>(_value.findAll!, (value) {
       return _then(_value.copyWith(findAll: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FacilityResponseCopyWith<$Res>? get getUserFavorites {
+    if (_value.getUserFavorites == null) {
+      return null;
+    }
+
+    return $FacilityResponseCopyWith<$Res>(_value.getUserFavorites!, (value) {
+      return _then(_value.copyWith(getUserFavorites: value) as $Val);
     });
   }
 }
@@ -82,10 +105,12 @@ abstract class _$$FacilityResponseModelImplCopyWith<$Res>
       __$$FacilityResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FacilityResponse findAll});
+  $Res call({FacilityResponse? findAll, FacilityResponse? getUserFavorites});
 
   @override
-  $FacilityResponseCopyWith<$Res> get findAll;
+  $FacilityResponseCopyWith<$Res>? get findAll;
+  @override
+  $FacilityResponseCopyWith<$Res>? get getUserFavorites;
 }
 
 /// @nodoc
@@ -100,13 +125,18 @@ class __$$FacilityResponseModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? findAll = null,
+    Object? findAll = freezed,
+    Object? getUserFavorites = freezed,
   }) {
     return _then(_$FacilityResponseModelImpl(
-      findAll: null == findAll
+      findAll: freezed == findAll
           ? _value.findAll
           : findAll // ignore: cast_nullable_to_non_nullable
-              as FacilityResponse,
+              as FacilityResponse?,
+      getUserFavorites: freezed == getUserFavorites
+          ? _value.getUserFavorites
+          : getUserFavorites // ignore: cast_nullable_to_non_nullable
+              as FacilityResponse?,
     ));
   }
 }
@@ -114,17 +144,20 @@ class __$$FacilityResponseModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FacilityResponseModelImpl implements _FacilityResponseModel {
-  const _$FacilityResponseModelImpl({required this.findAll});
+  const _$FacilityResponseModelImpl(
+      {required this.findAll, required this.getUserFavorites});
 
   factory _$FacilityResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FacilityResponseModelImplFromJson(json);
 
   @override
-  final FacilityResponse findAll;
+  final FacilityResponse? findAll;
+  @override
+  final FacilityResponse? getUserFavorites;
 
   @override
   String toString() {
-    return 'FacilityResponseModel(findAll: $findAll)';
+    return 'FacilityResponseModel(findAll: $findAll, getUserFavorites: $getUserFavorites)';
   }
 
   @override
@@ -132,12 +165,14 @@ class _$FacilityResponseModelImpl implements _FacilityResponseModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FacilityResponseModelImpl &&
-            (identical(other.findAll, findAll) || other.findAll == findAll));
+            (identical(other.findAll, findAll) || other.findAll == findAll) &&
+            (identical(other.getUserFavorites, getUserFavorites) ||
+                other.getUserFavorites == getUserFavorites));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, findAll);
+  int get hashCode => Object.hash(runtimeType, findAll, getUserFavorites);
 
   @JsonKey(ignore: true)
   @override
@@ -156,13 +191,17 @@ class _$FacilityResponseModelImpl implements _FacilityResponseModel {
 
 abstract class _FacilityResponseModel implements FacilityResponseModel {
   const factory _FacilityResponseModel(
-      {required final FacilityResponse findAll}) = _$FacilityResponseModelImpl;
+          {required final FacilityResponse? findAll,
+          required final FacilityResponse? getUserFavorites}) =
+      _$FacilityResponseModelImpl;
 
   factory _FacilityResponseModel.fromJson(Map<String, dynamic> json) =
       _$FacilityResponseModelImpl.fromJson;
 
   @override
-  FacilityResponse get findAll;
+  FacilityResponse? get findAll;
+  @override
+  FacilityResponse? get getUserFavorites;
   @override
   @JsonKey(ignore: true)
   _$$FacilityResponseModelImplCopyWith<_$FacilityResponseModelImpl>
