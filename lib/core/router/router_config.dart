@@ -18,8 +18,6 @@ import 'package:sport_app/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:sport_app/presentation/pages/sign_up/sign_up_page.dart';
 import 'package:sport_app/presentation/pages/splash/splash_page.dart';
 
-
-
 class AppRouter {
   static final AppRouter _appRouter = AppRouter._();
 
@@ -84,6 +82,7 @@ class AppRouter {
             bookingCubit: (state.extra as List<dynamic>)[0] as BookingCubit,
             desc: (state.extra as List<dynamic>)[1] as String,
             facilityId: (state.extra as List<dynamic>)[2] as int,
+            image: (state.extra as List<dynamic>)[3] as String,
           ),
         ),
         GoRoute(
@@ -134,7 +133,13 @@ class AppRouter {
               routes: <RouteBase>[
                 GoRoute(
                   path: AppRoutes.reservation,
-                  builder: (BuildContext context, GoRouterState state) => const ReservationPage(),
+                  builder: (BuildContext context, GoRouterState state) => ReservationPage(
+                    description: (state.extra as List<dynamic>)[0] as String,
+                    date: (state.extra as List<dynamic>)[1] as DateTime,
+                    time: (state.extra as List<dynamic>)[2] as DateTime,
+                    number: (state.extra as List<dynamic>)[3] as String,
+                    image: (state.extra as List<dynamic>)[4] as String,
+                  ),
                 ),
               ],
             ),
