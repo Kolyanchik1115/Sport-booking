@@ -61,4 +61,8 @@ class GraphClient {
     final queryResult = await sportAppApi.execute(query: removeFavoriteMutation, data: data, isMutation: true);
     return FavoriteResponseModel.fromJson(queryResult);
   }
+  Future<FacilityResponseModel> getAllUserFavorites({required Map<String, dynamic> data}) async {
+    final queryResult = await sportAppApi.execute(query: getAllUserFavoriteQuery, data: data);
+    return FacilityResponseModel.fromJson(queryResult);
+  }
 }

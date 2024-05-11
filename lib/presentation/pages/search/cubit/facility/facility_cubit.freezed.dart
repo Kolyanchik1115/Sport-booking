@@ -20,6 +20,7 @@ mixin _$FacilityState {
   int get currentPage => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get hasReachedEnd => throw _privateConstructorUsedError;
+  bool get isChangeFavorite => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FacilityStateCopyWith<FacilityState> get copyWith =>
@@ -36,7 +37,8 @@ abstract class $FacilityStateCopyWith<$Res> {
       {List<FacilityData> data,
       int currentPage,
       bool isLoading,
-      bool hasReachedEnd});
+      bool hasReachedEnd,
+      bool isChangeFavorite});
 }
 
 /// @nodoc
@@ -56,6 +58,7 @@ class _$FacilityStateCopyWithImpl<$Res, $Val extends FacilityState>
     Object? currentPage = null,
     Object? isLoading = null,
     Object? hasReachedEnd = null,
+    Object? isChangeFavorite = null,
   }) {
     return _then(_value.copyWith(
       data: null == data
@@ -74,6 +77,10 @@ class _$FacilityStateCopyWithImpl<$Res, $Val extends FacilityState>
           ? _value.hasReachedEnd
           : hasReachedEnd // ignore: cast_nullable_to_non_nullable
               as bool,
+      isChangeFavorite: null == isChangeFavorite
+          ? _value.isChangeFavorite
+          : isChangeFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -91,7 +98,8 @@ abstract class _$$FacilityPaginationStateImplCopyWith<$Res>
       {List<FacilityData> data,
       int currentPage,
       bool isLoading,
-      bool hasReachedEnd});
+      bool hasReachedEnd,
+      bool isChangeFavorite});
 }
 
 /// @nodoc
@@ -110,6 +118,7 @@ class __$$FacilityPaginationStateImplCopyWithImpl<$Res>
     Object? currentPage = null,
     Object? isLoading = null,
     Object? hasReachedEnd = null,
+    Object? isChangeFavorite = null,
   }) {
     return _then(_$FacilityPaginationStateImpl(
       data: null == data
@@ -128,6 +137,10 @@ class __$$FacilityPaginationStateImplCopyWithImpl<$Res>
           ? _value.hasReachedEnd
           : hasReachedEnd // ignore: cast_nullable_to_non_nullable
               as bool,
+      isChangeFavorite: null == isChangeFavorite
+          ? _value.isChangeFavorite
+          : isChangeFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -139,7 +152,8 @@ class _$FacilityPaginationStateImpl implements _FacilityPaginationState {
       {final List<FacilityData> data = const [],
       this.currentPage = 1,
       this.isLoading = false,
-      this.hasReachedEnd = false})
+      this.hasReachedEnd = false,
+      this.isChangeFavorite = false})
       : _data = data;
 
   final List<FacilityData> _data;
@@ -160,10 +174,13 @@ class _$FacilityPaginationStateImpl implements _FacilityPaginationState {
   @override
   @JsonKey()
   final bool hasReachedEnd;
+  @override
+  @JsonKey()
+  final bool isChangeFavorite;
 
   @override
   String toString() {
-    return 'FacilityState(data: $data, currentPage: $currentPage, isLoading: $isLoading, hasReachedEnd: $hasReachedEnd)';
+    return 'FacilityState(data: $data, currentPage: $currentPage, isLoading: $isLoading, hasReachedEnd: $hasReachedEnd, isChangeFavorite: $isChangeFavorite)';
   }
 
   @override
@@ -177,7 +194,9 @@ class _$FacilityPaginationStateImpl implements _FacilityPaginationState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.hasReachedEnd, hasReachedEnd) ||
-                other.hasReachedEnd == hasReachedEnd));
+                other.hasReachedEnd == hasReachedEnd) &&
+            (identical(other.isChangeFavorite, isChangeFavorite) ||
+                other.isChangeFavorite == isChangeFavorite));
   }
 
   @override
@@ -186,7 +205,8 @@ class _$FacilityPaginationStateImpl implements _FacilityPaginationState {
       const DeepCollectionEquality().hash(_data),
       currentPage,
       isLoading,
-      hasReachedEnd);
+      hasReachedEnd,
+      isChangeFavorite);
 
   @JsonKey(ignore: true)
   @override
@@ -201,7 +221,8 @@ abstract class _FacilityPaginationState implements FacilityState {
       {final List<FacilityData> data,
       final int currentPage,
       final bool isLoading,
-      final bool hasReachedEnd}) = _$FacilityPaginationStateImpl;
+      final bool hasReachedEnd,
+      final bool isChangeFavorite}) = _$FacilityPaginationStateImpl;
 
   @override
   List<FacilityData> get data;
@@ -211,6 +232,8 @@ abstract class _FacilityPaginationState implements FacilityState {
   bool get isLoading;
   @override
   bool get hasReachedEnd;
+  @override
+  bool get isChangeFavorite;
   @override
   @JsonKey(ignore: true)
   _$$FacilityPaginationStateImplCopyWith<_$FacilityPaginationStateImpl>

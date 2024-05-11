@@ -19,6 +19,6 @@ abstract interface class FacilityRepository {
 
   Future<Either<Failure, FavoriteResponseModel>> addFavorite({required int facilityId});
   Future<Either<Failure, FavoriteResponseModel>> removeFavorite({required int facilityId});
-
+  Future<Either<Failure, FacilityResponseModel>> getAllUserFavorites();
 
 }

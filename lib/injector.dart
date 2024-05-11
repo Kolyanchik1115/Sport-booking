@@ -18,10 +18,13 @@ import 'package:sport_app/domain/usecases/booking/create_booking.dart';
 import 'package:sport_app/domain/usecases/booking/get_all_bookings.dart';
 import 'package:sport_app/domain/usecases/facility/add_favorite.dart';
 import 'package:sport_app/domain/usecases/facility/get_all_facility.dart';
+import 'package:sport_app/domain/usecases/facility/get_all_favorites.dart';
 import 'package:sport_app/domain/usecases/facility/remove_favorite.dart';
 import 'package:sport_app/domain/usecases/user/get_current_user_use_case.dart';
 import 'package:sport_app/domain/usecases/user/update_user_use_case.dart';
 import 'package:sport_app/features/additional_pages/presentation/bloc/user/user_cubit.dart';
+import 'package:sport_app/presentation/pages/favorite/cubit/favorite_cubit.dart';
+import 'package:sport_app/presentation/pages/search/cubit/facility/facility_cubit.dart';
 
 final injector = GetIt.instance;
 
@@ -38,8 +41,7 @@ void init() {
   injector.registerLazySingleton(() => GetAllBookingsUseCase(injector()));
   injector.registerLazySingleton(() => GoogleSignInUserUseCase(injector()));
   injector.registerLazySingleton(() => CreateBookingUseCase(injector()));
-
-
+  injector.registerLazySingleton(() => GetAllFavoritesUseCase(injector()));
 
 
   // Repositories
@@ -61,4 +63,7 @@ void init() {
 
   // Global state
   injector.registerLazySingleton(() => UserCubit());
+  injector.registerLazySingleton(() => FavoriteCubit());
+  injector.registerLazySingleton(() => FacilityCubit());
+
 }

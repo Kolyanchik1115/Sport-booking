@@ -7,8 +7,8 @@ part 'facility_response_model.g.dart';
 @freezed
 class FacilityResponseModel with _$FacilityResponseModel {
   const factory FacilityResponseModel({
-    required FacilityResponse findAll,
+    required FacilityResponse? findAll,
+    required FacilityResponse? getUserFavorites,
   }) = _FacilityResponseModel;
-
   factory FacilityResponseModel.fromJson(Map<String, dynamic> json) => _$FacilityResponseModelFromJson(json);
 }

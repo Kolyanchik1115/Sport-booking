@@ -7,9 +7,9 @@ import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/core/utils/dummy_data.dart';
-import 'package:sport_app/features/additional_pages/presentation/widgets/custom_error_widget.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/empty_layout.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/svg_button.dart';
+import 'package:sport_app/injector.dart';
 import 'package:sport_app/presentation/pages/favorite/cubit/favorite_cubit.dart';
 import 'package:sport_app/presentation/pages/search/cubit/facility/facility_cubit.dart';
 import 'package:sport_app/presentation/pages/search/cubit/filter/filter_cubit.dart';
@@ -32,7 +32,7 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   void initState() {
-    facilityCubit = FacilityCubit();
+    facilityCubit = injector<FacilityCubit>();
     filterCubit = FilterCubit(
       sportTypeList: DummyData.sportType,
       coveringTypeList: DummyData.coveringType,
@@ -58,137 +58,116 @@ class _SearchPageState extends State<SearchPage> {
           value: facilityCubit..loadFirstPage(),
         ),
         BlocProvider.value(value: filterCubit),
-        BlocProvider(create: (context) => FavoriteCubit()),
+        BlocProvider.value(value: injector<FavoriteCubit>()..getAllUserFavorites()),
       ],
-      child: BlocListener<FavoriteCubit, FavoriteState>(
-        listener: (context, favState) {
-          if (favState.errorMessage != null) {
-            final scaffoldMessenger = ScaffoldMessenger.of(context);
-            scaffoldMessenger.showSnackBar(
-              SnackBar(
-                behavior: SnackBarBehavior.floating,
-                duration: const Duration(milliseconds: 1500),
-                content: Text(
-                  favState.errorMessage!,
-                  style:
-                      Theme.of(context).textTheme.labelLarge!.copyWith(color: Theme.of(context).colorScheme.background),
-                ),
-                backgroundColor: Theme.of(context).colorScheme.primary,
+      child: EmptyLayout(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => showModalBottomSheet(
+            context: context,
+            useRootNavigator: true,
+            isScrollControlled: true,
+            backgroundColor: Theme.of(context).colorScheme.background,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30.0),
+                topRight: Radius.circular(30.0),
               ),
-            );
-          }
-        },
-        child: EmptyLayout(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => showModalBottomSheet(
-              context: context,
-              useRootNavigator: true,
-              isScrollControlled: true,
-              backgroundColor: Theme.of(context).colorScheme.background,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0),
-                ),
+            ),
+            builder: (context) {
+              return SizedBox(
+                height: MediaQuery.sizeOf(context).height / 1.2,
+                child: FacilityFilter(filterCubit: filterCubit),
+              );
+            },
+          ).then((filterState) {
+            if (filterState != null && filterState is FilterState) {
+              facilityCubit.sportType = filterState.selectedSportType;
+              facilityCubit.coveringType = filterState.selectedCoveringType;
+              facilityCubit.facilityType = filterState.selectedFacilityType;
+              return facilityCubit.loadFirstPage(search: searchController.text.trim());
+            }
+          }),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          child: SvgPicture.asset(AppSvg.filter, height: 16.0),
+        ),
+        appbarColor: Theme.of(context).colorScheme.background,
+        background: Theme.of(context).colorScheme.onSurface,
+        child: Column(
+          children: [
+            Container(
+              color: Theme.of(context).colorScheme.background,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: SearchField(
+                      textEditingController: searchController,
+                      focusNode: searchFocus,
+                      onChanged: (query) {
+                        facilityCubit.onSearch(query.trim());
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 13.0, bottom: 5.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      height: 40.0,
+                      width: 40.0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: SvgButton(
+                          asset: AppSvg.map,
+                          onTap: () => context.push(AppRoutes.facilitiesMap, extra: facilityCubit.state.data),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              builder: (context) {
-                return SizedBox(
-                  height: MediaQuery.sizeOf(context).height / 1.2,
-                  child: FacilityFilter(filterCubit: filterCubit),
+            ),
+            BlocConsumer<FacilityCubit, FacilityState>(
+              listener: (context, state) => context.read<FavoriteCubit>().getAllUserFavorites(),
+              listenWhen: (prev, curr) => prev.isChangeFavorite != curr.isChangeFavorite,
+              builder: (context, state) {
+                if (state.isLoading && state.currentPage == 1) {
+                  return Center(
+                    child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
+                  );
+                }
+                return Expanded(
+                  child: NotificationListener<ScrollEndNotification>(
+                    onNotification: (ScrollEndNotification scrollInfo) {
+                      if (scrollInfo.metrics.pixels >= (scrollInfo.metrics.maxScrollExtent - 50) &&
+                          !state.isLoading &&
+                          !state.hasReachedEnd) {
+                        context.read<FacilityCubit>().loadNextPage();
+                      }
+                      return false;
+                    },
+                    child: ListView.builder(
+                      itemCount: state.data.length + (state.isLoading ? 1 : 0),
+                      itemBuilder: (context, index) {
+                        if (index == state.data.length && state.isLoading) {
+                          return Center(child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary));
+                        } else {
+                          return FacilityContainer(
+                            facility: state.data[index],
+                            onTap: () => context.push(AppRoutes.facilityDetails, extra: state.data[index]),
+                            onIconTap: () {
+                              return context.read<FacilityCubit>().toggleFavorite(facilityId: state.data[index].id);
+                            },
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 );
               },
-            ).then((filterState) {
-              if (filterState != null && filterState is FilterState) {
-                facilityCubit.sportType = filterState.selectedSportType;
-                facilityCubit.coveringType = filterState.selectedCoveringType;
-                facilityCubit.facilityType = filterState.selectedFacilityType;
-                return facilityCubit.loadFirstPage(search: searchController.text.trim());
-              }
-            }),
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            child: SvgPicture.asset(AppSvg.filter, height: 16.0),
-          ),
-          appbarColor: Theme.of(context).colorScheme.background,
-          background: Theme.of(context).colorScheme.onSurface,
-          child: Column(
-            children: [
-              Container(
-                color: Theme.of(context).colorScheme.background,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: SearchField(
-                        textEditingController: searchController,
-                        focusNode: searchFocus,
-                        onChanged: (query) {
-                          facilityCubit.onSearch(query.trim());
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 13.0, bottom: 5.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.onPrimaryContainer,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        height: 40.0,
-                        width: 40.0,
-                        child: Padding(
-                          padding: const EdgeInsets.all(6.0),
-                          child: SvgButton(
-                            asset: AppSvg.map,
-                            onTap: () => context.push(AppRoutes.facilitiesMap, extra: facilityCubit.state.data),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              BlocBuilder<FavoriteCubit, FavoriteState>(
-                builder: (context, favState) {
-                  return BlocBuilder<FacilityCubit, FacilityState>(
-                    builder: (context, state) {
-                      if (state.isLoading && state.currentPage == 1) {
-                        return Center(
-                          child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
-                        );
-                      }
-                      return Expanded(
-                        child: NotificationListener<ScrollEndNotification>(
-                          onNotification: (ScrollEndNotification scrollInfo) {
-                            if (scrollInfo.metrics.pixels >= (scrollInfo.metrics.maxScrollExtent - 50) &&
-                                !state.isLoading &&
-                                !state.hasReachedEnd) {
-                              context.read<FacilityCubit>().loadNextPage();
-                            }
-                            return false;
-                          },
-                          child: ListView.builder(
-                            itemCount: state.data.length + (state.isLoading ? 1 : 0),
-                            itemBuilder: (context, index) {
-                              if (index == state.data.length && state.isLoading) {
-                                return CircularProgressIndicator(color: Theme.of(context).colorScheme.primary);
-                              } else {
-                                return FacilityContainer(
-                                  facility: state.data[index],
-                                  onTap: () => context.push(AppRoutes.facilityDetails, extra: state.data[index]),
-                                  onIconTap: () {
-                                    context.read<FavoriteCubit>().addFavorite(facilityId: state.data[index].id);
-                                  },
-                                );
-                              }
-                            },
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

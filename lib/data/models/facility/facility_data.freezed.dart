@@ -31,6 +31,7 @@ mixin _$FacilityData {
   String? get description => throw _privateConstructorUsedError;
   double? get avgPrice => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
+  bool get currentUserIsFavorite => throw _privateConstructorUsedError;
   List<FacilityDataImage> get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,6 +58,7 @@ abstract class $FacilityDataCopyWith<$Res> {
       String? description,
       double? avgPrice,
       String? location,
+      bool currentUserIsFavorite,
       List<FacilityDataImage> images});
 
   $FacilityDistrictCopyWith<$Res>? get district;
@@ -86,6 +88,7 @@ class _$FacilityDataCopyWithImpl<$Res, $Val extends FacilityData>
     Object? description = freezed,
     Object? avgPrice = freezed,
     Object? location = freezed,
+    Object? currentUserIsFavorite = null,
     Object? images = null,
   }) {
     return _then(_value.copyWith(
@@ -133,6 +136,10 @@ class _$FacilityDataCopyWithImpl<$Res, $Val extends FacilityData>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
+      currentUserIsFavorite: null == currentUserIsFavorite
+          ? _value.currentUserIsFavorite
+          : currentUserIsFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
@@ -173,6 +180,7 @@ abstract class _$$FacilityDataImplCopyWith<$Res>
       String? description,
       double? avgPrice,
       String? location,
+      bool currentUserIsFavorite,
       List<FacilityDataImage> images});
 
   @override
@@ -201,6 +209,7 @@ class __$$FacilityDataImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? avgPrice = freezed,
     Object? location = freezed,
+    Object? currentUserIsFavorite = null,
     Object? images = null,
   }) {
     return _then(_$FacilityDataImpl(
@@ -248,6 +257,10 @@ class __$$FacilityDataImplCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
+      currentUserIsFavorite: null == currentUserIsFavorite
+          ? _value.currentUserIsFavorite
+          : currentUserIsFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
@@ -271,6 +284,7 @@ class _$FacilityDataImpl implements _FacilityData {
       required this.description,
       required this.avgPrice,
       required this.location,
+      required this.currentUserIsFavorite,
       required final List<FacilityDataImage> images})
       : _sportType = sportType,
         _images = images;
@@ -308,6 +322,8 @@ class _$FacilityDataImpl implements _FacilityData {
   final double? avgPrice;
   @override
   final String? location;
+  @override
+  final bool currentUserIsFavorite;
   final List<FacilityDataImage> _images;
   @override
   List<FacilityDataImage> get images {
@@ -318,7 +334,7 @@ class _$FacilityDataImpl implements _FacilityData {
 
   @override
   String toString() {
-    return 'FacilityData(id: $id, name: $name, address: $address, sportType: $sportType, coveringType: $coveringType, district: $district, minBookingTime: $minBookingTime, facilityType: $facilityType, description: $description, avgPrice: $avgPrice, location: $location, images: $images)';
+    return 'FacilityData(id: $id, name: $name, address: $address, sportType: $sportType, coveringType: $coveringType, district: $district, minBookingTime: $minBookingTime, facilityType: $facilityType, description: $description, avgPrice: $avgPrice, location: $location, currentUserIsFavorite: $currentUserIsFavorite, images: $images)';
   }
 
   @override
@@ -345,6 +361,8 @@ class _$FacilityDataImpl implements _FacilityData {
                 other.avgPrice == avgPrice) &&
             (identical(other.location, location) ||
                 other.location == location) &&
+            (identical(other.currentUserIsFavorite, currentUserIsFavorite) ||
+                other.currentUserIsFavorite == currentUserIsFavorite) &&
             const DeepCollectionEquality().equals(other._images, _images));
   }
 
@@ -363,6 +381,7 @@ class _$FacilityDataImpl implements _FacilityData {
       description,
       avgPrice,
       location,
+      currentUserIsFavorite,
       const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
@@ -392,6 +411,7 @@ abstract class _FacilityData implements FacilityData {
       required final String? description,
       required final double? avgPrice,
       required final String? location,
+      required final bool currentUserIsFavorite,
       required final List<FacilityDataImage> images}) = _$FacilityDataImpl;
 
   factory _FacilityData.fromJson(Map<String, dynamic> json) =
@@ -419,6 +439,8 @@ abstract class _FacilityData implements FacilityData {
   double? get avgPrice;
   @override
   String? get location;
+  @override
+  bool get currentUserIsFavorite;
   @override
   List<FacilityDataImage> get images;
   @override

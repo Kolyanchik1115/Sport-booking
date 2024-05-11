@@ -6,6 +6,7 @@ import 'package:sport_app/data/models/facility/facility_data.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/svg_button.dart';
 import 'package:sport_app/injector.dart';
 import 'package:sport_app/presentation/pages/search/widget/facility_tag_label.dart';
+import 'package:sport_app/presentation/pages/search/widget/favorite_contrainer.dart';
 
 class FacilityContainer extends StatelessWidget {
   final FacilityData? facility;
@@ -52,13 +53,9 @@ class FacilityContainer extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 20.0,
-                  right: 20.0,
-                  child: SvgButton(
-                    asset: AppSvg.heart,
-                    onTap: onIconTap,
-                  ),
+                FavoriteContainer(
+                  onIconTap: onIconTap,
+                  isFavorite: facility?.currentUserIsFavorite ?? false,
                 ),
                 Positioned(
                   bottom: 15.0,
