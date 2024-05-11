@@ -32,7 +32,7 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   void initState() {
-    facilityCubit = FacilityCubit();
+    facilityCubit = injector<FacilityCubit>();
     filterCubit = FilterCubit(
       sportTypeList: DummyData.sportType,
       coveringTypeList: DummyData.coveringType,
@@ -58,7 +58,7 @@ class _SearchPageState extends State<SearchPage> {
           value: facilityCubit..loadFirstPage(),
         ),
         BlocProvider.value(value: filterCubit),
-        BlocProvider.value(value: injector<FavoriteCubit>()  ..getAllUserFavorites()),
+        BlocProvider.value(value: injector<FavoriteCubit>()..getAllUserFavorites()),
       ],
       child: EmptyLayout(
         floatingActionButton: FloatingActionButton(
@@ -128,50 +128,42 @@ class _SearchPageState extends State<SearchPage> {
                 ],
               ),
             ),
-            BlocBuilder<FavoriteCubit, FavoriteState>(
-              builder: (context, favState) {
-                return BlocBuilder<FacilityCubit, FacilityState>(
-                  builder: (context, state) {
-                    if (state.isLoading && state.currentPage == 1) {
-                      return Center(
-                        child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
-                      );
-                    }
-                    return Expanded(
-                      child: NotificationListener<ScrollEndNotification>(
-                        onNotification: (ScrollEndNotification scrollInfo) {
-                          if (scrollInfo.metrics.pixels >= (scrollInfo.metrics.maxScrollExtent - 50) &&
-                              !state.isLoading &&
-                              !state.hasReachedEnd) {
-                            context.read<FacilityCubit>().loadNextPage();
-                          }
-                          return false;
-                        },
-                        child: ListView.builder(
-                          itemCount: state.data.length + (state.isLoading ? 1 : 0),
-                          itemBuilder: (context, index) {
-                            if (index == state.data.length && state.isLoading) {
-                              return CircularProgressIndicator(color: Theme.of(context).colorScheme.primary);
-                            } else {
-                              final isFavorite = favState.updatedFacilityId == state.data[index].id
-                                  ? favState.updatedStatus
-                                  : state.data[index].currentUserIsFavorite;
-
-                              return FacilityContainer(
-                                facility: state.data[index],
-                                onTap: () => context.push(AppRoutes.facilityDetails, extra: state.data[index]),
-                                onIconTap: () => context.read<FavoriteCubit>().toggleFavorite(
-                                  facilityId: state.data[index].id,
-                                  currentStatus: isFavorite ?? false,
-                                ),
-                                favoriteIcon: isFavorite ?? false,
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                    );
-                  },
+            BlocConsumer<FacilityCubit, FacilityState>(
+              listener: (context, state) => context.read<FavoriteCubit>().getAllUserFavorites(),
+              listenWhen: (prev, curr) => prev.isChangeFavorite != curr.isChangeFavorite,
+              builder: (context, state) {
+                if (state.isLoading && state.currentPage == 1) {
+                  return Center(
+                    child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary),
+                  );
+                }
+                return Expanded(
+                  child: NotificationListener<ScrollEndNotification>(
+                    onNotification: (ScrollEndNotification scrollInfo) {
+                      if (scrollInfo.metrics.pixels >= (scrollInfo.metrics.maxScrollExtent - 50) &&
+                          !state.isLoading &&
+                          !state.hasReachedEnd) {
+                        context.read<FacilityCubit>().loadNextPage();
+                      }
+                      return false;
+                    },
+                    child: ListView.builder(
+                      itemCount: state.data.length + (state.isLoading ? 1 : 0),
+                      itemBuilder: (context, index) {
+                        if (index == state.data.length && state.isLoading) {
+                          return Center(child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary));
+                        } else {
+                          return FacilityContainer(
+                            facility: state.data[index],
+                            onTap: () => context.push(AppRoutes.facilityDetails, extra: state.data[index]),
+                            onIconTap: () {
+                              return context.read<FacilityCubit>().toggleFavorite(facilityId: state.data[index].id);
+                            },
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 );
               },
             ),

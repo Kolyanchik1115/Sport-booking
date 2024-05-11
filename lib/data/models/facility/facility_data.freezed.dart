@@ -31,7 +31,7 @@ mixin _$FacilityData {
   String? get description => throw _privateConstructorUsedError;
   double? get avgPrice => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
-  bool? get currentUserIsFavorite => throw _privateConstructorUsedError;
+  bool get currentUserIsFavorite => throw _privateConstructorUsedError;
   List<FacilityDataImage> get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ abstract class $FacilityDataCopyWith<$Res> {
       String? description,
       double? avgPrice,
       String? location,
-      bool? currentUserIsFavorite,
+      bool currentUserIsFavorite,
       List<FacilityDataImage> images});
 
   $FacilityDistrictCopyWith<$Res>? get district;
@@ -88,7 +88,7 @@ class _$FacilityDataCopyWithImpl<$Res, $Val extends FacilityData>
     Object? description = freezed,
     Object? avgPrice = freezed,
     Object? location = freezed,
-    Object? currentUserIsFavorite = freezed,
+    Object? currentUserIsFavorite = null,
     Object? images = null,
   }) {
     return _then(_value.copyWith(
@@ -136,10 +136,10 @@ class _$FacilityDataCopyWithImpl<$Res, $Val extends FacilityData>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
-      currentUserIsFavorite: freezed == currentUserIsFavorite
+      currentUserIsFavorite: null == currentUserIsFavorite
           ? _value.currentUserIsFavorite
           : currentUserIsFavorite // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
@@ -180,7 +180,7 @@ abstract class _$$FacilityDataImplCopyWith<$Res>
       String? description,
       double? avgPrice,
       String? location,
-      bool? currentUserIsFavorite,
+      bool currentUserIsFavorite,
       List<FacilityDataImage> images});
 
   @override
@@ -209,7 +209,7 @@ class __$$FacilityDataImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? avgPrice = freezed,
     Object? location = freezed,
-    Object? currentUserIsFavorite = freezed,
+    Object? currentUserIsFavorite = null,
     Object? images = null,
   }) {
     return _then(_$FacilityDataImpl(
@@ -257,10 +257,10 @@ class __$$FacilityDataImplCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
-      currentUserIsFavorite: freezed == currentUserIsFavorite
+      currentUserIsFavorite: null == currentUserIsFavorite
           ? _value.currentUserIsFavorite
           : currentUserIsFavorite // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
@@ -323,7 +323,7 @@ class _$FacilityDataImpl implements _FacilityData {
   @override
   final String? location;
   @override
-  final bool? currentUserIsFavorite;
+  final bool currentUserIsFavorite;
   final List<FacilityDataImage> _images;
   @override
   List<FacilityDataImage> get images {
@@ -411,7 +411,7 @@ abstract class _FacilityData implements FacilityData {
       required final String? description,
       required final double? avgPrice,
       required final String? location,
-      required final bool? currentUserIsFavorite,
+      required final bool currentUserIsFavorite,
       required final List<FacilityDataImage> images}) = _$FacilityDataImpl;
 
   factory _FacilityData.fromJson(Map<String, dynamic> json) =
@@ -440,7 +440,7 @@ abstract class _FacilityData implements FacilityData {
   @override
   String? get location;
   @override
-  bool? get currentUserIsFavorite;
+  bool get currentUserIsFavorite;
   @override
   List<FacilityDataImage> get images;
   @override

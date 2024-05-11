@@ -12,14 +12,12 @@ class FacilityContainer extends StatelessWidget {
   final FacilityData? facility;
   final Function() onTap;
   final Function() onIconTap;
-  final bool favoriteIcon;
 
   const FacilityContainer({
     super.key,
     required this.facility,
     required this.onTap,
     required this.onIconTap,
-    required this.favoriteIcon,
   });
 
   @override
@@ -57,7 +55,7 @@ class FacilityContainer extends StatelessWidget {
                 ),
                 FavoriteContainer(
                   onIconTap: onIconTap,
-                  isFavorite: favoriteIcon,
+                  isFavorite: facility?.currentUserIsFavorite ?? false,
                 ),
                 Positioned(
                   bottom: 15.0,

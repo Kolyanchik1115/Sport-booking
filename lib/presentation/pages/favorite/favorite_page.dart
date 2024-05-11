@@ -5,6 +5,7 @@ import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/injector.dart';
 import 'package:sport_app/presentation/pages/favorite/cubit/favorite_cubit.dart';
+import 'package:sport_app/presentation/pages/search/cubit/facility/facility_cubit.dart';
 import 'package:sport_app/presentation/pages/search/widget/facility_container.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -15,7 +16,9 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: injector<FavoriteCubit>(),
-      child: BlocBuilder<FavoriteCubit, FavoriteState>(
+      child: BlocConsumer<FavoriteCubit, FavoriteState>(
+        listener: (context, state) => injector<FacilityCubit>()..localRemoveFromFavorite(state.removedListId),
+        listenWhen: (prev, curr) => curr.removedListId.isNotEmpty,
         builder: (context, state) {
           if (state.data.isEmpty) {
             return Center(
@@ -52,13 +55,7 @@ class FavoritePage extends StatelessWidget {
               return FacilityContainer(
                 facility: state.data[index],
                 onTap: () => context.push(AppRoutes.facilityDetails, extra: state.data[index]),
-                onIconTap: () {
-                  context.read<FavoriteCubit>().toggleFavorite(
-                        facilityId: state.data[index].id,
-                        currentStatus: state.data[index].currentUserIsFavorite ?? false,
-                      );
-                },
-                favoriteIcon: state.data[index].currentUserIsFavorite == true,
+                onIconTap: () => context.read<FavoriteCubit>().removeFavorite(facilityId: state.data[index].id),
               );
             },
           );

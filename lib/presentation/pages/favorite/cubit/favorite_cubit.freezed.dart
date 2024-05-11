@@ -19,7 +19,7 @@ mixin _$FavoriteState {
   String? get errorMessage => throw _privateConstructorUsedError;
   bool? get isLoading => throw _privateConstructorUsedError;
   int? get updatedFacilityId => throw _privateConstructorUsedError;
-  bool? get updatedStatus => throw _privateConstructorUsedError;
+  List<int> get removedListId => throw _privateConstructorUsedError;
   List<FacilityData> get data => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -37,7 +37,7 @@ abstract class $FavoriteStateCopyWith<$Res> {
       {String? errorMessage,
       bool? isLoading,
       int? updatedFacilityId,
-      bool? updatedStatus,
+      List<int> removedListId,
       List<FacilityData> data});
 }
 
@@ -57,7 +57,7 @@ class _$FavoriteStateCopyWithImpl<$Res, $Val extends FavoriteState>
     Object? errorMessage = freezed,
     Object? isLoading = freezed,
     Object? updatedFacilityId = freezed,
-    Object? updatedStatus = freezed,
+    Object? removedListId = null,
     Object? data = null,
   }) {
     return _then(_value.copyWith(
@@ -73,10 +73,10 @@ class _$FavoriteStateCopyWithImpl<$Res, $Val extends FavoriteState>
           ? _value.updatedFacilityId
           : updatedFacilityId // ignore: cast_nullable_to_non_nullable
               as int?,
-      updatedStatus: freezed == updatedStatus
-          ? _value.updatedStatus
-          : updatedStatus // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      removedListId: null == removedListId
+          ? _value.removedListId
+          : removedListId // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -97,7 +97,7 @@ abstract class _$$FavoriteStateImplCopyWith<$Res>
       {String? errorMessage,
       bool? isLoading,
       int? updatedFacilityId,
-      bool? updatedStatus,
+      List<int> removedListId,
       List<FacilityData> data});
 }
 
@@ -115,7 +115,7 @@ class __$$FavoriteStateImplCopyWithImpl<$Res>
     Object? errorMessage = freezed,
     Object? isLoading = freezed,
     Object? updatedFacilityId = freezed,
-    Object? updatedStatus = freezed,
+    Object? removedListId = null,
     Object? data = null,
   }) {
     return _then(_$FavoriteStateImpl(
@@ -131,10 +131,10 @@ class __$$FavoriteStateImplCopyWithImpl<$Res>
           ? _value.updatedFacilityId
           : updatedFacilityId // ignore: cast_nullable_to_non_nullable
               as int?,
-      updatedStatus: freezed == updatedStatus
-          ? _value.updatedStatus
-          : updatedStatus // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      removedListId: null == removedListId
+          ? _value._removedListId
+          : removedListId // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -150,9 +150,10 @@ class _$FavoriteStateImpl implements _FavoriteState {
       {this.errorMessage,
       this.isLoading,
       this.updatedFacilityId,
-      this.updatedStatus,
+      final List<int> removedListId = const [],
       final List<FacilityData> data = const []})
-      : _data = data;
+      : _removedListId = removedListId,
+        _data = data;
 
   @override
   final String? errorMessage;
@@ -160,8 +161,15 @@ class _$FavoriteStateImpl implements _FavoriteState {
   final bool? isLoading;
   @override
   final int? updatedFacilityId;
+  final List<int> _removedListId;
   @override
-  final bool? updatedStatus;
+  @JsonKey()
+  List<int> get removedListId {
+    if (_removedListId is EqualUnmodifiableListView) return _removedListId;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_removedListId);
+  }
+
   final List<FacilityData> _data;
   @override
   @JsonKey()
@@ -173,7 +181,7 @@ class _$FavoriteStateImpl implements _FavoriteState {
 
   @override
   String toString() {
-    return 'FavoriteState(errorMessage: $errorMessage, isLoading: $isLoading, updatedFacilityId: $updatedFacilityId, updatedStatus: $updatedStatus, data: $data)';
+    return 'FavoriteState(errorMessage: $errorMessage, isLoading: $isLoading, updatedFacilityId: $updatedFacilityId, removedListId: $removedListId, data: $data)';
   }
 
   @override
@@ -187,8 +195,8 @@ class _$FavoriteStateImpl implements _FavoriteState {
                 other.isLoading == isLoading) &&
             (identical(other.updatedFacilityId, updatedFacilityId) ||
                 other.updatedFacilityId == updatedFacilityId) &&
-            (identical(other.updatedStatus, updatedStatus) ||
-                other.updatedStatus == updatedStatus) &&
+            const DeepCollectionEquality()
+                .equals(other._removedListId, _removedListId) &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -198,7 +206,7 @@ class _$FavoriteStateImpl implements _FavoriteState {
       errorMessage,
       isLoading,
       updatedFacilityId,
-      updatedStatus,
+      const DeepCollectionEquality().hash(_removedListId),
       const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
@@ -213,7 +221,7 @@ abstract class _FavoriteState implements FavoriteState {
       {final String? errorMessage,
       final bool? isLoading,
       final int? updatedFacilityId,
-      final bool? updatedStatus,
+      final List<int> removedListId,
       final List<FacilityData> data}) = _$FavoriteStateImpl;
 
   @override
@@ -223,7 +231,7 @@ abstract class _FavoriteState implements FavoriteState {
   @override
   int? get updatedFacilityId;
   @override
-  bool? get updatedStatus;
+  List<int> get removedListId;
   @override
   List<FacilityData> get data;
   @override

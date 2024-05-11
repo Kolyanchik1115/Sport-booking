@@ -6,7 +6,7 @@ class FavoriteState with _$FavoriteState {
     String? errorMessage,
     bool? isLoading,
     int? updatedFacilityId,
-    bool? updatedStatus,
+    @Default([]) List<int> removedListId,
     @Default([]) List<FacilityData> data,
   }) = _FavoriteState;
 }

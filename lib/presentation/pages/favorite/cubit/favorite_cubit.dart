@@ -21,28 +21,25 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     final result = await injector<GetAllFavoritesUseCase>()(NoParams());
     result.fold(
       (error) => emit(state.copyWith(errorMessage: error.runtimeType.toString(), isLoading: false)),
-      (data) => emit(state.copyWith(isLoading: false, data: data.getUserFavorites!.facilities)),
+      (data) => emit(FavoriteState(data: data.getUserFavorites!.facilities)),
     );
     emit(state.copyWith(isLoading: false));
   }
 
-  Future<void> toggleFavorite({required int facilityId, required bool currentStatus}) async {
+  Future<void> removeFavorite({required int facilityId}) async {
+    if (state.isLoading == true) return;
     emit(state.copyWith(isLoading: true));
 
-    if (currentStatus) {
-      final result = await injector<RemoveFavoriteUseCase>()(RemoveFavoriteParams(facilityId: facilityId));
-      result.fold(
-        (error) => emit(state.copyWith(errorMessage: error.runtimeType.toString(), isLoading: false)),
-        (success) => emit(state.copyWith(isLoading: false, updatedFacilityId: facilityId, updatedStatus: false)),
-      );
-      getAllUserFavorites();
-    } else {
-      final result = await injector<AddFavoriteUseCase>()(AddFavoriteParams(facilityId: facilityId));
-      result.fold(
-        (error) => emit(state.copyWith(errorMessage: error.runtimeType.toString(), isLoading: false)),
-        (success) => emit(state.copyWith(isLoading: false, updatedFacilityId: facilityId, updatedStatus: true)),
-      );
-      getAllUserFavorites();
-    }
+    final facilityList = state.data.toList();
+
+    final result = await injector<RemoveFavoriteUseCase>()(RemoveFavoriteParams(facilityId: facilityId));
+    result.fold(
+      (error) => null,
+      (success) {
+        facilityList.removeWhere((facility) => facilityId == facility.id);
+        emit(state.copyWith(data: facilityList, isLoading: false, removedListId: state.removedListId.toList()..add(facilityId)));
+      },
+    );
+    emit(state.copyWith(isLoading: false));
   }
 }
