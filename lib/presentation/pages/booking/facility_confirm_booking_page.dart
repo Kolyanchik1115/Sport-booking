@@ -29,7 +29,7 @@ class FacilityConfirmBookingPage extends StatelessWidget {
             appBarTitle: "Confirm reservation",
             centerTitle: true,
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.only(left:20.0,right: 20.0,top: 45.0),
               child: SingleChildScrollView(
                 child: Container(
                   padding: const EdgeInsets.all(20.0),
@@ -51,14 +51,6 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                       ),
                       Text(facilityData.name),
                       const SizedBox(height: 5.0),
-                      Text(
-                        "Reservation №",
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontSize: 18.0,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                      ),
-                      const Text("1234567"),
                       const SizedBox(height: 5.0),
                       Text(
                         "Address",
@@ -132,6 +124,7 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                                   context.read<BookingCubit>(),
                                   facilityData.name,
                                   facilityData.id,
+                                  facilityData.images.first.image
                                 ]);
                               },
                             ),

@@ -10,12 +10,13 @@ import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/custom_error_widget.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/scaffold_with_app_bar.dart';
 import 'package:sport_app/presentation/pages/booking/cubit/booking/booking_cubit.dart';
-
+import 'package:uuid/uuid.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentPage extends StatelessWidget {
   final BookingCubit bookingCubit;
   final String desc;
+  final String image;
   final int facilityId;
 
   const PaymentPage({
@@ -23,6 +24,7 @@ class PaymentPage extends StatelessWidget {
     required this.desc,
     required this.bookingCubit,
     required this.facilityId,
+    required this.image,
   });
 
   @override
@@ -33,7 +35,7 @@ class PaymentPage extends StatelessWidget {
         builder: (context, state) {
           String publicKey = 'sandbox_i69297607762';
           String privateKey = 'sandbox_1iShFxZY7Xsp9Ab6lGojbEs4mNGy6ngW9BqGBRuv';
-          String orderId = '13553';
+          String orderId = const Uuid().v4();
           double amount = state.totalPrice;
           String currency = 'UAH';
           String description = desc;
@@ -62,9 +64,10 @@ class PaymentPage extends StatelessWidget {
                               timeSlots: state.cells,
                             ))
                         .then((value) {
-                          context.popUntil(AppRoutes.search);
-                          context.go(AppRoutes.reservation);
-                        });
+                      context.popUntil(AppRoutes.search);
+                      context.go(AppRoutes.reservation,
+                          extra: [desc, state.dates.first, state.dates.first, orderId, image]);
+                    });
                     return NavigationDecision.prevent;
                   }
                   return NavigationDecision.navigate;
