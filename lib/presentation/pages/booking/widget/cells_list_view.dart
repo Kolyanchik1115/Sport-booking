@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sport_app/data/models/booking/booking_time_slots_model.dart';
-
 import 'emty_cell_list_tile.dart';
+import 'package:sport_app/data/models/booking/booking_time_slots_model.dart';
 
 class CellsListViewBuilder extends StatelessWidget {
   final double itemExtend;
   final List<List<BookingTimeSlotsModel>> scheduleData;
   final List<String> daysOfWeek;
-  final String selectedDay;
+  final int selectedDay;
   final List<int> selectedIdRange;
   final Function(int) onTap;
 
@@ -23,15 +22,16 @@ class CellsListViewBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final timeSlots = scheduleData[selectedDay];
     return Expanded(
       child: ListView.builder(
-        itemCount: scheduleData[daysOfWeek.indexOf(selectedDay)].length + 1,
+        itemCount: timeSlots.length + 1,
         padding: const EdgeInsets.only(top: 25.0),
         itemExtent: itemExtend,
         itemBuilder: (context, index) {
-          if (index < scheduleData[daysOfWeek.indexOf(selectedDay)].length) {
-            double price = scheduleData[daysOfWeek.indexOf(selectedDay)][index].price.toDouble();
-            //TODO ref cells builder
+          if (index < timeSlots.length) {
+            final slot = timeSlots[index];
+            final price = slot.price.toDouble();
             return ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
               leading: SizedBox(
@@ -39,7 +39,7 @@ class CellsListViewBuilder extends StatelessWidget {
                 child: Transform.translate(
                   offset: Offset(0, -itemExtend / 2),
                   child: Text(
-                    '${scheduleData[daysOfWeek.indexOf(selectedDay)][index].startTime.hour.toString().padLeft(2, '0')}:${scheduleData[daysOfWeek.indexOf(selectedDay)][index].startTime.minute.toString().padLeft(2, '0')}',
+                    '${slot.startTime.hour.toString().padLeft(2, '0')}:${slot.startTime.minute.toString().padLeft(2, '0')}',
                     style: const TextStyle(fontSize: 16.0, color: Colors.black),
                   ),
                 ),
@@ -48,7 +48,7 @@ class CellsListViewBuilder extends StatelessWidget {
                 onTap: () => onTap(index),
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: isNumberInRange(scheduleData[daysOfWeek.indexOf(selectedDay)][index].id, selectedIdRange)
+                    color: isNumberInRange(slot.id, selectedIdRange)
                         ? Theme.of(context).colorScheme.primary.withOpacity(0.5)
                         : Colors.transparent,
                     border: Border(
@@ -62,9 +62,9 @@ class CellsListViewBuilder extends StatelessWidget {
                   child: Center(
                     child: price != 0
                         ? Text(
-                      '$price₴',
-                      style: const TextStyle(color: Colors.black),
-                    )
+                            '$price₴',
+                            style: const TextStyle(color: Colors.black),
+                          )
                         : const SizedBox.shrink(),
                   ),
                 ),
@@ -72,10 +72,9 @@ class CellsListViewBuilder extends StatelessWidget {
             );
           } else {
             return EmptyCellListTile(
-                itemExtend: itemExtend,
-                lastCellEndTime: scheduleData[daysOfWeek.indexOf(selectedDay)].isNotEmpty
-                    ? scheduleData[daysOfWeek.indexOf(selectedDay)].last.endTime
-                    : DateTime.now());
+              itemExtend: itemExtend,
+              lastCellEndTime: timeSlots.isNotEmpty ? timeSlots.last.endTime : DateTime.now(),
+            );
           }
         },
       ),

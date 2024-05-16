@@ -9,7 +9,8 @@ class DayOfWeekState with _$DayOfWeekState {
   const factory DayOfWeekState.loading() = _Loading;
 
   const factory DayOfWeekState.data(
-      {required List<List<BookingTimeSlotsModel>> scheduleData, @Default(0) int selectedDay}) = _Data;
+      {  required List<BookingScheduleModel> scheduleData, @Default(0) int selectedDay}) = _Data;
 
   const factory DayOfWeekState.error(String errorMessage) = _Error;
 }
+

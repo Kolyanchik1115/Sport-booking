@@ -21,6 +21,19 @@ class BookingRepositoryImpl implements BookingRepository {
   }
 
   @override
+  Future<Either<Failure, BookingResponseModel>> getBookings() async {
+    try {
+      final data = {
+        "paginationArgs": {"limit": 10, "page": 1}
+      };
+      final result = await remoteClient.getAllBookings(data: data);
+      return Right(result);
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Failure, BookingResponseModel>> createBooking(
       {required int facilityId, required List<int> timeSlots}) async {
     try {

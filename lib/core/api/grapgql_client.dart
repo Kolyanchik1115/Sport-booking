@@ -47,6 +47,10 @@ class GraphClient {
     final queryResult = await sportAppApi.execute(query: getAllBookingQuery, data: data);
     return BookingResponseModel.fromJson(queryResult);
   }
+  Future<BookingResponseModel> getAllBookings({required Map<String, dynamic> data}) async {
+    final queryResult = await sportAppApi.execute(query: getAllBookingsQuery, data: data);
+    return BookingResponseModel.fromJson(queryResult);
+  }
 
   Future<BookingResponseModel> createBooking({required Map<String, dynamic> data}) async {
     final queryResult = await sportAppApi.execute(query: createBookingMutation, data: data, isMutation: true);

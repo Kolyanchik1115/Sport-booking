@@ -17,7 +17,7 @@ class FavoritePage extends StatelessWidget {
     return BlocProvider.value(
       value: injector<FavoriteCubit>(),
       child: BlocConsumer<FavoriteCubit, FavoriteState>(
-        listener: (context, state) => injector<FacilityCubit>()..localRemoveFromFavorite(state.removedListId),
+        listener: (context, state) => injector<FacilityCubit>().localRemoveFromFavorite(state.removedListId),
         listenWhen: (prev, curr) => curr.removedListId.isNotEmpty,
         builder: (context, state) {
           if (state.data.isEmpty) {

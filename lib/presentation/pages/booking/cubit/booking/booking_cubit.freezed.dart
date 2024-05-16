@@ -24,6 +24,7 @@ mixin _$BookingState {
       throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   List<int> get selectedIdRange => throw _privateConstructorUsedError;
+  List<BookingModel> get bookings => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -45,6 +46,7 @@ abstract class $BookingStateCopyWith<$Res> {
       List<BookingTimeSlotsModel> timeSlots,
       bool isLoading,
       List<int> selectedIdRange,
+      List<BookingModel> bookings,
       String? errorMessage});
 }
 
@@ -68,6 +70,7 @@ class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
     Object? timeSlots = null,
     Object? isLoading = null,
     Object? selectedIdRange = null,
+    Object? bookings = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -99,6 +102,10 @@ class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
           ? _value.selectedIdRange
           : selectedIdRange // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      bookings: null == bookings
+          ? _value.bookings
+          : bookings // ignore: cast_nullable_to_non_nullable
+              as List<BookingModel>,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -123,6 +130,7 @@ abstract class _$$BookingStateImplCopyWith<$Res>
       List<BookingTimeSlotsModel> timeSlots,
       bool isLoading,
       List<int> selectedIdRange,
+      List<BookingModel> bookings,
       String? errorMessage});
 }
 
@@ -144,6 +152,7 @@ class __$$BookingStateImplCopyWithImpl<$Res>
     Object? timeSlots = null,
     Object? isLoading = null,
     Object? selectedIdRange = null,
+    Object? bookings = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_$BookingStateImpl(
@@ -175,6 +184,10 @@ class __$$BookingStateImplCopyWithImpl<$Res>
           ? _value._selectedIdRange
           : selectedIdRange // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      bookings: null == bookings
+          ? _value._bookings
+          : bookings // ignore: cast_nullable_to_non_nullable
+              as List<BookingModel>,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -194,11 +207,13 @@ class _$BookingStateImpl implements _BookingState {
       final List<BookingTimeSlotsModel> timeSlots = const [],
       this.isLoading = false,
       final List<int> selectedIdRange = const [],
+      final List<BookingModel> bookings = const [],
       this.errorMessage})
       : _dates = dates,
         _cells = cells,
         _timeSlots = timeSlots,
-        _selectedIdRange = selectedIdRange;
+        _selectedIdRange = selectedIdRange,
+        _bookings = bookings;
 
   @override
   @JsonKey()
@@ -244,12 +259,21 @@ class _$BookingStateImpl implements _BookingState {
     return EqualUnmodifiableListView(_selectedIdRange);
   }
 
+  final List<BookingModel> _bookings;
+  @override
+  @JsonKey()
+  List<BookingModel> get bookings {
+    if (_bookings is EqualUnmodifiableListView) return _bookings;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bookings);
+  }
+
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'BookingState(totalPrice: $totalPrice, dateTime: $dateTime, dates: $dates, cells: $cells, timeSlots: $timeSlots, isLoading: $isLoading, selectedIdRange: $selectedIdRange, errorMessage: $errorMessage)';
+    return 'BookingState(totalPrice: $totalPrice, dateTime: $dateTime, dates: $dates, cells: $cells, timeSlots: $timeSlots, isLoading: $isLoading, selectedIdRange: $selectedIdRange, bookings: $bookings, errorMessage: $errorMessage)';
   }
 
   @override
@@ -269,6 +293,7 @@ class _$BookingStateImpl implements _BookingState {
                 other.isLoading == isLoading) &&
             const DeepCollectionEquality()
                 .equals(other._selectedIdRange, _selectedIdRange) &&
+            const DeepCollectionEquality().equals(other._bookings, _bookings) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
@@ -283,6 +308,7 @@ class _$BookingStateImpl implements _BookingState {
       const DeepCollectionEquality().hash(_timeSlots),
       isLoading,
       const DeepCollectionEquality().hash(_selectedIdRange),
+      const DeepCollectionEquality().hash(_bookings),
       errorMessage);
 
   @JsonKey(ignore: true)
@@ -301,6 +327,7 @@ abstract class _BookingState implements BookingState {
       final List<BookingTimeSlotsModel> timeSlots,
       final bool isLoading,
       final List<int> selectedIdRange,
+      final List<BookingModel> bookings,
       final String? errorMessage}) = _$BookingStateImpl;
 
   @override
@@ -317,6 +344,8 @@ abstract class _BookingState implements BookingState {
   bool get isLoading;
   @override
   List<int> get selectedIdRange;
+  @override
+  List<BookingModel> get bookings;
   @override
   String? get errorMessage;
   @override

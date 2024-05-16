@@ -7,11 +7,13 @@ import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/app_elevated_button.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/scaffold_with_app_bar.dart';
+import 'package:sport_app/injector.dart';
 import 'package:sport_app/presentation/pages/booking/cubit/booking/booking_cubit.dart';
 import 'package:sport_app/presentation/pages/booking/cubit/day_of_week/day_of_week_cubit.dart';
 import 'package:sport_app/presentation/pages/booking/widget/dotted_carousel.dart';
 import 'package:sport_app/presentation/pages/booking/widget/row_data_widget.dart';
 import 'package:sport_app/presentation/pages/booking/widget/row_with_button_widget.dart';
+import 'package:sport_app/presentation/pages/search/cubit/facility/facility_cubit.dart';
 
 //TODO: refactor total widget
 class FacilityDetailsPage extends StatelessWidget {
@@ -90,7 +92,15 @@ class FacilityDetailsPage extends StatelessWidget {
                                 RowWithButtonWidget(
                                   title: 'Time',
                                   text: state.dates.isEmpty
-                                      ? 'Select your schedule time'
+                                      ? injector<FacilityCubit>()
+                                              .state
+                                              .data[injector<FacilityCubit>()
+                                                  .state
+                                                  .data
+                                                  .indexWhere((facility) => facility.id == facilityData.id)]
+                                              .isWorking
+                                          ? 'Select your schedule time'
+                                          : 'Temporarily not working'
                                       : '${state.dates.first.hour.toString().padLeft(2, '0')}:'
                                           '${state.dates.first.minute.toString().padLeft(2, '0')} '
                                           '- ${state.dates.last.hour.toString().padLeft(2, '0')}'
@@ -99,6 +109,13 @@ class FacilityDetailsPage extends StatelessWidget {
                                     AppRoutes.facilityBooking,
                                     extra: [facilityData.id, context.read<BookingCubit>()],
                                   ),
+                                  isWorking: injector<FacilityCubit>()
+                                      .state
+                                      .data[injector<FacilityCubit>()
+                                          .state
+                                          .data
+                                          .indexWhere((facility) => facility.id == facilityData.id)]
+                                      .isWorking,
                                 ),
                                 const SizedBox(height: 15.0),
                                 RowDataWidget(title: 'Type', text: facilityData.facilityType ?? ''),

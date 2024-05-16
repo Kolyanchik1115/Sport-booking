@@ -1,12 +1,11 @@
 import 'dart:async';
-import 'dart:convert';
 
-import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/router_config.dart';
 import 'package:sport_app/core/router/routes.dart';
+import 'package:sport_app/core/utils/data_parser.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/custom_error_widget.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/scaffold_with_app_bar.dart';
 import 'package:sport_app/presentation/pages/booking/cubit/booking/booking_cubit.dart';
@@ -33,15 +32,11 @@ class PaymentPage extends StatelessWidget {
       value: bookingCubit,
       child: BlocBuilder<BookingCubit, BookingState>(
         builder: (context, state) {
-          String publicKey = 'sandbox_i69297607762';
-          String privateKey = 'sandbox_1iShFxZY7Xsp9Ab6lGojbEs4mNGy6ngW9BqGBRuv';
           String orderId = const Uuid().v4();
-          double amount = state.totalPrice;
-          String currency = 'UAH';
-          String description = desc;
-          String language = 'UK';
-          String data = _generateData(publicKey, orderId, amount, currency, description, language);
-          String signature = _generateSignature(privateKey, data);
+          String data =
+              DateParser.generatePaymentData('sandbox_i69297607762', orderId, state.totalPrice, 'UAH', desc, 'UK');
+          String signature =
+              DateParser.generatePaymentSignature('sandbox_1iShFxZY7Xsp9Ab6lGojbEs4mNGy6ngW9BqGBRuv', data);
 
           late WebViewController webViewController;
           String successUrl = 'https://www.liqpay.ua/uk/promo';
@@ -65,8 +60,7 @@ class PaymentPage extends StatelessWidget {
                             ))
                         .then((value) {
                       context.popUntil(AppRoutes.search);
-                      context.go(AppRoutes.reservation,
-                          extra: [desc, state.dates.first, state.dates.first, orderId, image]);
+                      context.go(AppRoutes.reservation);
                     });
                     return NavigationDecision.prevent;
                   }
@@ -86,30 +80,5 @@ class PaymentPage extends StatelessWidget {
         },
       ),
     );
-  }
-
-  String _generateData(
-      String publicKey, String orderId, double amount, String currency, String description, String language) {
-    Map<String, dynamic> requestData = {
-      'public_key': publicKey,
-      'version': 3,
-      'action': 'pay',
-      'amount': amount,
-      'currency': currency,
-      'description': description,
-      'order_id': orderId,
-      'language': language,
-    };
-    String jsonData = json.encode(requestData);
-    String base64Data = base64Encode(utf8.encode(jsonData));
-    return base64Data;
-  }
-
-  String _generateSignature(String privateKey, String data) {
-    String signString = '$privateKey$data$privateKey';
-    List<int> bytes = utf8.encode(signString);
-    Digest sha1Hash = sha1.convert(bytes);
-    String base64Signature = base64Encode(sha1Hash.bytes);
-    return base64Signature;
   }
 }

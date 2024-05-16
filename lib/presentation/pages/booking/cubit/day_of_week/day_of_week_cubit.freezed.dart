@@ -22,7 +22,7 @@ mixin _$DayOfWeekState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)
+            List<BookingScheduleModel> scheduleData, int selectedDay)
         data,
     required TResult Function(String errorMessage) error,
   }) =>
@@ -32,8 +32,7 @@ mixin _$DayOfWeekState {
     TResult? Function()? empty,
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult? Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult? Function(String errorMessage)? error,
   }) =>
@@ -43,8 +42,7 @@ mixin _$DayOfWeekState {
     TResult Function()? empty,
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
@@ -140,7 +138,7 @@ class _$EmptyImpl implements _Empty {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)
+            List<BookingScheduleModel> scheduleData, int selectedDay)
         data,
     required TResult Function(String errorMessage) error,
   }) {
@@ -153,8 +151,7 @@ class _$EmptyImpl implements _Empty {
     TResult? Function()? empty,
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult? Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult? Function(String errorMessage)? error,
   }) {
@@ -167,8 +164,7 @@ class _$EmptyImpl implements _Empty {
     TResult Function()? empty,
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
@@ -266,7 +262,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)
+            List<BookingScheduleModel> scheduleData, int selectedDay)
         data,
     required TResult Function(String errorMessage) error,
   }) {
@@ -279,8 +275,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? empty,
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult? Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult? Function(String errorMessage)? error,
   }) {
@@ -293,8 +288,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? empty,
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
@@ -392,7 +386,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)
+            List<BookingScheduleModel> scheduleData, int selectedDay)
         data,
     required TResult Function(String errorMessage) error,
   }) {
@@ -405,8 +399,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? empty,
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult? Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult? Function(String errorMessage)? error,
   }) {
@@ -419,8 +412,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? empty,
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
@@ -482,7 +474,7 @@ abstract class _$$DataImplCopyWith<$Res> {
           _$DataImpl value, $Res Function(_$DataImpl) then) =
       __$$DataImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay});
+  $Res call({List<BookingScheduleModel> scheduleData, int selectedDay});
 }
 
 /// @nodoc
@@ -502,7 +494,7 @@ class __$$DataImplCopyWithImpl<$Res>
       scheduleData: null == scheduleData
           ? _value._scheduleData
           : scheduleData // ignore: cast_nullable_to_non_nullable
-              as List<List<BookingTimeSlotsModel>>,
+              as List<BookingScheduleModel>,
       selectedDay: null == selectedDay
           ? _value.selectedDay
           : selectedDay // ignore: cast_nullable_to_non_nullable
@@ -515,13 +507,13 @@ class __$$DataImplCopyWithImpl<$Res>
 
 class _$DataImpl implements _Data {
   const _$DataImpl(
-      {required final List<List<BookingTimeSlotsModel>> scheduleData,
+      {required final List<BookingScheduleModel> scheduleData,
       this.selectedDay = 0})
       : _scheduleData = scheduleData;
 
-  final List<List<BookingTimeSlotsModel>> _scheduleData;
+  final List<BookingScheduleModel> _scheduleData;
   @override
-  List<List<BookingTimeSlotsModel>> get scheduleData {
+  List<BookingScheduleModel> get scheduleData {
     if (_scheduleData is EqualUnmodifiableListView) return _scheduleData;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_scheduleData);
@@ -564,7 +556,7 @@ class _$DataImpl implements _Data {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)
+            List<BookingScheduleModel> scheduleData, int selectedDay)
         data,
     required TResult Function(String errorMessage) error,
   }) {
@@ -577,8 +569,7 @@ class _$DataImpl implements _Data {
     TResult? Function()? empty,
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult? Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult? Function(String errorMessage)? error,
   }) {
@@ -591,8 +582,7 @@ class _$DataImpl implements _Data {
     TResult Function()? empty,
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
@@ -646,10 +636,10 @@ class _$DataImpl implements _Data {
 
 abstract class _Data implements DayOfWeekState {
   const factory _Data(
-      {required final List<List<BookingTimeSlotsModel>> scheduleData,
+      {required final List<BookingScheduleModel> scheduleData,
       final int selectedDay}) = _$DataImpl;
 
-  List<List<BookingTimeSlotsModel>> get scheduleData;
+  List<BookingScheduleModel> get scheduleData;
   int get selectedDay;
   @JsonKey(ignore: true)
   _$$DataImplCopyWith<_$DataImpl> get copyWith =>
@@ -725,7 +715,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)
+            List<BookingScheduleModel> scheduleData, int selectedDay)
         data,
     required TResult Function(String errorMessage) error,
   }) {
@@ -738,8 +728,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? empty,
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult? Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult? Function(String errorMessage)? error,
   }) {
@@ -752,8 +741,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? empty,
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            List<List<BookingTimeSlotsModel>> scheduleData, int selectedDay)?
+    TResult Function(List<BookingScheduleModel> scheduleData, int selectedDay)?
         data,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),

@@ -20,6 +20,7 @@ class FacilityData with _$FacilityData {
     required String? description,
     required double? avgPrice,
     required String? location,
+    required bool isWorking,
     required bool currentUserIsFavorite ,
     required List<FacilityDataImage> images,
   }) = _FacilityData;

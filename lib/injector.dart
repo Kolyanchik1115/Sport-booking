@@ -16,6 +16,7 @@ import 'package:sport_app/domain/usecases/auth/sign_in_use_case.dart';
 import 'package:sport_app/domain/usecases/auth/sign_up_use_case.dart';
 import 'package:sport_app/domain/usecases/booking/create_booking.dart';
 import 'package:sport_app/domain/usecases/booking/get_all_bookings.dart';
+import 'package:sport_app/domain/usecases/booking/get_bookings.dart';
 import 'package:sport_app/domain/usecases/facility/add_favorite.dart';
 import 'package:sport_app/domain/usecases/facility/get_all_facility.dart';
 import 'package:sport_app/domain/usecases/facility/get_all_favorites.dart';
@@ -42,6 +43,7 @@ void init() {
   injector.registerLazySingleton(() => GoogleSignInUserUseCase(injector()));
   injector.registerLazySingleton(() => CreateBookingUseCase(injector()));
   injector.registerLazySingleton(() => GetAllFavoritesUseCase(injector()));
+  injector.registerLazySingleton(() => GetBookingsUseCase(injector()));
 
 
   // Repositories

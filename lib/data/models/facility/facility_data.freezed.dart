@@ -31,6 +31,7 @@ mixin _$FacilityData {
   String? get description => throw _privateConstructorUsedError;
   double? get avgPrice => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
+  bool get isWorking => throw _privateConstructorUsedError;
   bool get currentUserIsFavorite => throw _privateConstructorUsedError;
   List<FacilityDataImage> get images => throw _privateConstructorUsedError;
 
@@ -58,6 +59,7 @@ abstract class $FacilityDataCopyWith<$Res> {
       String? description,
       double? avgPrice,
       String? location,
+      bool isWorking,
       bool currentUserIsFavorite,
       List<FacilityDataImage> images});
 
@@ -88,6 +90,7 @@ class _$FacilityDataCopyWithImpl<$Res, $Val extends FacilityData>
     Object? description = freezed,
     Object? avgPrice = freezed,
     Object? location = freezed,
+    Object? isWorking = null,
     Object? currentUserIsFavorite = null,
     Object? images = null,
   }) {
@@ -136,6 +139,10 @@ class _$FacilityDataCopyWithImpl<$Res, $Val extends FacilityData>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
+      isWorking: null == isWorking
+          ? _value.isWorking
+          : isWorking // ignore: cast_nullable_to_non_nullable
+              as bool,
       currentUserIsFavorite: null == currentUserIsFavorite
           ? _value.currentUserIsFavorite
           : currentUserIsFavorite // ignore: cast_nullable_to_non_nullable
@@ -180,6 +187,7 @@ abstract class _$$FacilityDataImplCopyWith<$Res>
       String? description,
       double? avgPrice,
       String? location,
+      bool isWorking,
       bool currentUserIsFavorite,
       List<FacilityDataImage> images});
 
@@ -209,6 +217,7 @@ class __$$FacilityDataImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? avgPrice = freezed,
     Object? location = freezed,
+    Object? isWorking = null,
     Object? currentUserIsFavorite = null,
     Object? images = null,
   }) {
@@ -257,6 +266,10 @@ class __$$FacilityDataImplCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
+      isWorking: null == isWorking
+          ? _value.isWorking
+          : isWorking // ignore: cast_nullable_to_non_nullable
+              as bool,
       currentUserIsFavorite: null == currentUserIsFavorite
           ? _value.currentUserIsFavorite
           : currentUserIsFavorite // ignore: cast_nullable_to_non_nullable
@@ -284,6 +297,7 @@ class _$FacilityDataImpl implements _FacilityData {
       required this.description,
       required this.avgPrice,
       required this.location,
+      required this.isWorking,
       required this.currentUserIsFavorite,
       required final List<FacilityDataImage> images})
       : _sportType = sportType,
@@ -323,6 +337,8 @@ class _$FacilityDataImpl implements _FacilityData {
   @override
   final String? location;
   @override
+  final bool isWorking;
+  @override
   final bool currentUserIsFavorite;
   final List<FacilityDataImage> _images;
   @override
@@ -334,7 +350,7 @@ class _$FacilityDataImpl implements _FacilityData {
 
   @override
   String toString() {
-    return 'FacilityData(id: $id, name: $name, address: $address, sportType: $sportType, coveringType: $coveringType, district: $district, minBookingTime: $minBookingTime, facilityType: $facilityType, description: $description, avgPrice: $avgPrice, location: $location, currentUserIsFavorite: $currentUserIsFavorite, images: $images)';
+    return 'FacilityData(id: $id, name: $name, address: $address, sportType: $sportType, coveringType: $coveringType, district: $district, minBookingTime: $minBookingTime, facilityType: $facilityType, description: $description, avgPrice: $avgPrice, location: $location, isWorking: $isWorking, currentUserIsFavorite: $currentUserIsFavorite, images: $images)';
   }
 
   @override
@@ -361,6 +377,8 @@ class _$FacilityDataImpl implements _FacilityData {
                 other.avgPrice == avgPrice) &&
             (identical(other.location, location) ||
                 other.location == location) &&
+            (identical(other.isWorking, isWorking) ||
+                other.isWorking == isWorking) &&
             (identical(other.currentUserIsFavorite, currentUserIsFavorite) ||
                 other.currentUserIsFavorite == currentUserIsFavorite) &&
             const DeepCollectionEquality().equals(other._images, _images));
@@ -381,6 +399,7 @@ class _$FacilityDataImpl implements _FacilityData {
       description,
       avgPrice,
       location,
+      isWorking,
       currentUserIsFavorite,
       const DeepCollectionEquality().hash(_images));
 
@@ -411,6 +430,7 @@ abstract class _FacilityData implements FacilityData {
       required final String? description,
       required final double? avgPrice,
       required final String? location,
+      required final bool isWorking,
       required final bool currentUserIsFavorite,
       required final List<FacilityDataImage> images}) = _$FacilityDataImpl;
 
@@ -439,6 +459,8 @@ abstract class _FacilityData implements FacilityData {
   double? get avgPrice;
   @override
   String? get location;
+  @override
+  bool get isWorking;
   @override
   bool get currentUserIsFavorite;
   @override

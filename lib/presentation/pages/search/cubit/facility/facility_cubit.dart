@@ -58,7 +58,7 @@ class FacilityCubit extends Cubit<FacilityState> {
           facilities.addAll(data.findAll!.facilities);
         }
         emit(state.copyWith(
-          data: facilities,
+          data: facilities.where((facility) => facility.avgPrice != null).toList(),
           currentPage: _currentPage,
           isLoading: false,
           hasReachedEnd: data.findAll!.facilities.isEmpty,
@@ -110,8 +110,7 @@ class FacilityCubit extends Cubit<FacilityState> {
       final data = _getFacilityById(i);
       facilityList[data.$2] = data.$1.copyWith(currentUserIsFavorite: false);
     }
-
-    emit(state.copyWith(data: facilityList.toList()));
+    emit(state.copyWith(data: facilityList.toList(), isChangeFavorite: false));
   }
 
   Future<void> loadFirstPage({String? search}) async {

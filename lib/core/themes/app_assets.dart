@@ -39,6 +39,8 @@ abstract class AppSvg {
   static const String artificialLawn = 'assets/svg/icons/artificial_lawn.svg';
   static const String naturalLawn = 'assets/svg/icons/natural_lawn.svg';
   static const String parquet = 'assets/svg/icons/parquet.svg';
+  static const String repair = 'assets/svg/icons/repair.svg';
+
 
   static const String map = 'assets/svg/icons/map.svg';
 

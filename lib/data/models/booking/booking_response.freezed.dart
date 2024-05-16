@@ -20,8 +20,7 @@ BookingResponse _$BookingResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BookingResponse {
-  List<BookingTimeSlotsModel> get timeSlots =>
-      throw _privateConstructorUsedError;
+  List<BookingScheduleModel> get schedule => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +34,7 @@ abstract class $BookingResponseCopyWith<$Res> {
           BookingResponse value, $Res Function(BookingResponse) then) =
       _$BookingResponseCopyWithImpl<$Res, BookingResponse>;
   @useResult
-  $Res call({List<BookingTimeSlotsModel> timeSlots});
+  $Res call({List<BookingScheduleModel> schedule});
 }
 
 /// @nodoc
@@ -51,13 +50,13 @@ class _$BookingResponseCopyWithImpl<$Res, $Val extends BookingResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? timeSlots = null,
+    Object? schedule = null,
   }) {
     return _then(_value.copyWith(
-      timeSlots: null == timeSlots
-          ? _value.timeSlots
-          : timeSlots // ignore: cast_nullable_to_non_nullable
-              as List<BookingTimeSlotsModel>,
+      schedule: null == schedule
+          ? _value.schedule
+          : schedule // ignore: cast_nullable_to_non_nullable
+              as List<BookingScheduleModel>,
     ) as $Val);
   }
 }
@@ -70,7 +69,7 @@ abstract class _$$BookingResponseImplCopyWith<$Res>
       __$$BookingResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<BookingTimeSlotsModel> timeSlots});
+  $Res call({List<BookingScheduleModel> schedule});
 }
 
 /// @nodoc
@@ -84,13 +83,13 @@ class __$$BookingResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? timeSlots = null,
+    Object? schedule = null,
   }) {
     return _then(_$BookingResponseImpl(
-      timeSlots: null == timeSlots
-          ? _value._timeSlots
-          : timeSlots // ignore: cast_nullable_to_non_nullable
-              as List<BookingTimeSlotsModel>,
+      schedule: null == schedule
+          ? _value._schedule
+          : schedule // ignore: cast_nullable_to_non_nullable
+              as List<BookingScheduleModel>,
     ));
   }
 }
@@ -99,23 +98,23 @@ class __$$BookingResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BookingResponseImpl implements _BookingResponse {
   const _$BookingResponseImpl(
-      {required final List<BookingTimeSlotsModel> timeSlots})
-      : _timeSlots = timeSlots;
+      {required final List<BookingScheduleModel> schedule})
+      : _schedule = schedule;
 
   factory _$BookingResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$BookingResponseImplFromJson(json);
 
-  final List<BookingTimeSlotsModel> _timeSlots;
+  final List<BookingScheduleModel> _schedule;
   @override
-  List<BookingTimeSlotsModel> get timeSlots {
-    if (_timeSlots is EqualUnmodifiableListView) return _timeSlots;
+  List<BookingScheduleModel> get schedule {
+    if (_schedule is EqualUnmodifiableListView) return _schedule;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_timeSlots);
+    return EqualUnmodifiableListView(_schedule);
   }
 
   @override
   String toString() {
-    return 'BookingResponse(timeSlots: $timeSlots)';
+    return 'BookingResponse(schedule: $schedule)';
   }
 
   @override
@@ -123,14 +122,13 @@ class _$BookingResponseImpl implements _BookingResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BookingResponseImpl &&
-            const DeepCollectionEquality()
-                .equals(other._timeSlots, _timeSlots));
+            const DeepCollectionEquality().equals(other._schedule, _schedule));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_timeSlots));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_schedule));
 
   @JsonKey(ignore: true)
   @override
@@ -149,14 +147,14 @@ class _$BookingResponseImpl implements _BookingResponse {
 
 abstract class _BookingResponse implements BookingResponse {
   const factory _BookingResponse(
-          {required final List<BookingTimeSlotsModel> timeSlots}) =
+          {required final List<BookingScheduleModel> schedule}) =
       _$BookingResponseImpl;
 
   factory _BookingResponse.fromJson(Map<String, dynamic> json) =
       _$BookingResponseImpl.fromJson;
 
   @override
-  List<BookingTimeSlotsModel> get timeSlots;
+  List<BookingScheduleModel> get schedule;
   @override
   @JsonKey(ignore: true)
   _$$BookingResponseImplCopyWith<_$BookingResponseImpl> get copyWith =>

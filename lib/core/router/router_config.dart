@@ -133,13 +133,7 @@ class AppRouter {
               routes: <RouteBase>[
                 GoRoute(
                   path: AppRoutes.reservation,
-                  builder: (BuildContext context, GoRouterState state) => ReservationPage(
-                    description: (state.extra as List<dynamic>)[0] as String,
-                    date: (state.extra as List<dynamic>)[1] as DateTime,
-                    time: (state.extra as List<dynamic>)[2] as DateTime,
-                    number: (state.extra as List<dynamic>)[3] as String,
-                    image: (state.extra as List<dynamic>)[4] as String,
-                  ),
+                  builder: (BuildContext context, GoRouterState state) =>   ReservationPage(),
                 ),
               ],
             ),

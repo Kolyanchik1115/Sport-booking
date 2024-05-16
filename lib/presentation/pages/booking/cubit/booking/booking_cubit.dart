@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sport_app/core/usecases/usecases.dart';
+import 'package:sport_app/data/models/booking/booking_model.dart';
 import 'package:sport_app/data/models/booking/booking_time_slots_model.dart';
 import 'package:sport_app/domain/usecases/booking/create_booking.dart';
-import 'package:sport_app/domain/usecases/booking/get_all_bookings.dart';
+import 'package:sport_app/domain/usecases/booking/get_bookings.dart';
 import 'package:sport_app/injector.dart';
 
 part 'booking_cubit.freezed.dart';
@@ -12,9 +14,18 @@ part 'booking_state.dart';
 class BookingCubit extends Cubit<BookingState> {
   BookingCubit() : super(const BookingState());
 
-
-  void getBooking(List<BookingTimeSlotsModel> daySlots){
+  void getBooking(List<BookingTimeSlotsModel> daySlots) {
     emit(state.copyWith(timeSlots: daySlots));
+  }
+
+  Future<void> getBookings() async {
+    emit(state.copyWith(isLoading: true));
+    final result = await injector<GetBookingsUseCase>()(NoParams());
+    result.fold(
+      (error) => emit(state.copyWith(errorMessage: error.runtimeType.toString(), isLoading: false)),
+      (bookings) => emit(state.copyWith(bookings: bookings.findAllBookings?.bookings ?? [])),
+    );
+    emit(state.copyWith(isLoading: false));
   }
 
   Future<void> createBooking({required int facilityId, required List<int> timeSlots}) async {

@@ -20,6 +20,8 @@ BookingResponseModel _$BookingResponseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BookingResponseModel {
+  BookingsResponseModel? get findAllBookings =>
+      throw _privateConstructorUsedError;
   BookingResponse? get facility => throw _privateConstructorUsedError;
   CreateBookingResponse? get createBooking =>
       throw _privateConstructorUsedError;
@@ -36,8 +38,12 @@ abstract class $BookingResponseModelCopyWith<$Res> {
           $Res Function(BookingResponseModel) then) =
       _$BookingResponseModelCopyWithImpl<$Res, BookingResponseModel>;
   @useResult
-  $Res call({BookingResponse? facility, CreateBookingResponse? createBooking});
+  $Res call(
+      {BookingsResponseModel? findAllBookings,
+      BookingResponse? facility,
+      CreateBookingResponse? createBooking});
 
+  $BookingsResponseModelCopyWith<$Res>? get findAllBookings;
   $BookingResponseCopyWith<$Res>? get facility;
   $CreateBookingResponseCopyWith<$Res>? get createBooking;
 }
@@ -56,10 +62,15 @@ class _$BookingResponseModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? findAllBookings = freezed,
     Object? facility = freezed,
     Object? createBooking = freezed,
   }) {
     return _then(_value.copyWith(
+      findAllBookings: freezed == findAllBookings
+          ? _value.findAllBookings
+          : findAllBookings // ignore: cast_nullable_to_non_nullable
+              as BookingsResponseModel?,
       facility: freezed == facility
           ? _value.facility
           : facility // ignore: cast_nullable_to_non_nullable
@@ -69,6 +80,19 @@ class _$BookingResponseModelCopyWithImpl<$Res,
           : createBooking // ignore: cast_nullable_to_non_nullable
               as CreateBookingResponse?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BookingsResponseModelCopyWith<$Res>? get findAllBookings {
+    if (_value.findAllBookings == null) {
+      return null;
+    }
+
+    return $BookingsResponseModelCopyWith<$Res>(_value.findAllBookings!,
+        (value) {
+      return _then(_value.copyWith(findAllBookings: value) as $Val);
+    });
   }
 
   @override
@@ -104,8 +128,13 @@ abstract class _$$BookingResponseModelImplCopyWith<$Res>
       __$$BookingResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BookingResponse? facility, CreateBookingResponse? createBooking});
+  $Res call(
+      {BookingsResponseModel? findAllBookings,
+      BookingResponse? facility,
+      CreateBookingResponse? createBooking});
 
+  @override
+  $BookingsResponseModelCopyWith<$Res>? get findAllBookings;
   @override
   $BookingResponseCopyWith<$Res>? get facility;
   @override
@@ -123,10 +152,15 @@ class __$$BookingResponseModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? findAllBookings = freezed,
     Object? facility = freezed,
     Object? createBooking = freezed,
   }) {
     return _then(_$BookingResponseModelImpl(
+      findAllBookings: freezed == findAllBookings
+          ? _value.findAllBookings
+          : findAllBookings // ignore: cast_nullable_to_non_nullable
+              as BookingsResponseModel?,
       facility: freezed == facility
           ? _value.facility
           : facility // ignore: cast_nullable_to_non_nullable
@@ -142,11 +176,14 @@ class __$$BookingResponseModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BookingResponseModelImpl implements _BookingResponseModel {
-  const _$BookingResponseModelImpl({this.facility, this.createBooking});
+  const _$BookingResponseModelImpl(
+      {this.findAllBookings, this.facility, this.createBooking});
 
   factory _$BookingResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BookingResponseModelImplFromJson(json);
 
+  @override
+  final BookingsResponseModel? findAllBookings;
   @override
   final BookingResponse? facility;
   @override
@@ -154,7 +191,7 @@ class _$BookingResponseModelImpl implements _BookingResponseModel {
 
   @override
   String toString() {
-    return 'BookingResponseModel(facility: $facility, createBooking: $createBooking)';
+    return 'BookingResponseModel(findAllBookings: $findAllBookings, facility: $facility, createBooking: $createBooking)';
   }
 
   @override
@@ -162,6 +199,8 @@ class _$BookingResponseModelImpl implements _BookingResponseModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BookingResponseModelImpl &&
+            (identical(other.findAllBookings, findAllBookings) ||
+                other.findAllBookings == findAllBookings) &&
             (identical(other.facility, facility) ||
                 other.facility == facility) &&
             (identical(other.createBooking, createBooking) ||
@@ -170,7 +209,8 @@ class _$BookingResponseModelImpl implements _BookingResponseModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, facility, createBooking);
+  int get hashCode =>
+      Object.hash(runtimeType, findAllBookings, facility, createBooking);
 
   @JsonKey(ignore: true)
   @override
@@ -190,12 +230,15 @@ class _$BookingResponseModelImpl implements _BookingResponseModel {
 
 abstract class _BookingResponseModel implements BookingResponseModel {
   const factory _BookingResponseModel(
-      {final BookingResponse? facility,
+      {final BookingsResponseModel? findAllBookings,
+      final BookingResponse? facility,
       final CreateBookingResponse? createBooking}) = _$BookingResponseModelImpl;
 
   factory _BookingResponseModel.fromJson(Map<String, dynamic> json) =
       _$BookingResponseModelImpl.fromJson;
 
+  @override
+  BookingsResponseModel? get findAllBookings;
   @override
   BookingResponse? get facility;
   @override

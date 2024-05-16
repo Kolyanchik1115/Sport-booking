@@ -9,13 +9,13 @@ part of 'booking_response.dart';
 _$BookingResponseImpl _$$BookingResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$BookingResponseImpl(
-      timeSlots: (json['timeSlots'] as List<dynamic>)
-          .map((e) => BookingTimeSlotsModel.fromJson(e as Map<String, dynamic>))
+      schedule: (json['schedule'] as List<dynamic>)
+          .map((e) => BookingScheduleModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$$BookingResponseImplToJson(
         _$BookingResponseImpl instance) =>
     <String, dynamic>{
-      'timeSlots': instance.timeSlots,
+      'schedule': instance.schedule,
     };

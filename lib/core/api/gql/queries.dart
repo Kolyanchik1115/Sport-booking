@@ -11,17 +11,21 @@ const String getProfileQuery = r'''
   }
 ''';
 const String getAllBookingQuery = r''' query FindOneFacility($id: Int!) {
-facility(id: $id) {
-    timeSlots{
-        id
-        dayOfWeek
-        startTime
-        endTime
-        price
-        status
+  facility(id: $id) {
+    schedule{
+        date
+        timeSlots {
+          id
+          date
+          dayOfWeek
+          startTime
+          endTime
+          price
+          status
         }
-      }
     }
+  }
+}
 ''';
 
 const String getAllFacilityQuery =
@@ -45,6 +49,7 @@ const String getAllFacilityQuery =
         facilityType
         description
         minBookingTime
+        isWorking
         currentUserIsFavorite
         images {
             image
@@ -71,6 +76,7 @@ const getAllUserFavoriteQuery = r'''query GetUserFavorites($paginationArgs: Pagi
         }
         location
         coveringType
+        isWorking
         facilityType
         description
         minBookingTime
@@ -82,3 +88,23 @@ const getAllUserFavoriteQuery = r'''query GetUserFavorites($paginationArgs: Pagi
       }
   }
 }''';
+
+const getAllBookingsQuery = r'''
+query FindAllBookings($paginationArgs: PaginationArgs) {
+  findAllBookings(paginationArgs: $paginationArgs) {
+    bookings{
+        id
+        status
+        startTime
+        facility {
+            id
+            name
+            images{
+                image
+            }
+        }
+        createdAt
+    }
+  }
+}
+''';

@@ -10,6 +10,7 @@ class BookingState with _$BookingState {
     @Default([]) List<BookingTimeSlotsModel> timeSlots,
     @Default(false) bool isLoading,
     @Default([]) List<int> selectedIdRange,
+    @Default([]) List<BookingModel> bookings,
     String? errorMessage,
   }) = _BookingState;
 }

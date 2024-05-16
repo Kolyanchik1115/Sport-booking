@@ -29,7 +29,7 @@ class FacilityConfirmBookingPage extends StatelessWidget {
             appBarTitle: "Confirm reservation",
             centerTitle: true,
             child: Padding(
-              padding: const EdgeInsets.only(left:20.0,right: 20.0,top: 45.0),
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 45.0),
               child: SingleChildScrollView(
                 child: Container(
                   padding: const EdgeInsets.all(20.0),
@@ -70,9 +70,13 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             RowDataWidget(
-                                title: 'Date',
-                                text:
-                                    '${state.dateTime?.day ?? DateTime.now().day} ${DummyData.monthNames[state.dateTime?.month ?? DateTime.now().month - 1]}'),
+                              title: 'Date',
+                              text:
+                                  '${state.dateTime?.day ?? DateTime.now().day} ${(state.dateTime?.month != null
+                                      && state.dateTime!.month - 1 >= 0 && state.dateTime!.month <= DummyData.monthNames.length)
+                                      ? DummyData.monthNames[state.dateTime!.month - 1]
+                                      : DummyData.monthNames[DateTime.now().month - 1]}',
+                            ),
                             RowDataWidget(
                                 title: 'Reserve time',
                                 text: '${state.dates.first.hour.toString().padLeft(2, '0')}:'
@@ -124,7 +128,7 @@ class FacilityConfirmBookingPage extends StatelessWidget {
                                   context.read<BookingCubit>(),
                                   facilityData.name,
                                   facilityData.id,
-                                  facilityData.images.first.image
+                                  facilityData.images.isNotEmpty ? facilityData.images.first.image : ''
                                 ]);
                               },
                             ),

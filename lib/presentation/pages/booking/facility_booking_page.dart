@@ -21,7 +21,6 @@ class FacilityBookingPage extends StatefulWidget {
 class FacilityBookingPageState extends State<FacilityBookingPage> {
   final double itemExtend = 45.0;
   List<String> daysOfWeek = DummyData.daysOfWeek;
-  String selectedDay = DummyData.daysOfWeek.first;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,8 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
               orElse: () => const SizedBox.shrink(),
               data: (scheduleData, selectedDay) => BlocBuilder<BookingCubit, BookingState>(
                 builder: (context, state) {
-                  context.read<BookingCubit>().getBooking(scheduleData[selectedDay]);
+                  final selectedSchedule = scheduleData[selectedDay];
+                  context.read<BookingCubit>().getBooking(selectedSchedule.timeSlots);
                   return Column(
                     children: [
                       SizedBox(
@@ -52,16 +52,18 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
                             return Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 10.0),
                               child: GestureDetector(
-                                onTap: () {
-                                  context.read<BookingCubit>().resetRange();
-                                  context.read<BookingCubit>().getBooking(scheduleData[selectedDay]);
-                                  context.read<DayOfWeekCubit>().selectDate(index);
-                                },
+                                onTap: index < scheduleData.length && scheduleData[index].timeSlots.isNotEmpty
+                                    ? () {
+                                        context.read<BookingCubit>().resetRange();
+                                        context.read<BookingCubit>().getBooking(scheduleData[index].timeSlots);
+                                        context.read<DayOfWeekCubit>().selectDate(index);
+                                      }
+                                    : null,
                                 child: Container(
                                   width: itemExtend + 5,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
-                                    color: scheduleData[index].isNotEmpty
+                                    color: index < scheduleData.length && scheduleData[index].timeSlots.isNotEmpty
                                         ? selectedDay == index
                                             ? Theme.of(context).colorScheme.primary
                                             : Theme.of(context).colorScheme.primary.withOpacity(0.5)
@@ -77,12 +79,12 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
                       ),
                       CellsListViewBuilder(
                         itemExtend: itemExtend,
-                        scheduleData: scheduleData,
+                        scheduleData: scheduleData.map((e) => e.timeSlots).toList(),
                         daysOfWeek: daysOfWeek,
-                        selectedDay: DummyData.daysOfWeek[selectedDay],
+                        selectedDay: selectedDay,
                         selectedIdRange: state.selectedIdRange,
                         onTap: (index) {
-                          context.read<BookingCubit>().updateRange(scheduleData[selectedDay][index].id);
+                          context.read<BookingCubit>().updateRange(selectedSchedule.timeSlots[index].id);
                         },
                       ),
                       TotalRowWidget(
@@ -90,22 +92,22 @@ class FacilityBookingPageState extends State<FacilityBookingPage> {
                         selectedIdRange: state.selectedIdRange,
                         onPressed: () {
                           if (state.totalPrice != 0 && state.selectedIdRange.isNotEmpty) {
-                            DateTime startTime = scheduleData[selectedDay]
-                                .firstWhere((slot) => state.selectedIdRange.contains(slot.id))
-                                .startTime;
-                            DateTime endTime = scheduleData[selectedDay]
-                                .lastWhere((slot) => state.selectedIdRange.contains(slot.id))
-                                .endTime;
+                            final selectedSlots = selectedSchedule.timeSlots
+                                .where((slot) => state.selectedIdRange.contains(slot.id))
+                                .toList();
+                            final startTime = selectedSlots.first.startTime;
+                            final endTime = selectedSlots.last.endTime;
 
                             print('First Selected Time: $startTime');
                             print('Last Selected Time: $endTime');
                             print('price: ${state.totalPrice}');
                             print('cells: ${state.selectedIdRange}');
+                            print('day: ${selectedSchedule.date}');
 
                             context.read<BookingCubit>().updateState(
                               cells: state.selectedIdRange,
                               price: state.totalPrice,
-                              dateTime: DateTime.now(),
+                              dateTime: selectedSchedule.date,
                               dates: [startTime, endTime],
                             );
                             context.pop();
