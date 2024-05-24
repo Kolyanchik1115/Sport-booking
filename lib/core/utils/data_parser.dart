@@ -1,6 +1,11 @@
+import 'dart:ui';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
+
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 
 class DateParser {
   static Future<DateTime?> showDataPicker(BuildContext context) {
@@ -54,5 +59,43 @@ class DateParser {
     Digest sha1Hash = sha1.convert(bytes);
     String base64Signature = base64Encode(sha1Hash.bytes);
     return base64Signature;
+  }
+
+  static Future<BitmapDescriptor> getMarkerBitmap(int size, double size2, Color color1, Color color2,
+      {String? text}) async {
+    if (kIsWeb) size = (size / 2).floor();
+
+    final PictureRecorder pictureRecorder = PictureRecorder();
+    final Canvas canvas = Canvas(pictureRecorder);
+    final Paint paint3 = Paint()..color = color1;
+    final Paint paint2 = Paint()..color = color2;
+
+    double degreesToRads(num deg) {
+      return (deg * 3.14) / 180.0;
+    }
+
+    var totalRatio = 2.09439666667 * 3;
+    var resultRatio = totalRatio * 2;
+
+    canvas.drawCircle(Offset(size / 2, size / 2), size / 2.0, paint3);
+    canvas.drawCircle(Offset(size / 2, size / 2), size / 2.8, paint3);
+    canvas.drawCircle(Offset(size / 2, size / 2), size / 3.8, paint3);
+    canvas.drawArc(const Offset(0, 0) & Size(size2, size2), degreesToRads(90.0), resultRatio, true, paint3);
+    canvas.drawCircle(Offset(size / 2, size / 2), size / 3.2, paint2);
+    if (text != null) {
+      TextPainter painter = TextPainter(textDirection: TextDirection.ltr);
+      painter.text = TextSpan(
+        text: text,
+        style: TextStyle(fontSize: size / 3, color: Colors.black, fontWeight: FontWeight.normal),
+      );
+      painter.layout();
+      painter.paint(
+        canvas,
+        Offset(size / 2 - painter.width / 2, size / 2 - painter.height / 2),
+      );
+    }
+    final img = await pictureRecorder.endRecording().toImage(size, size);
+    final data = await img.toByteData(format: ImageByteFormat.png) as ByteData;
+    return BitmapDescriptor.fromBytes(data.buffer.asUint8List());
   }
 }

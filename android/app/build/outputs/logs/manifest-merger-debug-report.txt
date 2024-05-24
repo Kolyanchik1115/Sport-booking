@@ -1,0 +1,312 @@
+-- Merging decision tree log ---
+application
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:3:5-37:19
+MERGED from [:url_launcher_android] /Users/sprat/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher_android] /Users/sprat/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-12:19
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/880f2add5aaba41eac05b7d9d2e43a25/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/880f2add5aaba41eac05b7d9d2e43a25/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:36:5-42:19
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:36:5-42:19
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] /Users/sprat/.gradle/caches/transforms-3/5e94f20b84ca03af1f57906e31850b9e/transformed/jetified-android-maps-utils-2.3.0/AndroidManifest.xml:9:5-13:19
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] /Users/sprat/.gradle/caches/transforms-3/5e94f20b84ca03af1f57906e31850b9e/transformed/jetified-android-maps-utils-2.3.0/AndroidManifest.xml:9:5-13:19
+MERGED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/sprat/.gradle/caches/transforms-3/532874573b3c005cea182233bb381918/transformed/jetified-play-services-fido-20.0.1/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/sprat/.gradle/caches/transforms-3/532874573b3c005cea182233bb381918/transformed/jetified-play-services-fido-20.0.1/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d0eff00e05e5e5149017819bdb30e69f/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d0eff00e05e5e5149017819bdb30e69f/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d613aa182edc499e9dc9ab0314e42acf/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d613aa182edc499e9dc9ab0314e42acf/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.2.0] /Users/sprat/.gradle/caches/transforms-3/85224dffb29322b466b5d774e8e04505/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services-basement:18.2.0] /Users/sprat/.gradle/caches/transforms-3/85224dffb29322b466b5d774e8e04505/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:20:5-24:19
+MERGED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/sprat/.gradle/caches/transforms-3/bb3ce25eca83bcb0e701e5cc59e5d22a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/sprat/.gradle/caches/transforms-3/bb3ce25eca83bcb0e701e5cc59e5d22a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:28:18-86
+	android:name
+		INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml
+manifest
+ADDED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:1:1-40:12
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:1:1-40:12
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:1:1-40:12
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:1:1-40:12
+MERGED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:1:1-40:12
+MERGED from [:shared_preferences_android] /Users/sprat/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-19:12
+MERGED from [:google_maps_flutter_android] /Users/sprat/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.6.2/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_plugin_android_lifecycle] /Users/sprat/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.17/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:url_launcher_android] /Users/sprat/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-14:12
+MERGED from [:path_provider_android] /Users/sprat/.pub-cache/hosted/pub.dev/path_provider_android-2.2.2/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:google_sign_in_android] /Users/sprat/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.21/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:connectivity_plus] /Users/sprat/.pub-cache/hosted/pub.dev/connectivity_plus-5.0.2/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:webview_flutter_android] /Users/sprat/.pub-cache/hosted/pub.dev/webview_flutter_android-3.15.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/62ddea0d150e8f6529e1aab24cae0002/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/880f2add5aaba41eac05b7d9d2e43a25/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:17:1-33:12
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:17:1-44:12
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] /Users/sprat/.gradle/caches/transforms-3/5e94f20b84ca03af1f57906e31850b9e/transformed/jetified-android-maps-utils-2.3.0/AndroidManifest.xml:2:1-15:12
+MERGED from [androidx.browser:browser:1.5.0] /Users/sprat/.gradle/caches/transforms-3/49483c5ae379acffb992a3e507828684/transformed/browser-1.5.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.webkit:webkit:1.7.0] /Users/sprat/.gradle/caches/transforms-3/fc0da8520a253acf9bd4ae99031f3155/transformed/webkit-1.7.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] /Users/sprat/.gradle/caches/transforms-3/db786d6d6a1390da90c7c841a520befa/transformed/jetified-play-services-auth-api-phone-18.0.1/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/sprat/.gradle/caches/transforms-3/4172197667f365de4e8a61d8d0a0bbc4/transformed/jetified-play-services-auth-base-18.0.4/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/sprat/.gradle/caches/transforms-3/532874573b3c005cea182233bb381918/transformed/jetified-play-services-fido-20.0.1/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d0eff00e05e5e5149017819bdb30e69f/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:16:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d613aa182edc499e9dc9ab0314e42acf/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-basement:18.2.0] /Users/sprat/.gradle/caches/transforms-3/85224dffb29322b466b5d774e8e04505/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:16:1-26:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/sprat/.gradle/caches/transforms-3/ab259bb13e227de09d9983285361c767/transformed/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/sprat/.gradle/caches/transforms-3/cd4fbd146acacebbe2b3d9c240c85a30/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/sprat/.gradle/caches/transforms-3/c9d6e0f99028bd527653d7ba5779413a/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Users/sprat/.gradle/caches/transforms-3/9fcf6be09e3c4d2a8fb22ab65ca5606c/transformed/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/sprat/.gradle/caches/transforms-3/4614e9c76ea69eab1b1774f81cbd927f/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/sprat/.gradle/caches/transforms-3/ac607d5b5629c9569b467f8d898d14bb/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/sprat/.gradle/caches/transforms-3/3eb19a051013dc6046d43201ed645a3c/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/sprat/.gradle/caches/transforms-3/e9645948708d40e7f18eabd3c6c97ddc/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/sprat/.gradle/caches/transforms-3/bb3ce25eca83bcb0e701e5cc59e5d22a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/sprat/.gradle/caches/transforms-3/e3d5089842f858a544df02a70e7d019a/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/sprat/.gradle/caches/transforms-3/ed30d0a3dd5fb2d647c36a908f669ef2/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/sprat/.gradle/caches/transforms-3/a96c1bab5380b8bb058ffad0f4523127/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/sprat/.gradle/caches/transforms-3/c0e33cedd62a862f9e551221f1306632/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/sprat/.gradle/caches/transforms-3/933a5689a3c8ffefa30d1d4c647af50c/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/sprat/.gradle/caches/transforms-3/bd6b0a6180d21ee2eee753a18a5926e3/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+	package
+		INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:1:1-40:12
+		INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:1:1-40:12
+		INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:1:1-40:12
+		INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:38:5-78
+	android:name
+		ADDED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:38:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:39:5-80
+	android:name
+		ADDED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml:39:22-78
+uses-sdk
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml
+MERGED from [:shared_preferences_android] /Users/sprat/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_android] /Users/sprat/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter_android] /Users/sprat/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.6.2/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter_android] /Users/sprat/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.6.2/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /Users/sprat/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.17/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /Users/sprat/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.17/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_android] /Users/sprat/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_android] /Users/sprat/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] /Users/sprat/.pub-cache/hosted/pub.dev/path_provider_android-2.2.2/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] /Users/sprat/.pub-cache/hosted/pub.dev/path_provider_android-2.2.2/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:google_sign_in_android] /Users/sprat/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.21/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:google_sign_in_android] /Users/sprat/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.21/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:connectivity_plus] /Users/sprat/.pub-cache/hosted/pub.dev/connectivity_plus-5.0.2/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:connectivity_plus] /Users/sprat/.pub-cache/hosted/pub.dev/connectivity_plus-5.0.2/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter_android] /Users/sprat/.pub-cache/hosted/pub.dev/webview_flutter_android-3.15.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter_android] /Users/sprat/.pub-cache/hosted/pub.dev/webview_flutter_android-3.15.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/62ddea0d150e8f6529e1aab24cae0002/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/62ddea0d150e8f6529e1aab24cae0002/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/880f2add5aaba41eac05b7d9d2e43a25/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/880f2add5aaba41eac05b7d9d2e43a25/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] /Users/sprat/.gradle/caches/transforms-3/5e94f20b84ca03af1f57906e31850b9e/transformed/jetified-android-maps-utils-2.3.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.maps.android:android-maps-utils:2.3.0] /Users/sprat/.gradle/caches/transforms-3/5e94f20b84ca03af1f57906e31850b9e/transformed/jetified-android-maps-utils-2.3.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.browser:browser:1.5.0] /Users/sprat/.gradle/caches/transforms-3/49483c5ae379acffb992a3e507828684/transformed/browser-1.5.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.5.0] /Users/sprat/.gradle/caches/transforms-3/49483c5ae379acffb992a3e507828684/transformed/browser-1.5.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.webkit:webkit:1.7.0] /Users/sprat/.gradle/caches/transforms-3/fc0da8520a253acf9bd4ae99031f3155/transformed/webkit-1.7.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.webkit:webkit:1.7.0] /Users/sprat/.gradle/caches/transforms-3/fc0da8520a253acf9bd4ae99031f3155/transformed/webkit-1.7.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] /Users/sprat/.gradle/caches/transforms-3/db786d6d6a1390da90c7c841a520befa/transformed/jetified-play-services-auth-api-phone-18.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] /Users/sprat/.gradle/caches/transforms-3/db786d6d6a1390da90c7c841a520befa/transformed/jetified-play-services-auth-api-phone-18.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/sprat/.gradle/caches/transforms-3/4172197667f365de4e8a61d8d0a0bbc4/transformed/jetified-play-services-auth-base-18.0.4/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] /Users/sprat/.gradle/caches/transforms-3/4172197667f365de4e8a61d8d0a0bbc4/transformed/jetified-play-services-auth-base-18.0.4/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/sprat/.gradle/caches/transforms-3/532874573b3c005cea182233bb381918/transformed/jetified-play-services-fido-20.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/sprat/.gradle/caches/transforms-3/532874573b3c005cea182233bb381918/transformed/jetified-play-services-fido-20.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d0eff00e05e5e5149017819bdb30e69f/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-base:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d0eff00e05e5e5149017819bdb30e69f/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d613aa182edc499e9dc9ab0314e42acf/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d613aa182edc499e9dc9ab0314e42acf/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.2.0] /Users/sprat/.gradle/caches/transforms-3/85224dffb29322b466b5d774e8e04505/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.2.0] /Users/sprat/.gradle/caches/transforms-3/85224dffb29322b466b5d774e8e04505/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:18:5-43
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/sprat/.gradle/caches/transforms-3/ab259bb13e227de09d9983285361c767/transformed/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/sprat/.gradle/caches/transforms-3/ab259bb13e227de09d9983285361c767/transformed/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.loader:loader:1.0.0] /Users/sprat/.gradle/caches/transforms-3/cd4fbd146acacebbe2b3d9c240c85a30/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/sprat/.gradle/caches/transforms-3/cd4fbd146acacebbe2b3d9c240c85a30/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/sprat/.gradle/caches/transforms-3/c9d6e0f99028bd527653d7ba5779413a/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/sprat/.gradle/caches/transforms-3/c9d6e0f99028bd527653d7ba5779413a/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Users/sprat/.gradle/caches/transforms-3/9fcf6be09e3c4d2a8fb22ab65ca5606c/transformed/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/sprat/.gradle/caches/transforms-3/9fcf6be09e3c4d2a8fb22ab65ca5606c/transformed/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /Users/sprat/.gradle/caches/transforms-3/4614e9c76ea69eab1b1774f81cbd927f/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/sprat/.gradle/caches/transforms-3/4614e9c76ea69eab1b1774f81cbd927f/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/sprat/.gradle/caches/transforms-3/ac607d5b5629c9569b467f8d898d14bb/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/sprat/.gradle/caches/transforms-3/ac607d5b5629c9569b467f8d898d14bb/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/sprat/.gradle/caches/transforms-3/3eb19a051013dc6046d43201ed645a3c/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/sprat/.gradle/caches/transforms-3/3eb19a051013dc6046d43201ed645a3c/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/sprat/.gradle/caches/transforms-3/e9645948708d40e7f18eabd3c6c97ddc/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/sprat/.gradle/caches/transforms-3/e9645948708d40e7f18eabd3c6c97ddc/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/sprat/.gradle/caches/transforms-3/bb3ce25eca83bcb0e701e5cc59e5d22a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/sprat/.gradle/caches/transforms-3/bb3ce25eca83bcb0e701e5cc59e5d22a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/sprat/.gradle/caches/transforms-3/e3d5089842f858a544df02a70e7d019a/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/sprat/.gradle/caches/transforms-3/e3d5089842f858a544df02a70e7d019a/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/sprat/.gradle/caches/transforms-3/ed30d0a3dd5fb2d647c36a908f669ef2/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/sprat/.gradle/caches/transforms-3/ed30d0a3dd5fb2d647c36a908f669ef2/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/sprat/.gradle/caches/transforms-3/a96c1bab5380b8bb058ffad0f4523127/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/sprat/.gradle/caches/transforms-3/a96c1bab5380b8bb058ffad0f4523127/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/sprat/.gradle/caches/transforms-3/c0e33cedd62a862f9e551221f1306632/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/sprat/.gradle/caches/transforms-3/c0e33cedd62a862f9e551221f1306632/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/sprat/.gradle/caches/transforms-3/933a5689a3c8ffefa30d1d4c647af50c/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/sprat/.gradle/caches/transforms-3/933a5689a3c8ffefa30d1d4c647af50c/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/sprat/.gradle/caches/transforms-3/bd6b0a6180d21ee2eee753a18a5926e3/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/sprat/.gradle/caches/transforms-3/bd6b0a6180d21ee2eee753a18a5926e3/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml:6:5-66
+MERGED from [:google_sign_in_android] /Users/sprat/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.21/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-67
+MERGED from [:google_sign_in_android] /Users/sprat/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.21/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-67
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:24:5-67
+	android:name
+		ADDED from /Users/sprat/FlutterProjects/sport-app/sport_app/android/app/src/debug/AndroidManifest.xml:6:22-64
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-9:38
+	android:maxSdkVersion
+		ADDED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-35
+	android:name
+		ADDED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-64
+queries
+ADDED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-17:15
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:30:5-34:15
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:30:5-34:15
+intent#action:name:android.intent.action.GET_CONTENT+data:mimeType:*/*
+ADDED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-16:18
+action#android.intent.action.GET_CONTENT
+ADDED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-72
+	android:name
+		ADDED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:21-69
+data
+ADDED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-44
+	android:mimeType
+		ADDED from [:file_picker] /Users/sprat/.pub-cache/hosted/pub.dev/file_picker-6.1.1/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:19-41
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher_android] /Users/sprat/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher_android] /Users/sprat/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher_android] /Users/sprat/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher_android] /Users/sprat/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.0/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-74
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:connectivity_plus] /Users/sprat/.pub-cache/hosted/pub.dev/connectivity_plus-5.0.2/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-79
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from [:connectivity_plus] /Users/sprat/.pub-cache/hosted/pub.dev/connectivity_plus-5.0.2/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:22-76
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/880f2add5aaba41eac05b7d9d2e43a25/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/880f2add5aaba41eac05b7d9d2e43a25/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/880f2add5aaba41eac05b7d9d2e43a25/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/880f2add5aaba41eac05b7d9d2e43a25/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/880f2add5aaba41eac05b7d9d2e43a25/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/sprat/.gradle/caches/transforms-3/880f2add5aaba41eac05b7d9d2e43a25/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:26:5-28:35
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:27:9-41
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:28:9-32
+package#com.google.android.apps.maps
+ADDED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:33:9-64
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:33:18-61
+uses-library#org.apache.http.legacy
+ADDED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:39:9-41:40
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:41:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:18.2.0] /Users/sprat/.gradle/caches/transforms-3/67ca882e4fc65f99877b1bc9c3af27c8/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:40:13-50
+meta-data#com.google.android.gms.version
+ADDED from [com.google.maps.android:android-maps-utils:2.3.0] /Users/sprat/.gradle/caches/transforms-3/5e94f20b84ca03af1f57906e31850b9e/transformed/jetified-android-maps-utils-2.3.0/AndroidManifest.xml:10:9-12:69
+MERGED from [com.google.android.gms:play-services-basement:18.2.0] /Users/sprat/.gradle/caches/transforms-3/85224dffb29322b466b5d774e8e04505/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:21:9-23:69
+MERGED from [com.google.android.gms:play-services-basement:18.2.0] /Users/sprat/.gradle/caches/transforms-3/85224dffb29322b466b5d774e8e04505/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from [com.google.maps.android:android-maps-utils:2.3.0] /Users/sprat/.gradle/caches/transforms-3/5e94f20b84ca03af1f57906e31850b9e/transformed/jetified-android-maps-utils-2.3.0/AndroidManifest.xml:12:13-66
+	android:name
+		ADDED from [com.google.maps.android:android-maps-utils:2.3.0] /Users/sprat/.gradle/caches/transforms-3/5e94f20b84ca03af1f57906e31850b9e/transformed/jetified-android-maps-utils-2.3.0/AndroidManifest.xml:11:13-58
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:33:9-37:51
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:35:13-36
+	android:visibleToInstantApps
+		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:37:13-48
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:20.7.0] /Users/sprat/.gradle/caches/transforms-3/d53b0356a93806aa41b2278d22ce4610/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:34:13-89
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d0eff00e05e5e5149017819bdb30e69f/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d0eff00e05e5e5149017819bdb30e69f/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d0eff00e05e5e5149017819bdb30e69f/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.0.1] /Users/sprat/.gradle/caches/transforms-3/d0eff00e05e5e5149017819bdb30e69f/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
+permission#com.sportBooking.sport_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:26:22-94
+uses-permission#com.sportBooking.sport_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.10.1] /Users/sprat/.gradle/caches/transforms-3/53884f3ed4595213a7581ad19072bb14/transformed/core-1.10.1/AndroidManifest.xml:26:22-94

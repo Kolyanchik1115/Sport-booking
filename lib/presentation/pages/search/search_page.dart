@@ -120,7 +120,8 @@ class _SearchPageState extends State<SearchPage> {
                         padding: const EdgeInsets.all(6.0),
                         child: SvgButton(
                           asset: AppSvg.map,
-                          onTap: () => context.push(AppRoutes.facilitiesMap, extra: facilityCubit.state.data),
+                          onTap: () => context.push(AppRoutes.facilitiesMap,
+                              extra: facilityCubit.state.data),
                         ),
                       ),
                     ),
