@@ -7,7 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/utils/data_parser.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
-import 'package:sport_app/data/models/facility/place_model.dart';
+import 'package:sport_app/data/models/facility/facility_place_model.dart';
 
 class FacilitiesMapPage extends StatefulWidget {
   final List<FacilityData> facilities;

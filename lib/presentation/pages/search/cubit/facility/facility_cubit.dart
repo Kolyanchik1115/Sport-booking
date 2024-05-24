@@ -58,7 +58,7 @@ class FacilityCubit extends Cubit<FacilityState> {
           facilities.addAll(data.findAll!.facilities);
         }
         emit(state.copyWith(
-          data: facilities,
+          data: facilities.where((facility) => facility.avgPrice != null).toList(),
           currentPage: _currentPage,
           isLoading: false,
           hasReachedEnd: data.findAll!.facilities.isEmpty,
