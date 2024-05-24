@@ -1,10 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <application
         android:label="sport_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-<!--        <meta-data android:name="com.google.android.geo.API_KEY"-->
-<!--                   android:value="AIzaSyChwAeo2US80npRrZ8T3Y9T0aRFhxiWL2U"/>-->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                   android:value="AIzaSyChwAeo2US80npRrZ8T3Y9T0aRFhxiWL2U"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -21,9 +22,15 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="08b9-62-16-13-4.ngrok-free.app" />
+                <data android:scheme="http" />
+            </intent-filter>
         </activity>
-        <!-- Don't delete the meta-data below.
-             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />

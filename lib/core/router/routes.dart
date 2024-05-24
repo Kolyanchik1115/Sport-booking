@@ -19,7 +19,7 @@ class AppRoutes {
   static const String facilitiesMap = '/facilities_map';
   static const String payment = '/payment';
 
-
-
+  //DEEP LINKS
+  static const String deepLinkEmailConfirmation = '/user/verify-email';
 
 }

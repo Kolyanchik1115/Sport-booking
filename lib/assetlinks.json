@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.sportBooking.sport_app",
+    "sha256_cert_fingerprints":
+    ["55:7D:E8:57:C7:03:D1:BC:1A:CC:66:9F:48:29:44:A1:99:C0:EC:8E:80:91:64:C2:E6:6E:EC:B1:7C:9D:2D:A6"]
+  }
+}]

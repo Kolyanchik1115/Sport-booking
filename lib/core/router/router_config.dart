@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
+import 'package:sport_app/features/additional_pages/deep_links/email_confirmation_deeplink.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/scaffold_with_nav_bar.dart';
 import 'package:sport_app/presentation/pages/booking/cubit/booking/booking_cubit.dart';
 import 'package:sport_app/presentation/pages/booking/facility_booking_page.dart';
@@ -13,6 +14,7 @@ import 'package:sport_app/presentation/pages/payment/payment_page.dart';
 import 'package:sport_app/presentation/pages/profile/cubit/profile_cubit.dart';
 import 'package:sport_app/presentation/pages/profile/profile_page.dart';
 import 'package:sport_app/presentation/pages/reservation/reservation_page.dart';
+import 'package:sport_app/presentation/pages/search/facilities_map_page.dart';
 import 'package:sport_app/presentation/pages/search/search_page.dart';
 import 'package:sport_app/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:sport_app/presentation/pages/sign_up/sign_up_page.dart';
@@ -92,7 +94,12 @@ class AppRouter {
             bookingCubit: (state.extra as List<dynamic>)[1] as BookingCubit,
           ),
         ),
-
+        GoRoute(
+          path: AppRoutes.deepLinkEmailConfirmation,
+          builder: (BuildContext context, GoRouterState state) {
+            return const EmailConfirmationDeepLink();
+          },
+        ),
         GoRoute(
           path: AppRoutes.signUp,
           pageBuilder: (BuildContext context, GoRouterState state) => _customTransitionPage(
@@ -102,12 +109,12 @@ class AppRouter {
           ),
         ),
 
-        // GoRoute(
-        //   path: AppRoutes.facilitiesMap,
-        //   builder: (BuildContext context, GoRouterState state) =>  FacilitiesMapPage(
-        //     facilities: state.extra as List<FacilityData>,
-        //   ),
-        // ),
+        GoRoute(
+          path: AppRoutes.facilitiesMap,
+          builder: (BuildContext context, GoRouterState state) =>  FacilitiesMapPage(
+            facilities: state.extra as List<FacilityData>,
+          ),
+        ),
         StatefulShellRoute.indexedStack(
           builder: (BuildContext context, GoRouterState state, StatefulNavigationShell navigationShell) {
             return ScaffoldWithNavBar(navigationShell: navigationShell);

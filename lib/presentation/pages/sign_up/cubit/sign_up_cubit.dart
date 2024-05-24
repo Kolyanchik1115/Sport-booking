@@ -15,6 +15,10 @@ part 'sign_up_state.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(const SignUpState());
 
+  void clear() {
+    emit(const SignUpState());
+  }
+
   void validate(String? email, String? password, String? confirmedPassword) async {
     final Validation validation = Validation();
 
