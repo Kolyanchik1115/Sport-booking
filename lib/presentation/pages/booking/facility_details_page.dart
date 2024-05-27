@@ -15,7 +15,6 @@ import 'package:sport_app/presentation/pages/booking/widget/row_data_widget.dart
 import 'package:sport_app/presentation/pages/booking/widget/row_with_button_widget.dart';
 import 'package:sport_app/presentation/pages/search/cubit/facility/facility_cubit.dart';
 
-//TODO: refactor total widget
 class FacilityDetailsPage extends StatelessWidget {
   final FacilityData facilityData;
 
@@ -53,8 +52,8 @@ class FacilityDetailsPage extends StatelessWidget {
                                       child: Text(
                                         facilityData.name,
                                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                              color: Theme.of(context).colorScheme.onBackground,
-                                            ),
+                                          color: Theme.of(context).colorScheme.onBackground,
+                                        ),
                                       ),
                                     ),
                                     Column(
@@ -63,14 +62,14 @@ class FacilityDetailsPage extends StatelessWidget {
                                         Text(
                                           facilityData.avgPrice != null ? '~ ${facilityData.avgPrice}₴' : '',
                                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                color: Theme.of(context).colorScheme.onBackground,
-                                              ),
+                                            color: Theme.of(context).colorScheme.onBackground,
+                                          ),
                                         ),
                                         Text(
                                           facilityData.avgPrice != null ? 'in hour' : '',
                                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                                color: Theme.of(context).colorScheme.secondary.withOpacity(0.9),
-                                              ),
+                                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.9),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -83,8 +82,8 @@ class FacilityDetailsPage extends StatelessWidget {
                                     Text(
                                       facilityData.address ?? 'Unknown address',
                                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.9),
-                                          ),
+                                        color: Theme.of(context).colorScheme.secondary.withOpacity(0.9),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -93,18 +92,18 @@ class FacilityDetailsPage extends StatelessWidget {
                                   title: 'Time',
                                   text: state.dates.isEmpty
                                       ? injector<FacilityCubit>()
-                                              .state
-                                              .data[injector<FacilityCubit>()
-                                                  .state
-                                                  .data
-                                                  .indexWhere((facility) => facility.id == facilityData.id)]
-                                              .isWorking
-                                          ? 'Select your schedule time'
-                                          : 'Temporarily not working'
+                                      .state
+                                      .data[injector<FacilityCubit>()
+                                      .state
+                                      .data
+                                      .indexWhere((facility) => facility.id == facilityData.id)]
+                                      .isWorking
+                                      ? 'Select your schedule time'
+                                      : 'Temporarily not working'
                                       : '${state.dates.first.hour.toString().padLeft(2, '0')}:'
-                                          '${state.dates.first.minute.toString().padLeft(2, '0')} '
-                                          '- ${state.dates.last.hour.toString().padLeft(2, '0')}'
-                                          ':${state.dates.last.minute.toString().padLeft(2, '0')}',
+                                      '${state.dates.first.minute.toString().padLeft(2, '0')} '
+                                      '- ${state.dates.last.hour.toString().padLeft(2, '0')}'
+                                      ':${state.dates.last.minute.toString().padLeft(2, '0')}',
                                   onPressed: () => context.push(
                                     AppRoutes.facilityBooking,
                                     extra: [facilityData.id, context.read<BookingCubit>()],
@@ -112,9 +111,9 @@ class FacilityDetailsPage extends StatelessWidget {
                                   isWorking: injector<FacilityCubit>()
                                       .state
                                       .data[injector<FacilityCubit>()
-                                          .state
-                                          .data
-                                          .indexWhere((facility) => facility.id == facilityData.id)]
+                                      .state
+                                      .data
+                                      .indexWhere((facility) => facility.id == facilityData.id)]
                                       .isWorking,
                                 ),
                                 const SizedBox(height: 15.0),
@@ -166,11 +165,11 @@ class FacilityDetailsPage extends StatelessWidget {
                             text: 'Submit',
                             textStyle: state.totalPrice != 0
                                 ? Theme.of(context).textTheme.titleLarge?.copyWith(
-                                      color: Theme.of(context).colorScheme.background,
-                                    )
+                              color: Theme.of(context).colorScheme.background,
+                            )
                                 : Theme.of(context).textTheme.titleLarge?.copyWith(
-                                      color: Theme.of(context).colorScheme.onPrimary,
-                                    ),
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
                             onPressed: () {
                               if (state.totalPrice != 0 && state.cells.isNotEmpty) {
                                 return context.push(AppRoutes.confirmBooking,

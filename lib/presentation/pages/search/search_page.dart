@@ -45,7 +45,7 @@ class _SearchPageState extends State<SearchPage> {
   void dispose() {
     searchController.dispose();
     searchFocus.dispose();
-    facilityCubit.close();
+    // facilityCubit.close();
     filterCubit.close();
     super.dispose();
   }
@@ -120,8 +120,7 @@ class _SearchPageState extends State<SearchPage> {
                         padding: const EdgeInsets.all(6.0),
                         child: SvgButton(
                           asset: AppSvg.map,
-                          onTap: () => context.push(AppRoutes.facilitiesMap,
-                              extra: facilityCubit.state.data),
+                          onTap: () => context.push(AppRoutes.facilitiesMap, extra: facilityCubit.state.data),
                         ),
                       ),
                     ),
@@ -144,7 +143,7 @@ class _SearchPageState extends State<SearchPage> {
                       if (scrollInfo.metrics.pixels >= (scrollInfo.metrics.maxScrollExtent - 50) &&
                           !state.isLoading &&
                           !state.hasReachedEnd) {
-                        context.read<FacilityCubit>().loadNextPage();
+                        injector<FacilityCubit>().loadNextPage();
                       }
                       return false;
                     },
@@ -158,7 +157,7 @@ class _SearchPageState extends State<SearchPage> {
                             facility: state.data[index],
                             onTap: () => context.push(AppRoutes.facilityDetails, extra: state.data[index]),
                             onIconTap: () {
-                              return context.read<FacilityCubit>().toggleFavorite(facilityId: state.data[index].id);
+                              return  injector<FacilityCubit>().toggleFavorite(facilityId: state.data[index].id);
                             },
                           );
                         }

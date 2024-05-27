@@ -2,7 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
-import 'package:sport_app/features/additional_pages/deep_links/email_confirmation_deeplink.dart';
+import 'package:sport_app/features/additional_pages/deep_links/email_confirmation/email_confirmation_deeplink.dart';
+import 'package:sport_app/features/additional_pages/deep_links/facility/facility_share.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/scaffold_with_nav_bar.dart';
 import 'package:sport_app/presentation/pages/booking/cubit/booking/booking_cubit.dart';
 import 'package:sport_app/presentation/pages/booking/facility_booking_page.dart';
@@ -95,12 +96,6 @@ class AppRouter {
           ),
         ),
         GoRoute(
-          path: AppRoutes.deepLinkEmailConfirmation,
-          builder: (BuildContext context, GoRouterState state) {
-            return const EmailConfirmationDeepLink();
-          },
-        ),
-        GoRoute(
           path: AppRoutes.signUp,
           pageBuilder: (BuildContext context, GoRouterState state) => _customTransitionPage(
             state,
@@ -108,7 +103,17 @@ class AppRouter {
             const SignUpPage(),
           ),
         ),
-
+        GoRoute(
+          path: AppRoutes.deepLinkEmailConfirmation,
+          builder: (BuildContext context, GoRouterState state) => const EmailConfirmationDeepLink(),
+        ),
+        GoRoute(
+          path: AppRoutes.deepLinkFacilityDetails,
+          parentNavigatorKey: _rootNavigatorKey,
+          builder: (BuildContext context, GoRouterState state) {
+            return FacilityShareDeepLink(id: int.tryParse(state.pathParameters['id']!) ?? 0);
+          },
+        ),
         GoRoute(
           path: AppRoutes.facilitiesMap,
           builder: (BuildContext context, GoRouterState state) =>  FacilitiesMapPage(
@@ -170,6 +175,9 @@ class AppRouter {
     _config.goNamed(location);
   }
 
+  void push(String location, {Object? extra}) {
+    _config.push(location, extra: extra);
+  }
   CustomTransitionPage _customTransitionPage(GoRouterState state, Duration duration, Widget child) {
     return CustomTransitionPage<void>(
       key: state.pageKey,
