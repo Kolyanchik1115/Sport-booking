@@ -4,6 +4,7 @@ import 'package:sport_app/core/api/sport_app_api.dart';
 import 'package:sport_app/core/router/router_config.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/utils/validation.dart';
+import 'package:sport_app/domain/usecases/auth/sign_in_use_case.dart';
 import 'package:sport_app/domain/usecases/auth/sign_up_use_case.dart';
 import 'package:sport_app/features/additional_pages/presentation/bloc/user/user_cubit.dart';
 import 'package:sport_app/injector.dart';
@@ -28,13 +29,17 @@ class SignUpCubit extends Cubit<SignUpState> {
 
     emit(
       state.copyWith(
-        emailError: isEmailValid ? null : 'Incorrect e-mail',
+        emailError: isEmailValid ? null : 'Incorrect e-mail format',
         passwordError: isPasswordValid
             ? null
             : 'Password must be more than 6 characters including at least one number and one character.',
         confirmPasswordError: isConfirmPasswordValid ? null : 'The passwords do not coincide.',
       ),
     );
+    if (isEmailValid && isPasswordValid && isConfirmPasswordValid) {
+      injector<AppRouter>().config.configuration.routes;
+      signUp(email, password, confirmedPassword);
+    }
   }
 
   Future<void> signUp(String? email, String? password, String? confirmedPassword) async {
@@ -45,7 +50,6 @@ class SignUpCubit extends Cubit<SignUpState> {
     bool isEmailValid = validation.email(email);
     bool isPasswordValid = validation.password(password);
     bool isConfirmPasswordValid = password == confirmedPassword;
-
 
     if (!isEmailValid || !isPasswordValid || !isConfirmPasswordValid) {
       emit(
@@ -68,7 +72,6 @@ class SignUpCubit extends Cubit<SignUpState> {
         password: state.password!,
       ),
     );
-
     response.fold(
       (onError) {
         emit(
@@ -76,17 +79,18 @@ class SignUpCubit extends Cubit<SignUpState> {
             isLoading: false,
             emailError: 'Email is already taken',
             passwordError: null,
+            confirmPasswordError: null,
           ),
         );
       },
-      (token) {
-        injector<SportAppApi>().token = token.register!.accessToken;
-        injector<SportAppApi>().refreshToken = token.register!.refreshToken;
-        injector<UserCubit>().setUser(token.register!.user);
-        injector<AppRouter>().go(AppRoutes.search);
+      (response) {
+        injector<SportAppApi>().token = response.register!.accessToken;
+        injector<SportAppApi>().refreshToken = response.register!.refreshToken;
+        injector<UserCubit>().setUser(response.register!.user);
+        injector<AppRouter>().goNamed(AppRoutes.singUpVerificationStep);
       },
     );
+
     emit(state.copyWith(isLoading: false));
   }
-
 }

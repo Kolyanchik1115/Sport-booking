@@ -99,7 +99,7 @@ class ReservationPage extends StatelessWidget {
                               const SizedBox(height: 20),
                               Text(
                                 booking.facility.name,
-                                style: Theme.of(context).textTheme.headline6,
+                                style: Theme.of(context).textTheme.displayLarge,
                               ),
                               const SizedBox(height: 10),
                               Row(

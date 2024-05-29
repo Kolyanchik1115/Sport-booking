@@ -25,10 +25,11 @@ class FacilityDeepLinkCubit extends Cubit<FacilityDeepLinkState> {
         facilitiesResult.fold(
           (failure) => emit(const FacilityDeepLinkState.error(message: 'Failed to fetch facilities')),
           (facilities) {
-            final facility = facilities.findAll?.facilities.firstWhere((facility) => facility.id == id);
+            final facility = facilities.findAll?.facilities
+                .firstWhere((facility) => facility.id == id);
 
             if (facility != null) {
-              injector<AppRouter>().go(AppRoutes.facilityDetails, extra: facility);
+              injector<AppRouter>().replace(AppRoutes.facilityDetails, extra: facility);
               facilityFound = true;
             } else if (facilities.findAll?.facilities.isEmpty ?? true) {
               emit(const FacilityDeepLinkState.error(message: 'Facility not found'));

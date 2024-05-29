@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sport_app/core/router/routes.dart';
 import 'package:sport_app/core/themes/app_assets.dart';
 import 'package:sport_app/data/models/facility/facility_data.dart';
@@ -9,7 +10,6 @@ import 'package:sport_app/features/additional_pages/presentation/widgets/app_ele
 import 'package:sport_app/features/additional_pages/presentation/widgets/scaffold_with_app_bar.dart';
 import 'package:sport_app/injector.dart';
 import 'package:sport_app/presentation/pages/booking/cubit/booking/booking_cubit.dart';
-import 'package:sport_app/presentation/pages/booking/cubit/day_of_week/day_of_week_cubit.dart';
 import 'package:sport_app/presentation/pages/booking/widget/dotted_carousel.dart';
 import 'package:sport_app/presentation/pages/booking/widget/row_data_widget.dart';
 import 'package:sport_app/presentation/pages/booking/widget/row_with_button_widget.dart';
@@ -24,6 +24,22 @@ class FacilityDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaffoldWithAppBar(
       appBarTitle: "New reservation",
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 30.0),
+          child: IconButton(
+            icon: SvgPicture.asset(
+              AppSvg.share,
+              color: Theme.of(context).colorScheme.primary,
+              width: 24.0,
+              height: 24.0,
+            ),
+            onPressed: () async => await Share.share(
+                subject: "Hey, check out this cool facility I found",
+                'http://10.0.2.2:3000/link/facility/${facilityData.id}'),
+          ),
+        ),
+      ],
       centerTitle: true,
       child: BlocProvider(
         create: (context) => BookingCubit(),
@@ -52,8 +68,8 @@ class FacilityDetailsPage extends StatelessWidget {
                                       child: Text(
                                         facilityData.name,
                                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                          color: Theme.of(context).colorScheme.onBackground,
-                                        ),
+                                              color: Theme.of(context).colorScheme.onBackground,
+                                            ),
                                       ),
                                     ),
                                     Column(
@@ -62,14 +78,14 @@ class FacilityDetailsPage extends StatelessWidget {
                                         Text(
                                           facilityData.avgPrice != null ? '~ ${facilityData.avgPrice}₴' : '',
                                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                            color: Theme.of(context).colorScheme.onBackground,
-                                          ),
+                                                color: Theme.of(context).colorScheme.onBackground,
+                                              ),
                                         ),
                                         Text(
                                           facilityData.avgPrice != null ? 'in hour' : '',
                                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.9),
-                                          ),
+                                                color: Theme.of(context).colorScheme.secondary.withOpacity(0.9),
+                                              ),
                                         ),
                                       ],
                                     ),
@@ -82,8 +98,8 @@ class FacilityDetailsPage extends StatelessWidget {
                                     Text(
                                       facilityData.address ?? 'Unknown address',
                                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                        color: Theme.of(context).colorScheme.secondary.withOpacity(0.9),
-                                      ),
+                                            color: Theme.of(context).colorScheme.secondary.withOpacity(0.9),
+                                          ),
                                     ),
                                   ],
                                 ),
@@ -92,18 +108,18 @@ class FacilityDetailsPage extends StatelessWidget {
                                   title: 'Time',
                                   text: state.dates.isEmpty
                                       ? injector<FacilityCubit>()
-                                      .state
-                                      .data[injector<FacilityCubit>()
-                                      .state
-                                      .data
-                                      .indexWhere((facility) => facility.id == facilityData.id)]
-                                      .isWorking
-                                      ? 'Select your schedule time'
-                                      : 'Temporarily not working'
+                                              .state
+                                              .data[injector<FacilityCubit>()
+                                                  .state
+                                                  .data
+                                                  .indexWhere((facility) => facility.id == facilityData.id)]
+                                              .isWorking
+                                          ? 'Select your schedule time'
+                                          : 'Temporarily not working'
                                       : '${state.dates.first.hour.toString().padLeft(2, '0')}:'
-                                      '${state.dates.first.minute.toString().padLeft(2, '0')} '
-                                      '- ${state.dates.last.hour.toString().padLeft(2, '0')}'
-                                      ':${state.dates.last.minute.toString().padLeft(2, '0')}',
+                                          '${state.dates.first.minute.toString().padLeft(2, '0')} '
+                                          '- ${state.dates.last.hour.toString().padLeft(2, '0')}'
+                                          ':${state.dates.last.minute.toString().padLeft(2, '0')}',
                                   onPressed: () => context.push(
                                     AppRoutes.facilityBooking,
                                     extra: [facilityData.id, context.read<BookingCubit>()],
@@ -111,9 +127,9 @@ class FacilityDetailsPage extends StatelessWidget {
                                   isWorking: injector<FacilityCubit>()
                                       .state
                                       .data[injector<FacilityCubit>()
-                                      .state
-                                      .data
-                                      .indexWhere((facility) => facility.id == facilityData.id)]
+                                          .state
+                                          .data
+                                          .indexWhere((facility) => facility.id == facilityData.id)]
                                       .isWorking,
                                 ),
                                 const SizedBox(height: 15.0),
@@ -165,11 +181,11 @@ class FacilityDetailsPage extends StatelessWidget {
                             text: 'Submit',
                             textStyle: state.totalPrice != 0
                                 ? Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: Theme.of(context).colorScheme.background,
-                            )
+                                      color: Theme.of(context).colorScheme.background,
+                                    )
                                 : Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: Theme.of(context).colorScheme.onPrimary,
-                            ),
+                                      color: Theme.of(context).colorScheme.onPrimary,
+                                    ),
                             onPressed: () {
                               if (state.totalPrice != 0 && state.cells.isNotEmpty) {
                                 return context.push(AppRoutes.confirmBooking,

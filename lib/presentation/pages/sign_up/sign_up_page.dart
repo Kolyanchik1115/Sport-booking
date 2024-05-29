@@ -7,8 +7,8 @@ import 'package:sport_app/features/additional_pages/presentation/widgets/arrow_b
 import 'package:sport_app/features/additional_pages/presentation/widgets/default_input_text_field.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/empty_layout.dart';
 import 'package:sport_app/features/additional_pages/presentation/widgets/password_input_text_field.dart';
+import 'package:sport_app/injector.dart';
 import 'package:sport_app/presentation/pages/sign_up/cubit/sign_up_cubit.dart';
-
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -51,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             child: IntrinsicHeight(
               child: BlocProvider(
-                create: (context) => SignUpCubit(),
+                create: (context) => injector<SignUpCubit>(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
@@ -77,15 +77,14 @@ class _SignUpPageState extends State<SignUpPage> {
                                       textEditingController: _emailEditingController,
                                       focusNode: _emailFocusNode,
                                       error: state.emailError,
-                                      onEditingComplete: () =>
-                                          FocusScope.of(context).requestFocus(_passwordFocusNode),
+                                      onEditingComplete: () => FocusScope.of(context).requestFocus(_passwordFocusNode),
                                       onChanged: (value) {
                                         if (state.passwordError != null || state.emailError != null) {
-                                          context.read<SignUpCubit>().validate(
-                                                _passwordEditingController.text,
-                                                _confirmPasswordEditingController.text,
-                                                _emailEditingController.text,
-                                              );
+                                          injector<SignUpCubit>().validate(
+                                            _passwordEditingController.text,
+                                            _confirmPasswordEditingController.text,
+                                            _emailEditingController.text,
+                                          );
                                         }
                                       },
                                       hintText: 'Email',
@@ -98,11 +97,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                           FocusScope.of(context).requestFocus(_confirmPasswordFocusNode),
                                       onChanged: (value) {
                                         if (state.passwordError != null || state.emailError != null) {
-                                          context.read<SignUpCubit>().validate(
-                                                _passwordEditingController.text,
-                                                _confirmPasswordEditingController.text,
-                                                _emailEditingController.text,
-                                              );
+                                          injector<SignUpCubit>().validate(
+                                            _passwordEditingController.text,
+                                            _confirmPasswordEditingController.text,
+                                            _emailEditingController.text,
+                                          );
                                         }
                                       },
                                       hintText: 'Password',
@@ -113,11 +112,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                       error: state.confirmPasswordError,
                                       onChanged: (value) {
                                         if (state.passwordError != null || state.emailError != null) {
-                                          context.read<SignUpCubit>().validate(
-                                                _passwordEditingController.text,
-                                                _confirmPasswordEditingController.text,
-                                                _emailEditingController.text,
-                                              );
+                                          injector<SignUpCubit>().validate(
+                                            _passwordEditingController.text,
+                                            _confirmPasswordEditingController.text,
+                                            _emailEditingController.text,
+                                          );
                                         }
                                       },
                                       hintText: 'Confirm password',
@@ -130,11 +129,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                         title: 'Continue',
                                         padding: const EdgeInsets.only(right: 20.0),
                                         onTap: () {
-                                          context.read<SignUpCubit>().signUp(
-                                                _emailEditingController.text.trim(),
-                                                _passwordEditingController.text.trim(),
-                                                _confirmPasswordEditingController.text.trim(),
-                                              );
+                                          injector<SignUpCubit>().validate(
+                                            _emailEditingController.text.trim(),
+                                            _passwordEditingController.text.trim(),
+                                            _confirmPasswordEditingController.text.trim(),
+                                          );
                                         },
                                       ),
                                     ),

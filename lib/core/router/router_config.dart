@@ -19,12 +19,14 @@ import 'package:sport_app/presentation/pages/search/facilities_map_page.dart';
 import 'package:sport_app/presentation/pages/search/search_page.dart';
 import 'package:sport_app/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:sport_app/presentation/pages/sign_up/sign_up_page.dart';
+import 'package:sport_app/presentation/pages/sign_up/sign_up_verification_step.dart';
 import 'package:sport_app/presentation/pages/splash/splash_page.dart';
 
 class AppRouter {
   static final AppRouter _appRouter = AppRouter._();
 
   late final GlobalKey<NavigatorState> _rootNavigatorKey;
+
   late final GoRouter _config;
 
   factory AppRouter() {
@@ -33,7 +35,6 @@ class AppRouter {
 
   AppRouter._() {
     _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
-
     _config = GoRouter(
       navigatorKey: _rootNavigatorKey,
       initialLocation: AppRoutes.splashPage,
@@ -41,14 +42,6 @@ class AppRouter {
         GoRoute(
           path: AppRoutes.splashPage,
           builder: (BuildContext context, GoRouterState state) => const SplashPage(),
-        ),
-        GoRoute(
-          path: AppRoutes.signUp,
-          pageBuilder: (BuildContext context, GoRouterState state) => _customTransitionPage(
-            state,
-            Duration.zero,
-            const SignUpPage(),
-          ),
         ),
         GoRoute(
           path: AppRoutes.signIn,
@@ -59,12 +52,31 @@ class AppRouter {
           ),
         ),
         GoRoute(
+          path: AppRoutes.signUp,
+          name: AppRoutes.signUp,
+          pageBuilder: (BuildContext context, GoRouterState state) => _customTransitionPage(
+            state,
+            Duration.zero,
+            const SignUpPage(),
+          ),
+          routes: [
+            GoRoute(
+              path: AppRoutes.singUpVerificationStep,
+              name: AppRoutes.singUpVerificationStep,
+              pageBuilder: (BuildContext context, GoRouterState state) => _customTransitionPage(
+                state,
+                const Duration(milliseconds: 150),
+                const SignUpVerificationStep(),
+              ),
+            ),
+          ],
+        ),
+        GoRoute(
           path: AppRoutes.editProfile,
           builder: (BuildContext context, GoRouterState state) => EditingProfilePage(
             profileCubit: state.extra as ProfileCubit,
           ),
         ),
-
         GoRoute(
           path: AppRoutes.facilityBooking,
           builder: (BuildContext context, GoRouterState state) => FacilityBookingPage(
@@ -96,27 +108,12 @@ class AppRouter {
           ),
         ),
         GoRoute(
-          path: AppRoutes.signUp,
-          pageBuilder: (BuildContext context, GoRouterState state) => _customTransitionPage(
-            state,
-            Duration.zero,
-            const SignUpPage(),
-          ),
-        ),
-        GoRoute(
           path: AppRoutes.deepLinkEmailConfirmation,
           builder: (BuildContext context, GoRouterState state) => const EmailConfirmationDeepLink(),
         ),
         GoRoute(
-          path: AppRoutes.deepLinkFacilityDetails,
-          parentNavigatorKey: _rootNavigatorKey,
-          builder: (BuildContext context, GoRouterState state) {
-            return FacilityShareDeepLink(id: int.tryParse(state.pathParameters['id']!) ?? 0);
-          },
-        ),
-        GoRoute(
           path: AppRoutes.facilitiesMap,
-          builder: (BuildContext context, GoRouterState state) =>  FacilitiesMapPage(
+          builder: (BuildContext context, GoRouterState state) => FacilitiesMapPage(
             facilities: state.extra as List<FacilityData>,
           ),
         ),
@@ -128,9 +125,16 @@ class AppRouter {
             StatefulShellBranch(
               routes: <RouteBase>[
                 GoRoute(
-                  path: AppRoutes.search,
-                  builder: (BuildContext context, GoRouterState state) => const SearchPage(),
-                ),
+                    path: AppRoutes.search,
+                    builder: (BuildContext context, GoRouterState state) => const SearchPage(),
+                    routes: [
+                      GoRoute(
+                        path: AppRoutes.deepLinkFacilityDetails,
+                        builder: (BuildContext context, GoRouterState state) {
+                          return FacilityShareDeepLink(id: int.tryParse(state.pathParameters['id']!) ?? 0);
+                        },
+                      ),
+                    ]),
               ],
             ),
             StatefulShellBranch(
@@ -145,7 +149,15 @@ class AppRouter {
               routes: <RouteBase>[
                 GoRoute(
                   path: AppRoutes.reservation,
-                  builder: (BuildContext context, GoRouterState state) =>   ReservationPage(),
+                  builder: (BuildContext context, GoRouterState state) => const ReservationPage(),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  path: AppRoutes.mainProfile,
+                  builder: (BuildContext context, GoRouterState state) => const ProfilePage(),
                 ),
               ],
             ),
@@ -178,6 +190,11 @@ class AppRouter {
   void push(String location, {Object? extra}) {
     _config.push(location, extra: extra);
   }
+
+  void replace(String location, {Object? extra}) {
+    _config.replace(location, extra: extra);
+  }
+
   CustomTransitionPage _customTransitionPage(GoRouterState state, Duration duration, Widget child) {
     return CustomTransitionPage<void>(
       key: state.pageKey,

@@ -5,6 +5,7 @@ class AppRoutes {
 
   static const String signIn = '/sign_in';
   static const String signUp = '/sign_up';
+  static const String singUpVerificationStep = 'sign_up_verification';
 
   static const String search = '/search';
   static const String favorites = '/favorites';
@@ -20,7 +21,7 @@ class AppRoutes {
   static const String payment = '/payment';
 
   //DEEP LINKS
-  static const String deepLinkEmailConfirmation = '/link/email-confirmation';
-  static const String deepLinkFacilityDetails = '/link/facility/:id';
+  static const String deepLinkEmailConfirmation = '/user/verify-email';
+  static const String deepLinkFacilityDetails = 'link/facility/:id';
 
 }

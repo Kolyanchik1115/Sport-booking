@@ -113,7 +113,7 @@ final theme = ThemeData(
     onBackground: AppColors.black,
     primary: AppColors.crayola,
 
-    error: AppColors.lightSilver,
-    onError: AppColors.lightSilver,
+    error: AppColors.red,
+    onError: AppColors.red,
   ),
 );

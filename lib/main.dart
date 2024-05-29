@@ -6,7 +6,7 @@ import 'package:sport_app/core/themes/theme.dart';
 import 'package:sport_app/features/additional_pages/presentation/bloc/user/user_cubit.dart';
 import 'package:sport_app/injector.dart' as di;
 import 'package:sport_app/injector.dart';
-
+import 'package:sport_app/presentation/pages/sign_up/cubit/sign_up_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers:[
+      providers: [
         BlocProvider(
           lazy: false,
           create: (context) => injector<UserCubit>(),
@@ -31,7 +31,6 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
         title: 'Sport-booking',
-
         debugShowCheckedModeBanner: false,
         theme: theme,
         routerConfig: injector<AppRouter>().config,

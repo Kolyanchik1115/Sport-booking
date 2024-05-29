@@ -45,7 +45,7 @@ android {
 
     defaultConfig {
         applicationId "com.sportBooking.sport_app"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

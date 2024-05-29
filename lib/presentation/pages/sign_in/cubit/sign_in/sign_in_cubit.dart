@@ -33,8 +33,6 @@ class SignInCubit extends Cubit<SignInState> {
     );
   }
 
-
-
   Future<void> signIn(String? email, String? password) async {
     await injector<TokenStorage>().removeTokens();
     injector<SportAppApi>().token = '';

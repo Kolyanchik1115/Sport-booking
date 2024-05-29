@@ -68,5 +68,6 @@ void init() {
   injector.registerLazySingleton(() => UserCubit());
   injector.registerLazySingleton(() => FavoriteCubit());
   injector.registerLazySingleton(() => FacilityCubit());
+  injector.registerLazySingleton(() => SignUpCubit());
 
 }
